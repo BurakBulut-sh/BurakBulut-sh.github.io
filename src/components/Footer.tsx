@@ -5,13 +5,13 @@ import { siteMetadata } from '@/data/translations';
 
 export default function Footer() {
   return (
-    <footer className="border-t border-stone-200/90 py-10 transition-colors bg-[#FAF9F5]">
-      <div className="max-w-6xl mx-auto px-6 sm:px-12 flex flex-col sm:flex-row items-center justify-between gap-5 text-xs sm:text-sm font-mono text-stone-600">
+    <footer className="border-t border-stone-200/80 py-8 transition-colors bg-[#FAF9F5]">
+      <div className="max-w-5xl mx-auto px-6 sm:px-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-stone-500">
         <div>
           © 2026 {siteMetadata.name} · {siteMetadata.location}
         </div>
 
-        <div className="flex items-center space-x-5">
+        <div className="flex items-center space-x-4">
           <a
             href={siteMetadata.github}
             target="_blank"

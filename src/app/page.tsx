@@ -2,7 +2,6 @@
 
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
-import HermesSpotlight from '@/components/HermesSpotlight';
 import Experience from '@/components/Experience';
 import Projects from '@/components/Projects';
 import Competencies from '@/components/Competencies';
@@ -17,7 +16,6 @@ export default function Home() {
       <Navbar />
       <main className="flex-grow">
         <Hero />
-        <HermesSpotlight />
         <Experience />
         <Projects />
         <Competencies />

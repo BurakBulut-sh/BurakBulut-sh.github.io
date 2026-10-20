@@ -22,9 +22,8 @@ export const siteMetadata = {
 
 export const navItems = [
   { id: 'about', label: { en: 'About', tr: 'Hakkımda' } },
-  { id: 'hermes', label: { en: 'Hermes AI', tr: 'Hermes AI' } },
   { id: 'experience', label: { en: 'Experience', tr: 'Deneyim' } },
-  { id: 'projects', label: { en: 'Projects', tr: 'Projeler' } },
+  { id: 'projects', label: { en: 'Projects & AI', tr: 'Projeler & AI' } },
   { id: 'competencies', label: { en: 'Skills', tr: 'Yetkinlikler' } },
   { id: 'publications', label: { en: 'Publications', tr: 'Yayınlar' } },
   { id: 'education', label: { en: 'Education', tr: 'Eğitim' } },
