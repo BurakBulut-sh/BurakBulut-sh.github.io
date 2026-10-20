@@ -436,22 +436,29 @@ export const projectsData: ProjectItem[] = [
     },
   },
   {
-    id: 'hermes',
-    title: 'Hermes AI Bio-Agent Prototype',
+    id: 'bio-agent',
+    title: 'Autonomous LLM-Based Bioinformatics Agent',
     category: 'ai',
     categoryLabel: {
       en: 'AI & Agents',
       tr: 'Yapay Zeka & Ajanlar',
     },
     description: {
-      en: 'Autonomous bioinformatics AI agent framework featuring local LLM reasoning, Kanban dispatch queues, verification evidence SQLite databases, tool invocation, and automated quality control interpretation.',
-      tr: 'Yerel LLM akıl yürütme, Kanban görev kuyrukları, SQLite doğrulama kanıt veritabanları, araç çağırma ve otomatik kalite kontrol yorumlaması sunan otonom biyoenformatik yapay zeka ajan mimarisi.',
+      en: 'An on-premise autonomous bioinformatics agent running a local 35B parameter LLM on 16 GB VRAM. Ingests raw genomic data (FASTQ), autonomously navigates a modular skill-based workflow engine, invokes CLI tools, and delivers verified biological outputs with zero cloud data leakage.',
+      tr: '16 GB VRAM üzerinde yerel 35B parametreli açık LLM çalıştıran kurum içi otonom biyoenformatik ajanı. Ham genomik verileri (FASTQ) alır, modüler yetenek tabanlı iş akışı motoru üzerinden hesaplamalı araçları çalıştırır ve sıfır bulut veri sızıntısıyla doğrulanmış biyolojik çıktılar üretir.',
     },
-    techStack: ['Local LLMs', 'RAG', 'Agentic Workflows', 'SQLite', 'Python'],
+    techStack: [
+      'Local LLM (Qwen 35B)',
+      '16GB VRAM GPU',
+      'Skill-Based Workflows',
+      'Raw Genomic Ingestion',
+      'Autonomous Bio-Tools',
+      'Python',
+    ],
     featured: true,
     metrics: {
-      en: 'Local RAG • QC Verification Evidence DB',
-      tr: 'Yerel RAG • QC Doğrulama Kanıt Veritabanı',
+      en: '16 GB VRAM Local Model • Skill-Based Workflow Engine',
+      tr: '16 GB VRAM Yerel Model • Yetenek Tabanlı İş Akışı',
     },
   },
   {

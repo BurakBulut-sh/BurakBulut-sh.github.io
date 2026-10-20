@@ -79,7 +79,7 @@ export default function Hero() {
             <div className="space-y-1">
               <div className="font-mono text-xl font-semibold text-stone-950">AI in Biology</div>
               <div className="font-mono text-xs text-stone-500">
-                {language === 'en' ? 'Hermes Agent & Local LLMs' : 'Hermes Ajanı & Yerel LLM'}
+                {language === 'en' ? '16GB VRAM Local Bio-Agent' : '16GB VRAM Yerel Biyo-Ajan'}
               </div>
             </div>
           </div>

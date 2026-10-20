@@ -6,10 +6,10 @@ import { projectsData } from '@/data/translations';
 import {
   ArrowUpRight,
   ShieldCheck,
-  Database,
   Workflow,
-  FileCode2,
   Sparkles,
+  Layers,
+  TrendingUp,
 } from 'lucide-react';
 import {
   PythonIcon,
@@ -24,7 +24,7 @@ export default function Projects() {
   const [filter, setFilter] = useState<'all' | 'cli' | 'ai' | 'pipeline'>('all');
 
   const otherProjects = projectsData.filter((p) => {
-    if (p.id === 'hermes') return false; // Showcased prominently as the lead architecture
+    if (p.id === 'bio-agent' || p.id === 'hermes') return false; // Showcased prominently as the lead architecture
     if (filter === 'all') return true;
     return p.category === filter;
   });
@@ -53,37 +53,37 @@ export default function Projects() {
     }
   };
 
-  const hermesPillars = [
+  const agentPillars = [
     {
       icon: <ShieldCheck size={16} strokeWidth={1.5} className="text-emerald-800" />,
-      title: { en: '100% Private Local LLMs', tr: '100% Gizli Yerel LLM' },
+      title: { en: '16 GB VRAM Local Inference', tr: '16 GB VRAM Kurum İçi Çalıştırma' },
       desc: {
-        en: 'Zero cloud data leakage for sensitive cohort genomes. Powered by local Qwen 32B/35B via Ollama & vLLM.',
-        tr: 'Hassas kohort verileri için sıfır bulut sızıntısı. Ollama ve vLLM ile yerel Qwen 32B/35B çalıştırır.',
+        en: 'Runs a high-parameter open-weights model (Qwen-3.6-35B) locally within a 16 GB GPU budget, ensuring zero cloud data leakage for sensitive cohort genomes.',
+        tr: 'Hassas kohort verilerinin buluta sızmasını engellemek için 16 GB GPU bütçesinde yerel açık kaynaklı bir model (Qwen-3.6-35B) çalıştırır.',
       },
     },
     {
-      icon: <Database size={16} strokeWidth={1.5} className="text-emerald-800" />,
-      title: { en: 'Holographic Fact Store', tr: 'Holografik Olay Deposu' },
+      icon: <Layers size={16} strokeWidth={1.5} className="text-emerald-800" />,
+      title: { en: 'Modular Skill-Based Workflow', tr: 'Modüler Yetenek Tabanlı Mimari' },
       desc: {
-        en: 'Dual-tier state: SQLite atomic fact store for durable domain facts and vector context continuity.',
-        tr: 'Çift katmanlı hafıza: Dayanıklı alan bilgileri ve vektörel bağlam sürekliliği için SQLite olay deposu.',
+        en: 'A decoupled tool engine where the agent autonomously chains specialized bioinformatics skills (read QC, alignment, variant discovery, expression quantification) based on incoming data.',
+        tr: 'Ajanın uzmanlaşmış biyoenformatik yeteneklerini (kalite kontrol, hizalama, varyant keşfi, ekspresyon analizi) dinamik araç çağrılarıyla otonom zincirlediği modüler yapı.',
       },
     },
     {
       icon: <Workflow size={16} strokeWidth={1.5} className="text-emerald-800" />,
-      title: { en: 'Kanban Queue & Self-Healing', tr: 'Kanban Dağıtımı & Kurtarma' },
+      title: { en: 'Raw Genomic Ingestion to Output', tr: 'Ham Veriden Doğrulanmış Çıktıya' },
       desc: {
-        en: 'Asynchronous task daemon that computes ETAs, detects silent tool failures (e.g. GATK hangs), and auto-recovers.',
-        tr: 'İşlem süresi (ETA) hesaplayan, sessiz araç çökmelerini yakalayan ve kendini düzelten asenkron servis.',
+        en: 'Ingests raw FASTQ files, autonomously plans multi-stage pipelines, validates intermediate data integrity, executes bio-CLIs, and delivers verified biological deliverables.',
+        tr: 'Ham FASTQ dosyalarını alır, çok aşamalı iş akışlarını otonom planlar, ara aşama veri bütünlüğünü doğrular ve doğrulanmış biyolojik çıktılar üretir.',
       },
     },
     {
-      icon: <FileCode2 size={16} strokeWidth={1.5} className="text-emerald-800" />,
-      title: { en: 'Obsidian Lab Notebook (ELN)', tr: 'Programatik Obsidian ELN' },
+      icon: <TrendingUp size={16} strokeWidth={1.5} className="text-emerald-800" />,
+      title: { en: 'Extensibility & Future Scaling', tr: 'Genişletilebilirlik & Gelecek Vizyonu' },
       desc: {
-        en: 'Programmatically documents all pipeline stages into Obsidian with exact QC tables from raw logs (zero hallucination).',
-        tr: 'Tüm aşamaları ham loglardan çıkarılan kesin QC tabloları (halüsinasyonsuz) ile Obsidian kasasına kaydeder.',
+        en: 'While initial benchmarks proved successful on complex SNP calling, the architecture is designed as a generalized foundation ready to scale into multi-agent collaboration and single-cell omics.',
+        tr: 'İlk denemeler karmaşık SNP analizinde başarıyla test edilmiş olsa da, mimari gelecekte çoklu-ajan sistemleri ve tek-hücre omiks analizlerine kolayca uyarlanabilecek şekilde tasarlanmıştır.',
       },
     },
   ];
@@ -125,7 +125,7 @@ export default function Projects() {
           </div>
         </div>
 
-        {/* FEATURED LEAD ARCHITECTURE: HERMES AI BIO-AGENT */}
+        {/* FEATURED LEAD ARCHITECTURE: AUTONOMOUS LLM-BASED BIOINFORMATICS AGENT */}
         {(filter === 'all' || filter === 'ai') && (
           <div className="mb-7 p-6 sm:p-7 rounded-lg bg-white border border-stone-200/90 shadow-2xs space-y-4">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-stone-150 pb-2.5">
@@ -133,24 +133,26 @@ export default function Projects() {
                 <Sparkles size={11} className="text-emerald-700" />
                 <span>
                   {language === 'en'
-                    ? 'FEATURED INNOVATION · AUTONOMOUS AI BIO-AGENT'
-                    : 'ÖNE ÇIKAN İNOVASYON · OTONOM YAPAY ZEKA BİYO-AJANI'}
+                    ? 'FEATURED ARCHITECTURE · AUTONOMOUS LLM BIO-AGENT'
+                    : 'ÖNE ÇIKAN MİMARİ · OTONOM LLM BİYO-AJANI'}
                 </span>
               </div>
               <span className="font-mono text-xs text-stone-500">
-                {language === 'en' ? 'Local Workstation Hardware' : 'Kurum İçi İş İstasyonu'}
+                {language === 'en' ? 'Local Model: Qwen-3.6-35B · 16 GB VRAM' : 'Yerel Model: Qwen-3.6-35B · 16 GB VRAM'}
               </span>
             </div>
 
             <div className="space-y-1.5">
               <h3 className="font-serif text-xl sm:text-2xl font-medium text-stone-950 tracking-tight">
-                Hermes: Autonomous Bioinformatics AI Agent Framework
+                {language === 'en'
+                  ? 'Autonomous LLM-Based Bioinformatics Agent'
+                  : 'Otonom LLM Tabanlı Biyoenformatik Ajanı'}
               </h3>
               <p className="font-serif italic text-[15px] sm:text-base text-stone-600 leading-relaxed">
                 <ScientificText>
                   {language === 'en'
-                    ? 'An autonomous computational research agent engineered for private, multi-stage NGS pipelines, verifiable telemetry, and programmatic scientific note synthesis using local LLMs.'
-                    : 'Yerel LLM’ler kullanarak gizli, çok aşamalı NGS boru hatları, doğrulanabilir telemetri ve programatik bilimsel sentez için geliştirilmiş otonom hesaplamalı araştırma ajanı.'}
+                    ? 'An on-premise autonomous agent powered by a local 35B open-weights model on 16 GB VRAM, transforming raw genomic sequencing reads into verified biological outputs through a modular skill-based workflow architecture.'
+                    : '16 GB VRAM üzerinde yerel 35B açık modelle çalışan, ham genomik dizileme verilerini modüler bir yetenek tabanlı iş akışı mimarisiyle doğrulanmış biyolojik çıktılara dönüştüren otonom yapay zeka ajanı.'}
                 </ScientificText>
               </p>
             </div>
@@ -158,14 +160,14 @@ export default function Projects() {
             <p className="text-[14px] leading-relaxed text-stone-700 font-sans">
               <ScientificText>
                 {language === 'en'
-                  ? 'Sensitive research cohort genomes cannot be uploaded to commercial cloud AI APIs due to strict confidentiality standards. Hermes eliminates this barrier by running quantized local open-weight models (Qwen 32B/35B via Ollama/vLLM) directly on on-premise hardware, orchestrating long-horizon GATK4 variant calling and RNA-Seq analysis with verified data integrity.'
-                  : 'Hassas kohort dizileme verileri kurumsal gizlilik nedeniyle ticari bulut yapay zeka API’lerine aktarılamaz. Hermes, kurum içi donanım üzerinde açık kaynaklı yerel modelleri (Qwen 32B/35B via Ollama/vLLM) çalıştırarak ve doğrulanmış veri bütünlüğü ile uzun soluklu GATK4 varyant analizi ve RNA-Seq iş akışlarını otonom yöneterek bu engeli ortadan kaldırır.'}
+                  ? 'Modern genomics requires orchestrating complex, multi-stage pipelines while handling sensitive cohort datasets that cannot be uploaded to commercial cloud AI APIs due to strict institutional confidentiality. To solve this, I engineered an autonomous agent running completely on-premise on standard workstation hardware (16 GB VRAM using a quantized Qwen-3.6-35B model). Rather than relying on rigid, pre-scripted pipelines, the agent operates through an extensible skill-based workflow engine: it ingests raw genomic reads (FASTQ), autonomously inspects quality telemetry, dynamically selects and invokes domain-specific bioinformatics tools, performs runtime error recovery, and synthesizes reproducible biological deliverables.'
+                  : 'Modern genomik araştırmaları, kurumsal gizlilik nedeniyle ticari bulut yapay zeka API’lerine aktarılamayan hassas kohort verilerini işlerken karmaşık, çok adımlı iş akışlarının orkestrasyonunu gerektirir. Bu sorunu çözmek için standart iş istasyonu donanımında (16 GB VRAM) kuantize edilmiş yüksek parametreli bir model (Qwen-3.6-35B) kullanarak tamamen kurum içi çalışan otonom bir biyoenformatik ajanı geliştirdim. Statik betiklere bağımlı kalmak yerine ajan, yetenek tabanlı bir iş akışı sistemi kullanır: ham dizileme verilerini (FASTQ) alır, kalite kontrol telemetrisini inceler, alana özgü biyoenformatik araçları dinamik olarak seçip çalıştırır, çalışma anı hatalarını giderir ve doğrulanmış biyolojik sonuçlar üretir.'}
               </ScientificText>
             </p>
 
             {/* 4 Pillars Grid inside Featured Card - Compact 4-column layout */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 pt-1">
-              {hermesPillars.map((pillar, idx) => (
+              {agentPillars.map((pillar, idx) => (
                 <div
                   key={idx}
                   className="p-3.5 rounded bg-stone-50/80 border border-stone-200/80 space-y-1"
@@ -181,27 +183,33 @@ export default function Projects() {
               ))}
             </div>
 
-            {/* Real Milestones Box */}
+            {/* Proof-of-Concept Benchmark & Scalability Note */}
             <div className="p-3 rounded border border-stone-200/70 bg-stone-50/50 flex flex-wrap items-center justify-between gap-3 text-xs font-mono text-stone-700">
               <span className="font-semibold text-stone-900">
-                {language === 'en' ? 'Verified Campaigns:' : 'Doğrulanmış Başarılar:'}
+                {language === 'en' ? 'Proof of Concept & Generalization:' : 'Kavram Kanıtı & Genişletilebilirlik:'}
               </span>
-              <span className="text-emerald-900 font-medium">BaP MA (4.58M+ Variants)</span>
+              <span className="text-emerald-900 font-medium">
+                {language === 'en'
+                  ? 'Initial Benchmark on Raw FASTQ -> Multi-Stage SNP Discovery & GATK4'
+                  : 'Ham FASTQ -> Çok Aşamalı SNP Keşfi ve GATK4 Başlangıç Doğrulaması'}
+              </span>
               <span className="text-stone-300">·</span>
-              <span className="text-emerald-900 font-medium">RNA-Seq (58 Samples, 13,818 Genes)</span>
-              <span className="text-stone-300">·</span>
-              <span className="text-emerald-900 font-medium">BANE Pipeline (66 Cohort Lines)</span>
+              <span className="text-stone-600">
+                {language === 'en'
+                  ? 'Adaptable to Single-Cell, Transcriptomics & Multi-Agent Collaboration'
+                  : 'Tek-Hücre, Transkriptomik ve Çoklu Ajan İş Birliklerine Uyarlanabilir'}
+              </span>
             </div>
 
             {/* Tech Stack Footer */}
             <div className="border-t border-stone-150 pt-3 flex flex-wrap items-center gap-1.5">
               {[
-                'Qwen 32B Local LLM',
-                'Ollama / vLLM',
-                'Holographic Memory',
-                'Obsidian ELN API',
-                'SQLite Telemetry',
-                'GATK4 & SLURM',
+                'Local Qwen-3.6-35B',
+                '16 GB VRAM Optimization',
+                'Skill-Based Workflow Architecture',
+                'Raw Genomic Ingestion (FASTQ/BAM)',
+                'Autonomous Tool Chaining',
+                'Runtime Error Recovery',
                 'Python AsyncIO',
               ].map((tech) => (
                 <span
