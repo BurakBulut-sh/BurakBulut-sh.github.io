@@ -22,9 +22,9 @@ export const siteMetadata = {
 
 export const navItems = [
   { id: 'about', label: { en: 'About', tr: 'Hakkımda' } },
-  { id: 'competencies', label: { en: 'Skills', tr: 'Yetkinlikler' } },
   { id: 'experience', label: { en: 'Experience', tr: 'Deneyim' } },
   { id: 'projects', label: { en: 'Projects', tr: 'Projeler' } },
+  { id: 'competencies', label: { en: 'Skills', tr: 'Yetkinlikler' } },
   { id: 'publications', label: { en: 'Publications', tr: 'Yayınlar' } },
   { id: 'education', label: { en: 'Education', tr: 'Eğitim' } },
   { id: 'contact', label: { en: 'Contact', tr: 'İletişim' } },

@@ -3,16 +3,12 @@
 import React, { useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { siteMetadata } from '@/data/translations';
+import { Mail, Copy, Check, ArrowUpRight } from 'lucide-react';
 import {
-  Mail,
-  GraduationCap,
-  MapPin,
-  Copy,
-  Check,
-  Send,
-  FileDown,
-} from 'lucide-react';
-import { GithubIcon, LinkedinIcon } from '@/components/icons/BrandIcons';
+  GithubIcon,
+  LinkedinIcon,
+  ScholarIcon,
+} from '@/components/icons/BrandIcons';
 
 export default function Contact() {
   const { language } = useLanguage();
@@ -25,144 +21,125 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-28 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center space-y-4 mb-14">
-          <div className="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-cyan-400">
-            <Mail className="w-4 h-4" />
-            <span>{language === 'en' ? 'Get In Touch' : 'İletişime Geçin'}</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            {language === 'en'
-              ? 'Collaborate & Connect'
-              : 'İş Birliği & İletişim'}
+    <section id="contact" className="py-16 sm:py-20 border-t border-stone-200/80 dark:border-stone-800/80">
+      <div className="max-w-5xl mx-auto px-6 sm:px-10">
+        {/* Section Header */}
+        <div className="space-y-1 mb-10">
+          <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-emerald-800 dark:text-emerald-400">
+            06 / {language === 'en' ? 'CONTACT & COLLABORATION' : 'İLETİŞİM & İŞ BİRLİĞİ'}
+          </span>
+          <h2 className="font-serif text-2xl sm:text-3xl font-normal tracking-tight text-stone-950 dark:text-stone-100">
+            {language === 'en' ? 'Let’s Connect' : 'İletişime Geçin'}
           </h2>
-          <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-            {language === 'en'
-              ? 'Open to bioinformatics research collaborations, industry roles, consulting, and discussions on computational genomics and AI agents.'
-              : 'Biyoenformatik araştırma iş birlikleri, endüstri rolleri, danışmanlık ve hesaplamalı genomik ile yapay zeka ajanları üzerine fikir alışverişine açığım.'}
-          </p>
         </div>
 
-        <div className="max-w-3xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-5 mb-10">
-          {/* Email Card */}
-          <div className="p-6 rounded-2xl bg-white dark:bg-slate-950/80 border border-slate-200/80 dark:border-slate-800/80 shadow-sm flex flex-col justify-between space-y-4">
-            <div className="flex items-start space-x-3">
-              <div className="p-3 rounded-xl bg-blue-50 dark:bg-slate-900 text-blue-600 dark:text-cyan-400">
-                <Mail className="w-5 h-5" />
-              </div>
-              <div>
-                <h3 className="font-bold text-slate-900 dark:text-white text-base">
-                  {language === 'en' ? 'Direct Email' : 'Doğrudan E-posta'}
-                </h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400 break-all mt-0.5">
-                  {siteMetadata.email}
-                </p>
-              </div>
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+          {/* Left Column: Context & Availability */}
+          <div className="md:col-span-6 space-y-4 font-sans text-[15px] leading-relaxed text-stone-600 dark:text-stone-400">
+            <p>
+              {language === 'en'
+                ? 'I am open to bioinformatics research collaborations, industry scientist positions, consulting projects, and discussions on computational genomics and AI bio-agent architectures.'
+                : 'Biyoenformatik araştırma iş birlikleri, endüstri araştırmacı rolleri, danışmanlık projeleri ve hesaplamalı genomik ile yapay zeka ajan mimarileri üzerine fikir alışverişine açığım.'}
+            </p>
+            <p className="font-mono text-xs text-stone-500">
+              {language === 'en'
+                ? 'Based in Wiesbaden / Frankfurt Rhine-Main area, Germany. Available for hybrid and remote international engagements.'
+                : 'Wiesbaden / Frankfurt Ren-Main bölgesinde yerleşik. Hibrit ve uzaktan uluslararası çalışmalara uygun.'}
+            </p>
+          </div>
 
-            <div className="flex items-center space-x-2 pt-2 border-t border-slate-100 dark:border-slate-900">
+          {/* Right Column: Direct Contact Action Box */}
+          <div className="md:col-span-6 space-y-4">
+            {/* Email Card */}
+            <div className="p-5 rounded-lg border border-stone-200/90 dark:border-stone-800/90 bg-white dark:bg-[#141413] space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="font-mono text-xs uppercase tracking-wider text-stone-500">
+                  {language === 'en' ? 'Direct Email' : 'Doğrudan E-posta'}
+                </span>
+                <button
+                  onClick={copyEmail}
+                  className="inline-flex items-center gap-1 font-mono text-xs text-stone-600 dark:text-stone-400 hover:text-stone-950 dark:hover:text-stone-100 cursor-pointer"
+                  title="Copy email to clipboard"
+                >
+                  {copiedEmail ? (
+                    <>
+                      <Check size={13} className="text-emerald-600" />
+                      <span className="text-emerald-700 dark:text-emerald-400">
+                        {language === 'en' ? 'Copied' : 'Kopyalandı'}
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy size={13} strokeWidth={1.5} />
+                      <span>{language === 'en' ? 'Copy' : 'Kopyala'}</span>
+                    </>
+                  )}
+                </button>
+              </div>
+
               <a
                 href={`mailto:${siteMetadata.email}`}
-                className="flex-1 inline-flex items-center justify-center space-x-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-blue-600 text-white hover:bg-blue-500 transition-colors"
+                className="font-mono text-sm sm:text-base font-semibold text-stone-950 dark:text-stone-100 hover:underline block truncate"
               >
-                <Send className="w-3.5 h-3.5" />
-                <span>{language === 'en' ? 'Compose' : 'E-posta Gönder'}</span>
+                {siteMetadata.email}
               </a>
-
-              <button
-                onClick={copyEmail}
-                className="inline-flex items-center justify-center space-x-1 px-3 py-2 rounded-xl text-xs font-medium bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors cursor-pointer"
-                title="Copy Email Address"
-              >
-                {copiedEmail ? (
-                  <>
-                    <Check className="w-3.5 h-3.5 text-emerald-500" />
-                    <span className="text-emerald-500">
-                      {language === 'en' ? 'Copied' : 'Kopyalandı'}
-                    </span>
-                  </>
-                ) : (
-                  <>
-                    <Copy className="w-3.5 h-3.5" />
-                    <span>{language === 'en' ? 'Copy' : 'Kopyala'}</span>
-                  </>
-                )}
-              </button>
-            </div>
-          </div>
-
-          {/* Location & Metropolitan Region */}
-          <div className="p-6 rounded-2xl bg-white dark:bg-slate-950/80 border border-slate-200/80 dark:border-slate-800/80 shadow-sm flex flex-col justify-between space-y-4">
-            <div className="flex items-start space-x-3">
-              <div className="p-3 rounded-xl bg-rose-50 dark:bg-slate-900 text-rose-500">
-                <MapPin className="w-5 h-5" />
-              </div>
-              <div>
-                <h3 className="font-bold text-slate-900 dark:text-white text-base">
-                  {language === 'en' ? 'Location' : 'Konum'}
-                </h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                  Wiesbaden / Frankfurt Rhine-Main, Germany
-                </p>
-                <p className="text-[11px] text-slate-400 dark:text-slate-500 mt-1">
-                  {language === 'en' ? 'Central European Time (UTC+1 / UTC+2)' : 'Orta Avrupa Saati (UTC+1 / UTC+2)'}
-                </p>
-              </div>
             </div>
 
-            <div className="pt-2 border-t border-slate-100 dark:border-slate-900 flex gap-2">
+            {/* Profiles Row */}
+            <div className="grid grid-cols-2 gap-3">
               <a
-                href="cv/Burak_Bulut_Master_CV_EN.pdf"
-                download
-                className="flex-1 inline-flex items-center justify-center space-x-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
+                href={siteMetadata.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3.5 rounded-lg border border-stone-200/90 dark:border-stone-800/90 bg-white dark:bg-[#141413] hover:border-stone-400 dark:hover:border-stone-600 transition-colors flex items-center justify-between"
               >
-                <FileDown className="w-3.5 h-3.5" />
-                <span>CV (EN)</span>
+                <div className="flex items-center gap-2 text-stone-800 dark:text-stone-200 text-xs font-medium">
+                  <LinkedinIcon size={15} />
+                  <span>LinkedIn</span>
+                </div>
+                <ArrowUpRight size={13} className="text-stone-400" />
               </a>
+
               <a
-                href="cv/Burak_Bulut_Master_CV_TR.pdf"
-                download
-                className="flex-1 inline-flex items-center justify-center space-x-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
+                href={siteMetadata.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3.5 rounded-lg border border-stone-200/90 dark:border-stone-800/90 bg-white dark:bg-[#141413] hover:border-stone-400 dark:hover:border-stone-600 transition-colors flex items-center justify-between"
               >
-                <FileDown className="w-3.5 h-3.5" />
-                <span>CV (TR)</span>
+                <div className="flex items-center gap-2 text-stone-800 dark:text-stone-200 text-xs font-medium">
+                  <GithubIcon size={15} />
+                  <span>GitHub</span>
+                </div>
+                <ArrowUpRight size={13} className="text-stone-400" />
+              </a>
+
+              <a
+                href={siteMetadata.scholar}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3.5 rounded-lg border border-stone-200/90 dark:border-stone-800/90 bg-white dark:bg-[#141413] hover:border-stone-400 dark:hover:border-stone-600 transition-colors flex items-center justify-between"
+              >
+                <div className="flex items-center gap-2 text-stone-800 dark:text-stone-200 text-xs font-medium">
+                  <ScholarIcon size={15} />
+                  <span>Scholar</span>
+                </div>
+                <ArrowUpRight size={13} className="text-stone-400" />
+              </a>
+
+              <a
+                href={siteMetadata.dissertation}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3.5 rounded-lg border border-stone-200/90 dark:border-stone-800/90 bg-white dark:bg-[#141413] hover:border-stone-400 dark:hover:border-stone-600 transition-colors flex items-center justify-between"
+              >
+                <div className="flex items-center gap-2 text-stone-800 dark:text-stone-200 text-xs font-medium">
+                  <span className="font-mono text-xs">Ph.D.</span>
+                  <span>Thesis</span>
+                </div>
+                <ArrowUpRight size={13} className="text-stone-400" />
               </a>
             </div>
           </div>
-        </div>
-
-        {/* Social Links Row */}
-        <div className="max-w-md mx-auto flex items-center justify-center gap-3">
-          <a
-            href={siteMetadata.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 inline-flex items-center justify-center space-x-2 py-3 px-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-cyan-400 hover:border-blue-500/50 transition-all text-xs font-semibold shadow-sm"
-          >
-            <LinkedinIcon className="w-4 h-4" />
-            <span>LinkedIn</span>
-          </a>
-
-          <a
-            href={siteMetadata.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 inline-flex items-center justify-center space-x-2 py-3 px-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-cyan-400 hover:border-blue-500/50 transition-all text-xs font-semibold shadow-sm"
-          >
-            <GithubIcon className="w-4 h-4" />
-            <span>GitHub</span>
-          </a>
-
-          <a
-            href={siteMetadata.scholar}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 inline-flex items-center justify-center space-x-2 py-3 px-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-cyan-400 hover:border-blue-500/50 transition-all text-xs font-semibold shadow-sm"
-          >
-            <GraduationCap className="w-4 h-4" />
-            <span>Scholar</span>
-          </a>
         </div>
       </div>
     </section>

@@ -2,166 +2,157 @@
 
 import React from 'react';
 import { useLanguage } from '@/context/LanguageContext';
-import { heroContent, siteMetadata } from '@/data/translations';
+import { siteMetadata } from '@/data/translations';
+import { FileText, Mail, ArrowUpRight } from 'lucide-react';
 import {
-  FileDown,
-  Mail,
-  GraduationCap,
-  Sparkles,
-  MapPin,
-  Cpu,
-  GitBranch,
-  BookOpen,
-} from 'lucide-react';
-import { GithubIcon, LinkedinIcon } from '@/components/icons/BrandIcons';
+  GithubIcon,
+  LinkedinIcon,
+  ScholarIcon,
+} from '@/components/icons/BrandIcons';
 
 export default function Hero() {
   const { language } = useLanguage();
 
   return (
-    <section
-      id="about"
-      className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-100/50 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900"
-    >
-      {/* Background Decorative Gradients */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/10 dark:bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/3 right-10 w-96 h-96 bg-cyan-500/10 dark:bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-4xl mx-auto text-center space-y-6">
-          {/* Badge */}
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-slate-900/90 border border-blue-200 dark:border-cyan-500/30 text-blue-700 dark:text-cyan-300 text-xs sm:text-sm font-semibold tracking-wide shadow-sm">
-            <Sparkles className="w-4 h-4 text-cyan-500" />
-            <span>{heroContent.badge[language]}</span>
-          </div>
-
-          {/* Headline Name */}
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-none">
-            {heroContent.title}
-          </h1>
-
-          {/* Subtitle & Location */}
-          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm sm:text-base font-medium text-slate-600 dark:text-slate-300">
-            <span className="flex items-center space-x-1 text-blue-600 dark:text-cyan-400 font-semibold">
-              <Cpu className="w-4 h-4" />
-              <span>
-                {language === 'en'
-                  ? 'Genomics • HPC • AI Bio-Agents'
-                  : 'Genomik • HPC • Yapay Zeka Ajanları'}
-              </span>
-            </span>
-            <span className="text-slate-300 dark:text-slate-700 hidden sm:inline">•</span>
-            <span className="flex items-center space-x-1.5 text-slate-500 dark:text-slate-400">
-              <MapPin className="w-4 h-4 text-rose-500" />
-              <span>{siteMetadata.location}</span>
+    <section id="about" className="pt-16 pb-16 sm:pt-20 sm:pb-20">
+      <div className="max-w-5xl mx-auto px-6 sm:px-10">
+        <div className="space-y-6">
+          {/* Status line */}
+          <div className="inline-flex items-center gap-2.5 px-3 py-1 rounded-full border border-stone-200/90 dark:border-stone-800/90 bg-stone-100/60 dark:bg-stone-900/60">
+            <span className="w-2 h-2 rounded-full bg-emerald-600 dark:bg-emerald-400" aria-hidden="true" />
+            <span className="font-mono text-xs text-stone-700 dark:text-stone-300">
+              {language === 'en'
+                ? 'Bioinformatics Scientist & Computational Biologist · Wiesbaden, Germany'
+                : 'Biyoenformatik Bilimcisi & Hesaplamalı Biyolog · Wiesbaden, Almanya'}
             </span>
           </div>
 
-          {/* Bio Paragraph */}
-          <p className="text-base sm:text-lg md:text-xl text-slate-700 dark:text-slate-300 leading-relaxed font-normal text-balance mx-auto">
-            {heroContent.summary[language]}
-          </p>
-
-          {/* CV Action Buttons */}
-          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3.5">
-            <a
-              href="cv/Burak_Bulut_Master_CV_EN.pdf"
-              download="Burak_Bulut_Master_CV_EN.pdf"
-              className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-200 cursor-pointer"
-            >
-              <FileDown className="w-4 h-4" />
-              <span>{heroContent.buttons.downloadCvEn[language]}</span>
-            </a>
-
-            <a
-              href="cv/Burak_Bulut_Master_CV_TR.pdf"
-              download="Burak_Bulut_Master_CV_TR.pdf"
-              className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 text-white font-semibold text-sm shadow-md transition-all duration-200 cursor-pointer"
-            >
-              <FileDown className="w-4 h-4" />
-              <span>{heroContent.buttons.downloadCvTr[language]}</span>
-            </a>
-
-            <a
-              href="#projects"
-              className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3 rounded-xl bg-white dark:bg-slate-900/80 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 font-semibold text-sm border border-slate-200 dark:border-slate-800 transition-all duration-200"
-            >
-              <GitBranch className="w-4 h-4 text-cyan-500" />
-              <span>{heroContent.buttons.viewProjects[language]}</span>
-            </a>
+          {/* Editorial Headline */}
+          <div className="space-y-3">
+            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-stone-950 dark:text-stone-100">
+              Burak Bulut, Ph.D.
+            </h1>
+            <p className="font-serif italic text-xl sm:text-2xl text-stone-600 dark:text-stone-400 max-w-[70ch] leading-relaxed">
+              {language === 'en'
+                ? 'Engineering reproducible multi-omics workflows, high-throughput genomic analyses, and AI-assisted biological systems.'
+                : 'Tekrarlanabilir multi-omiks iş akışları, yüksek verimli genomik analizler ve yapay zeka destekli biyolojik sistemler geliştirme.'}
+            </p>
           </div>
 
-          {/* Social and Academic Channels */}
-          <div className="pt-4 flex items-center justify-center space-x-3">
-            <a
-              href={`mailto:${siteMetadata.email}`}
-              className="p-3 rounded-xl bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-cyan-400 hover:bg-blue-50 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 transition-all"
-              title="Send Email"
-              aria-label="Email"
-            >
-              <Mail className="w-5 h-5" />
-            </a>
-
-            <a
-              href={siteMetadata.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-xl bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-cyan-400 hover:bg-blue-50 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 transition-all"
-              title="LinkedIn Profile"
-              aria-label="LinkedIn"
-            >
-              <LinkedinIcon className="w-5 h-5" />
-            </a>
-
-            <a
-              href={siteMetadata.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-xl bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-cyan-400 hover:bg-blue-50 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 transition-all"
-              title="GitHub Profile"
-              aria-label="GitHub"
-            >
-              <GithubIcon className="w-5 h-5" />
-            </a>
-
-            <a
-              href={siteMetadata.scholar}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-xl bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-cyan-400 hover:bg-blue-50 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 transition-all"
-              title="Google Scholar Citations"
-              aria-label="Google Scholar"
-            >
-              <GraduationCap className="w-5 h-5" />
-            </a>
-
-            <a
-              href={siteMetadata.dissertation}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-xl bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-cyan-400 hover:bg-blue-50 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 transition-all"
-              title="Ph.D. Dissertation (OpenScience Mainz)"
-              aria-label="Dissertation"
-            >
-              <BookOpen className="w-5 h-5" />
-            </a>
+          {/* Academic Bio Paragraphs */}
+          <div className="space-y-4 text-[15px] leading-[1.7] text-stone-600 dark:text-stone-400 max-w-[72ch] font-sans">
+            <p>
+              {language === 'en'
+                ? 'Bioinformatics Scientist and Computational Biologist (Ph.D.) with 6+ years of specialized experience in genomics, transcriptomics, NGS data analysis, and workflow automation across research environments. Proven track record in designing multi-year computational studies, engineering reproducible bioinformatics pipelines (Snakemake, Docker, SLURM) on Linux/HPC clusters, and leading scientific coordination including DFG grant proposal development.'
+                : 'Genomik, transkriptomik, NGS veri analizi ve iş akışı otomasyonu alanlarında araştırma ortamlarında 6 yılı aşkın uzmanlık deneyimine sahip Biyoenformatik Bilimcisi ve Hesaplamalı Biyolog (Doktora). Çok yıllı hesaplamalı çalışmalar tasarlama, Linux/HPC kümelerinde tekrarlanabilir biyoenformatik boru hatları (Snakemake, Docker, SLURM) geliştirme ve DFG hibe projesi teklif hazırlığı dahil bilimsel koordinasyona liderlik etme konusunda kanıtlanmış başarı geçmişi.'}
+            </p>
+            <p>
+              {language === 'en'
+                ? 'Author of 7 scientific publications (6 peer-reviewed articles, 1 preprint; 4 first-author), combining rigorous wet-lab experimental grounding with computational prototyping in Python and R, local LLM fine-tuning, and RAG-enabled analysis workflows.'
+                : 'Titiz ıslak laboratuvar deneysel temellerini Python ve R hesaplamalı prototipleme, yerel LLM ince ayarı ve RAG destekli analiz iş akışlarıyla birleştiren 7 bilimsel yayının (6 hakemli makale, 1 ön baskı; 4 birinci isim) yazarı.'}
+            </p>
           </div>
 
-          {/* Quick Metrics Bar */}
-          <div className="pt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto">
-            {heroContent.stats.map((stat, idx) => (
-              <div
-                key={idx}
-                className="p-4 rounded-2xl bg-white/70 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800/80 backdrop-blur-sm shadow-sm hover:border-blue-500/30 dark:hover:border-cyan-500/30 transition-all"
-              >
-                <div className="text-2xl sm:text-3xl font-extrabold text-blue-600 dark:text-cyan-400">
-                  {stat.value}
-                </div>
-                <div className="text-xs font-medium text-slate-600 dark:text-slate-400 mt-1">
-                  {stat.label[language]}
-                </div>
+          {/* Highlights Ribbon */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 py-5 border-y border-stone-200/80 dark:border-stone-800/80 my-8">
+            <div className="space-y-1">
+              <div className="font-mono text-xl font-semibold text-stone-950 dark:text-stone-100">6+ Years</div>
+              <div className="font-mono text-xs text-stone-500">
+                {language === 'en' ? 'Genomics & NGS Experience' : 'Genomik & NGS Deneyimi'}
               </div>
-            ))}
+            </div>
+            <div className="space-y-1">
+              <div className="font-mono text-xl font-semibold text-stone-950 dark:text-stone-100">7 Publications</div>
+              <div className="font-mono text-xs text-stone-500">
+                {language === 'en' ? '6 Peer-Reviewed, 4 First-Author' : '6 Hakemli, 4 Birinci İsim'}
+              </div>
+            </div>
+            <div className="space-y-1">
+              <div className="font-mono text-xl font-semibold text-stone-950 dark:text-stone-100">HPC & Pipelines</div>
+              <div className="font-mono text-xs text-stone-500">Snakemake, Docker, SLURM</div>
+            </div>
+            <div className="space-y-1">
+              <div className="font-mono text-xl font-semibold text-stone-950 dark:text-stone-100">AI in Biology</div>
+              <div className="font-mono text-xs text-stone-500">
+                {language === 'en' ? 'Local LLMs, Fine-Tuning & RAG' : 'Yerel LLM, Fine-Tuning & RAG'}
+              </div>
+            </div>
+          </div>
+
+          {/* Actions & Verified Links */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
+            {/* CV Download Buttons */}
+            <div className="flex flex-wrap items-center gap-3">
+              <a
+                href="cv/Burak_Bulut_Master_CV_EN.pdf"
+                download="Burak_Bulut_Master_CV_EN.pdf"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-md bg-stone-900 hover:bg-stone-800 text-stone-50 dark:bg-stone-100 dark:hover:bg-stone-200 dark:text-stone-900 text-sm font-medium transition-colors cursor-pointer"
+              >
+                <FileText size={15} strokeWidth={1.5} />
+                <span>{language === 'en' ? 'Download CV (EN)' : 'Özgeçmiş İndir (EN)'}</span>
+              </a>
+
+              <a
+                href="cv/Burak_Bulut_Master_CV_TR.pdf"
+                download="Burak_Bulut_Master_CV_TR.pdf"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-md border border-stone-300 dark:border-stone-700 hover:border-stone-400 dark:hover:border-stone-600 bg-transparent text-stone-800 dark:text-stone-200 text-sm font-medium transition-colors cursor-pointer"
+              >
+                <FileText size={15} strokeWidth={1.5} />
+                <span>{language === 'en' ? 'Download CV (TR)' : 'Özgeçmiş İndir (TR)'}</span>
+              </a>
+            </div>
+
+            {/* Academic & Professional Profiles */}
+            <div className="flex items-center gap-2 text-stone-600 dark:text-stone-400">
+              <a
+                href={siteMetadata.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-md border border-stone-200 dark:border-stone-800 hover:border-stone-400 dark:hover:border-stone-600 hover:text-stone-950 dark:hover:text-stone-100 transition-colors"
+                title="GitHub Profile"
+                aria-label="GitHub"
+              >
+                <GithubIcon size={16} />
+              </a>
+              <a
+                href={siteMetadata.scholar}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-md border border-stone-200 dark:border-stone-800 hover:border-stone-400 dark:hover:border-stone-600 hover:text-stone-950 dark:hover:text-stone-100 transition-colors"
+                title="Google Scholar Profile"
+                aria-label="Google Scholar"
+              >
+                <ScholarIcon size={16} />
+              </a>
+              <a
+                href={siteMetadata.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-md border border-stone-200 dark:border-stone-800 hover:border-stone-400 dark:hover:border-stone-600 hover:text-stone-950 dark:hover:text-stone-100 transition-colors"
+                title="LinkedIn Profile"
+                aria-label="LinkedIn"
+              >
+                <LinkedinIcon size={16} />
+              </a>
+              <a
+                href={`mailto:${siteMetadata.email}`}
+                className="p-2 rounded-md border border-stone-200 dark:border-stone-800 hover:border-stone-400 dark:hover:border-stone-600 hover:text-stone-950 dark:hover:text-stone-100 transition-colors"
+                title="Email Burak Bulut"
+                aria-label="Email"
+              >
+                <Mail size={16} strokeWidth={1.5} />
+              </a>
+              <a
+                href={siteMetadata.dissertation}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 font-mono text-xs px-2.5 py-2 rounded-md border border-stone-200 dark:border-stone-800 hover:border-stone-400 dark:hover:border-stone-600 hover:text-stone-950 dark:hover:text-stone-100 transition-colors"
+                title="Ph.D. Dissertation at OpenScience Mainz"
+              >
+                <span>Ph.D. Thesis</span>
+                <ArrowUpRight size={13} strokeWidth={1.5} />
+              </a>
+            </div>
           </div>
         </div>
       </div>

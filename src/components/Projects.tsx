@@ -3,171 +3,142 @@
 import React, { useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { projectsData } from '@/data/translations';
-import { FolderGit2, ExternalLink, Sparkles, Terminal, Cpu, Dna } from 'lucide-react';
-import { GithubIcon } from '@/components/icons/BrandIcons';
+import { ArrowUpRight } from 'lucide-react';
+import {
+  PythonIcon,
+  RIcon,
+  DockerIcon,
+  PipelineIcon,
+} from '@/components/icons/BrandIcons';
 
 export default function Projects() {
   const { language } = useLanguage();
   const [filter, setFilter] = useState<'all' | 'cli' | 'ai' | 'pipeline'>('all');
 
-  const filteredProjects =
-    filter === 'all'
-      ? projectsData
-      : projectsData.filter((p) => p.category === filter);
+  const filteredProjects = projectsData.filter((p) => {
+    if (filter === 'all') return true;
+    return p.category === filter;
+  });
 
-  const getCategoryIcon = (category: string) => {
+  const getTechIcon = (tag: string) => {
+    const lower = tag.toLowerCase();
+    if (lower.includes('python')) return <PythonIcon size={12} className="text-stone-500" />;
+    if (lower === 'r' || lower.includes('deseq2') || lower.includes('limma')) return <RIcon size={12} className="text-stone-500" />;
+    if (lower.includes('docker')) return <DockerIcon size={12} className="text-stone-500" />;
+    if (lower.includes('snakemake') || lower.includes('pipeline') || lower.includes('gatk') || lower.includes('slurm')) {
+      return <PipelineIcon size={12} className="text-stone-500" />;
+    }
+    return null;
+  };
+
+  const getCategoryBadge = (category: string) => {
     switch (category) {
       case 'cli':
-        return <Terminal className="w-3.5 h-3.5 text-blue-500" />;
+        return 'CLI TOOL · HPC/SLURM';
       case 'ai':
-        return <Cpu className="w-3.5 h-3.5 text-purple-500" />;
+        return 'AI AGENT · LOCAL RAG';
       case 'pipeline':
-        return <Dna className="w-3.5 h-3.5 text-cyan-500" />;
+        return 'NGS WORKFLOW · HPC';
       default:
-        return null;
+        return 'SOFTWARE';
     }
   };
 
   return (
-    <section
-      id="projects"
-      className="py-20 md:py-28 bg-slate-50/50 dark:bg-slate-900/40 border-y border-slate-200/60 dark:border-slate-800/60"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="projects" className="py-16 sm:py-20 border-t border-stone-200/80 dark:border-stone-800/80">
+      <div className="max-w-5xl mx-auto px-6 sm:px-10">
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center space-y-3 mb-12">
-          <div className="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-cyan-400">
-            <FolderGit2 className="w-4 h-4" />
-            <span>
-              {language === 'en' ? 'Open Source & Research Software' : 'Açık Kaynak & Araştırma Yazılımları'}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-8">
+          <div className="space-y-1">
+            <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-emerald-800 dark:text-emerald-400">
+              02 / {language === 'en' ? 'SOFTWARE & NGS PIPELINES' : 'YAZILIM & NGS BORU HATLARI'}
             </span>
+            <h2 className="font-serif text-2xl sm:text-3xl font-normal tracking-tight text-stone-950 dark:text-stone-100">
+              {language === 'en' ? 'Open-Source Tools & Workflows' : 'Açık Kaynak Araçlar & İş Akışları'}
+            </h2>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            {language === 'en'
-              ? 'Featured Projects & Pipelines'
-              : 'Öne Çıkan Projeler & Boru Hatları'}
-          </h2>
-          <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400">
-            {language === 'en'
-              ? 'Validated bioinformatics tools, autonomous agent frameworks, and high-throughput genomic pipelines.'
-              : 'Test edilmiş biyoenformatik araçları, otonom ajan çerçeveleri ve yüksek verimli genomik boru hatları.'}
-          </p>
+
+          {/* Filter Tabs */}
+          <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-md border border-stone-200/80 dark:border-stone-800/80 bg-stone-100/50 dark:bg-stone-900/50">
+            {[
+              { id: 'all', label: { en: 'All', tr: 'Tümü' } },
+              { id: 'cli', label: { en: 'CLI Tools & Apps', tr: 'CLI Araçları' } },
+              { id: 'ai', label: { en: 'AI & Agents', tr: 'Yapay Zeka' } },
+              { id: 'pipeline', label: { en: 'Genomics Pipelines', tr: 'Boru Hatları' } },
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setFilter(tab.id as typeof filter)}
+                className={`font-mono text-xs px-2.5 py-1 rounded transition-colors cursor-pointer ${
+                  filter === tab.id
+                    ? 'bg-white dark:bg-stone-800 text-stone-950 dark:text-stone-100 shadow-xs font-semibold'
+                    : 'text-stone-600 dark:text-stone-400 hover:text-stone-950 dark:hover:text-stone-200'
+                }`}
+              >
+                {tab.label[language]}
+              </button>
+            ))}
+          </div>
         </div>
 
-        {/* Filter Tabs */}
-        <div className="flex items-center justify-center flex-wrap gap-2 mb-10">
-          <button
-            onClick={() => setFilter('all')}
-            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
-              filter === 'all'
-                ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20'
-                : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'
-            }`}
-          >
-            {language === 'en' ? 'All Software (7)' : 'Tüm Yazılımlar (7)'}
-          </button>
-          <button
-            onClick={() => setFilter('cli')}
-            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
-              filter === 'cli'
-                ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20'
-                : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'
-            }`}
-          >
-            {language === 'en' ? 'CLI Tools & Apps (3)' : 'CLI Araçları & Uygulamalar (3)'}
-          </button>
-          <button
-            onClick={() => setFilter('ai')}
-            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
-              filter === 'ai'
-                ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20'
-                : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'
-            }`}
-          >
-            {language === 'en' ? 'AI & Bio-Agents (1)' : 'Yapay Zeka & Ajanlar (1)'}
-          </button>
-          <button
-            onClick={() => setFilter('pipeline')}
-            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
-              filter === 'pipeline'
-                ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20'
-                : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'
-            }`}
-          >
-            {language === 'en' ? 'NGS Pipelines (3)' : 'NGS Boru Hatları (3)'}
-          </button>
-        </div>
-
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {filteredProjects.map((project) => (
-            <div
+            <article
               key={project.id}
-              className="p-6 rounded-2xl bg-white dark:bg-slate-950/80 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-blue-400/50 dark:hover:border-cyan-500/40 transition-all flex flex-col justify-between group"
+              className="bg-white dark:bg-[#141413] border border-stone-200/90 dark:border-stone-800/90 rounded-lg p-6 flex flex-col justify-between transition-colors hover:border-stone-400 dark:hover:border-stone-600"
             >
-              <div className="space-y-4">
-                {/* Category & Featured Badge */}
-                <div className="flex items-center justify-between">
-                  <span className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-md text-xs font-semibold bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800">
-                    {getCategoryIcon(project.category)}
-                    <span>{project.categoryLabel[language]}</span>
+              {/* Card Top: Monospace label & link */}
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-3">
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-stone-500 dark:text-stone-400">
+                    {getCategoryBadge(project.category)}
                   </span>
-
-                  {project.featured && (
-                    <span className="inline-flex items-center space-x-1 text-xs font-semibold px-2 py-0.5 rounded-full bg-blue-50 dark:bg-cyan-950/50 text-blue-600 dark:text-cyan-400 border border-blue-200 dark:border-cyan-800/50">
-                      <Sparkles className="w-3 h-3" />
-                      <span>Featured</span>
-                    </span>
-                  )}
-                </div>
-
-                {/* Project Title */}
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors">
-                  {project.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  {project.description[language]}
-                </p>
-
-                {/* Performance or Publication Metric */}
-                {project.metrics && (
-                  <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/60 dark:border-slate-800/60 text-xs font-medium text-blue-700 dark:text-cyan-300">
-                    {project.metrics[language]}
-                  </div>
-                )}
-              </div>
-
-              {/* Footer: Tech Stack & Links */}
-              <div className="pt-5 mt-4 border-t border-slate-100 dark:border-slate-900 space-y-3">
-                <div className="flex flex-wrap gap-1.5">
-                  {project.techStack.map((tech, tIdx) => (
-                    <span
-                      key={tIdx}
-                      className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-400"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex items-center space-x-3 pt-1">
                   {project.githubUrl && (
                     <a
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center space-x-1.5 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors"
+                      className="text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors inline-flex items-center gap-1 font-mono text-[11px]"
+                      title="View GitHub Repository"
                     >
-                      <GithubIcon className="w-4 h-4" />
                       <span>GitHub</span>
-                      <ExternalLink className="w-3 h-3 opacity-60" />
+                      <ArrowUpRight size={13} strokeWidth={1.5} />
                     </a>
                   )}
                 </div>
+
+                {/* Card Title */}
+                <h3 className="font-serif text-xl font-medium text-stone-950 dark:text-stone-100 tracking-tight">
+                  {project.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-[14px] leading-relaxed text-stone-600 dark:text-stone-400 mt-2 font-sans">
+                  {project.description[language]}
+                </p>
+
+                {/* Engineering Metric */}
+                {project.metrics && (
+                  <div className="mt-3.5 inline-block font-mono text-xs text-emerald-800 dark:text-emerald-400 bg-emerald-50/60 dark:bg-emerald-950/30 px-2 py-0.5 rounded border border-emerald-200/60 dark:border-emerald-800/40">
+                    {project.metrics[language]}
+                  </div>
+                )}
               </div>
-            </div>
+
+              {/* Card Bottom: Tech Stack */}
+              <div className="border-t border-stone-100 dark:border-stone-800/80 pt-4 mt-5 flex flex-wrap items-center gap-1.5">
+                {project.techStack.map((tech) => (
+                  <span
+                    key={tech}
+                    className="inline-flex items-center gap-1 font-mono text-[11px] px-2 py-0.5 rounded bg-stone-100/70 dark:bg-stone-900/70 text-stone-700 dark:text-stone-300 border border-stone-200/80 dark:border-stone-800/80"
+                  >
+                    {getTechIcon(tech)}
+                    <span>{tech}</span>
+                  </span>
+                ))}
+              </div>
+            </article>
           ))}
         </div>
       </div>

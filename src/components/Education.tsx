@@ -3,88 +3,73 @@
 import React from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { educationData } from '@/data/translations';
-import { GraduationCap, ExternalLink, Calendar, Award } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
 export default function Education() {
   const { language } = useLanguage();
 
   return (
-    <section
-      id="education"
-      className="py-20 md:py-28 bg-slate-50/50 dark:bg-slate-900/40 border-y border-slate-200/60 dark:border-slate-800/60"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="education" className="py-16 sm:py-20 border-t border-stone-200/80 dark:border-stone-800/80">
+      <div className="max-w-5xl mx-auto px-6 sm:px-10">
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center space-y-3 mb-12">
-          <div className="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-cyan-400">
-            <GraduationCap className="w-4 h-4" />
-            <span>
-              {language === 'en' ? 'Academic Foundations' : 'Akademik Geçmiş'}
-            </span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            {language === 'en' ? 'Education & Degrees' : 'Eğitim & Dereceler'}
+        <div className="space-y-1 mb-10">
+          <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-emerald-800 dark:text-emerald-400">
+            05 / {language === 'en' ? 'EDUCATION' : 'EĞİTİM'}
+          </span>
+          <h2 className="font-serif text-2xl sm:text-3xl font-normal tracking-tight text-stone-950 dark:text-stone-100">
+            {language === 'en' ? 'Academic Degrees & Research Theses' : 'Akademik Dereceler & Araştırma Tezleri'}
           </h2>
-          <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400">
-            {language === 'en'
-              ? 'Doctoral and graduate education focused on genomics, computational bioinformatics, and molecular biology.'
-              : 'Genomik, hesaplamalı biyoenformatik ve moleküler biyolojiye odaklanan doktora ve lisansüstü eğitim.'}
-          </p>
         </div>
 
-        {/* Education Cards */}
-        <div className="max-w-4xl mx-auto space-y-6">
-          {educationData.map((item, idx) => (
-            <div
+        {/* Swiss 2-Column Education Grid */}
+        <div className="divide-y divide-stone-200/60 dark:divide-stone-800/60">
+          {educationData.map((edu, idx) => (
+            <article
               key={idx}
-              className="p-6 sm:p-8 rounded-2xl bg-white dark:bg-slate-950/80 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-md hover:border-blue-400/50 dark:hover:border-cyan-500/40 transition-all space-y-4"
+              className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-8 first:pt-0 last:pb-0"
             >
-              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
-                <div className="space-y-1">
-                  <div className="flex items-center space-x-2">
-                    <span className="p-2 rounded-xl bg-blue-50 dark:bg-cyan-950/60 text-blue-600 dark:text-cyan-400">
-                      <Award className="w-5 h-5" />
-                    </span>
-                    <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
-                      {item.degree[language]}
-                    </h3>
-                  </div>
-                  <div className="text-sm font-semibold text-blue-600 dark:text-cyan-400 pl-11">
-                    {item.field[language]}
-                  </div>
-                  <div className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 pl-11">
-                    {item.institution[language]}
-                  </div>
-                </div>
-
-                <div className="sm:self-start pl-11 sm:pl-0">
-                  <span className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800">
-                    <Calendar className="w-3.5 h-3.5" />
-                    <span>{item.period}</span>
-                  </span>
+              {/* Left Column: Period & Institution */}
+              <div className="md:col-span-4 space-y-1.5">
+                <span className="font-mono text-xs uppercase tracking-wider text-stone-500 dark:text-stone-400">
+                  {edu.period}
+                </span>
+                <div className="text-sm font-semibold text-stone-900 dark:text-stone-100 leading-snug">
+                  {edu.institution[language]}
                 </div>
               </div>
 
-              {item.details && (
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed pl-11">
-                  {item.details[language]}
-                </p>
-              )}
-
-              {item.link && (
-                <div className="pl-11 pt-1">
-                  <a
-                    href={item.link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center space-x-1.5 text-xs font-semibold text-blue-600 dark:text-cyan-400 hover:underline"
-                  >
-                    <span>{item.link.label}</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
+              {/* Right Column: Degree, Field, Thesis & Repository Link */}
+              <div className="md:col-span-8 space-y-3">
+                <div className="space-y-1">
+                  <h3 className="text-lg font-semibold text-stone-900 dark:text-stone-100 tracking-tight">
+                    {edu.degree[language]}
+                  </h3>
+                  <div className="font-mono text-xs text-emerald-800 dark:text-emerald-400">
+                    {edu.field[language]}
+                  </div>
                 </div>
-              )}
-            </div>
+
+                {edu.details && (
+                  <p className="text-[14px] leading-relaxed text-stone-600 dark:text-stone-400 font-sans">
+                    {edu.details[language]}
+                  </p>
+                )}
+
+                {edu.link && (
+                  <div className="pt-1">
+                    <a
+                      href={edu.link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 font-mono text-xs px-2.5 py-1 rounded border border-stone-200 dark:border-stone-800 hover:border-stone-900 dark:hover:border-stone-100 text-stone-700 dark:text-stone-300 hover:text-stone-950 dark:hover:text-stone-100 transition-colors"
+                    >
+                      <span>{edu.link.label}</span>
+                      <ArrowUpRight size={12} strokeWidth={1.5} />
+                    </a>
+                  </div>
+                )}
+              </div>
+            </article>
           ))}
         </div>
       </div>

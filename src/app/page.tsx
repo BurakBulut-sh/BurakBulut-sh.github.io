@@ -2,9 +2,9 @@
 
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
-import Competencies from '@/components/Competencies';
 import Experience from '@/components/Experience';
 import Projects from '@/components/Projects';
+import Competencies from '@/components/Competencies';
 import Publications from '@/components/Publications';
 import Education from '@/components/Education';
 import Contact from '@/components/Contact';
@@ -12,13 +12,13 @@ import Footer from '@/components/Footer';
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-[#FAF9F5] dark:bg-[#0C0C0B] text-[#141413] dark:text-[#F5F4F0] transition-colors">
       <Navbar />
       <main className="flex-grow">
         <Hero />
-        <Competencies />
         <Experience />
         <Projects />
+        <Competencies />
         <Publications />
         <Education />
         <Contact />

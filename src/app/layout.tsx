@@ -6,7 +6,7 @@ import { ThemeProvider } from '@/context/ThemeContext';
 export const metadata: Metadata = {
   title: 'Burak Bulut, Ph.D. | Bioinformatics Scientist & Computational Biologist',
   description:
-    'Official portfolio and interactive CV of Burak Bulut, Ph.D. — Bioinformatics Scientist & Computational Biologist specializing in WGS, RNA-Seq, Snakemake/SLURM HPC pipelines, and AI bio-agents.',
+    'Official portfolio and academic CV of Burak Bulut, Ph.D. — Bioinformatics Scientist & Computational Biologist specializing in WGS, RNA-Seq, Snakemake/SLURM HPC pipelines, and AI bio-agents.',
   keywords: [
     'Burak Bulut',
     'Bioinformatics Scientist',
@@ -41,10 +41,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className="dark h-full antialiased"
+      className="h-full antialiased"
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans transition-colors duration-300">
+      <body className="min-h-full flex flex-col bg-[#FAF9F5] dark:bg-[#0C0C0B] text-[#141413] dark:text-[#F5F4F0] font-sans transition-colors duration-200 selection:bg-emerald-100 selection:text-emerald-900 dark:selection:bg-emerald-950 dark:selection:text-emerald-200">
         <ThemeProvider>
           <LanguageProvider>{children}</LanguageProvider>
         </ThemeProvider>

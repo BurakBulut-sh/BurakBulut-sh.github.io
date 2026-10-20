@@ -3,92 +3,101 @@
 import React from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { experienceData } from '@/data/translations';
-import { Briefcase, Calendar, MapPin, CheckCircle } from 'lucide-react';
 
 export default function Experience() {
   const { language } = useLanguage();
 
   return (
-    <section id="experience" className="py-20 md:py-28 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="experience" className="py-16 sm:py-20 border-t border-stone-200/80 dark:border-stone-800/80">
+      <div className="max-w-5xl mx-auto px-6 sm:px-10">
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center space-y-3 mb-16">
-          <div className="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-cyan-400">
-            <Briefcase className="w-4 h-4" />
-            <span>
-              {language === 'en' ? 'Career & Research' : 'Kariyer & Araştırma'}
-            </span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            {language === 'en'
-              ? 'Professional Experience'
-              : 'Profesyonel Deneyim'}
+        <div className="space-y-1 mb-10">
+          <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-emerald-800 dark:text-emerald-400">
+            01 / {language === 'en' ? 'PROFESSIONAL EXPERIENCE' : 'MESLEKİ DENEYİM'}
+          </span>
+          <h2 className="font-serif text-2xl sm:text-3xl font-normal tracking-tight text-stone-950 dark:text-stone-100">
+            {language === 'en' ? 'Career & Research Positions' : 'Kariyer ve Araştırma Pozisyonları'}
           </h2>
-          <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400">
-            {language === 'en'
-              ? 'Demonstrated leadership in grant coordination, HPC pipeline engineering, and multi-disciplinary genomic research.'
-              : 'Hibe koordinasyonu, HPC boru hattı mühendisliği ve çok disiplinli genomik araştırmalarda kanıtlanmış liderlik.'}
-          </p>
         </div>
 
-        {/* Timeline Items */}
-        <div className="max-w-4xl mx-auto space-y-12 relative before:absolute before:inset-0 before:left-4 md:before:left-1/2 before:-translate-x-px before:h-full before:w-0.5 before:bg-gradient-to-b before:from-blue-500 before:via-cyan-500 before:to-slate-300 dark:before:to-slate-800">
-          {experienceData.map((item, idx) => (
-            <div
-              key={item.id}
-              className={`relative flex flex-col md:flex-row items-start ${
-                idx % 2 === 0 ? 'md:flex-row-reverse' : ''
-              } gap-6 md:gap-12`}
+        {/* Swiss 2-Column Experience Grid */}
+        <div className="divide-y divide-stone-200/60 dark:divide-stone-800/60">
+          {experienceData.map((exp) => (
+            <article
+              key={exp.id}
+              className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-8 first:pt-0 last:pb-0"
             >
-              {/* Timeline Pin */}
-              <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-white dark:bg-slate-950 border-4 border-blue-500 dark:border-cyan-400 flex items-center justify-center shadow-md z-10">
-                <div className="w-2 h-2 rounded-full bg-blue-600 dark:bg-cyan-300" />
+              {/* Left Column: Dates, Institution & Location */}
+              <div className="md:col-span-4 space-y-1.5">
+                <div className="font-mono text-xs uppercase tracking-wider text-stone-500 dark:text-stone-400">
+                  {exp.period[language]}
+                </div>
+                <div className="text-sm font-semibold text-stone-900 dark:text-stone-100 leading-snug">
+                  {exp.institution[language]}
+                </div>
+                <div className="font-mono text-xs text-stone-500">
+                  {exp.location[language]}
+                </div>
+                {exp.badge && (
+                  <div className="pt-1">
+                    <span className="inline-block font-mono text-[10px] tracking-wider px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border border-emerald-200/80 dark:border-emerald-800/50">
+                      {exp.badge[language]}
+                    </span>
+                  </div>
+                )}
               </div>
 
-              {/* Card Container */}
-              <div className="ml-12 md:ml-0 md:w-1/2 p-6 rounded-2xl bg-white dark:bg-slate-950/80 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-lg hover:border-blue-500/40 dark:hover:border-cyan-500/40 transition-all space-y-4">
-                {/* Badge & Period */}
-                <div className="flex flex-wrap items-center justify-between gap-2">
-                  <span className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-50 dark:bg-cyan-950/60 text-blue-700 dark:text-cyan-300 border border-blue-200 dark:border-cyan-800/60">
-                    <Calendar className="w-3.5 h-3.5" />
-                    <span>{item.period[language]}</span>
-                  </span>
+              {/* Right Column: Role Title, Bullets & Tools */}
+              <div className="md:col-span-8 space-y-4">
+                <h3 className="text-lg font-semibold text-stone-900 dark:text-stone-100 tracking-tight">
+                  {exp.role[language]}
+                </h3>
 
-                  <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
-                    {item.badge[language]}
-                  </span>
-                </div>
+                <ul className="space-y-3 text-[14px] leading-relaxed text-stone-600 dark:text-stone-400">
+                  {exp.responsibilities[language].map((resp, idx) => (
+                    <li key={idx} className="space-y-0.5">
+                      <span className="font-medium text-stone-900 dark:text-stone-200">
+                        {resp.title}:{' '}
+                      </span>
+                      <span>{resp.description}</span>
+                    </li>
+                  ))}
+                </ul>
 
-                {/* Role & Institution */}
-                <div>
-                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
-                    {item.role[language]}
-                  </h3>
-                  <div className="text-sm font-medium text-blue-600 dark:text-cyan-400 mt-0.5">
-                    {item.institution[language]}
-                  </div>
-                  <div className="flex items-center space-x-1 text-xs text-slate-500 dark:text-slate-400 mt-1">
-                    <MapPin className="w-3.5 h-3.5" />
-                    <span>{item.location[language]}</span>
-                  </div>
-                </div>
-
-                {/* Responsibilities list */}
-                <div className="space-y-3 pt-2 border-t border-slate-100 dark:border-slate-900">
-                  {item.responsibilities[language].map((resp, rIdx) => (
-                    <div key={rIdx} className="space-y-1">
-                      <div className="flex items-center space-x-2 text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200">
-                        <CheckCircle className="w-3.5 h-3.5 text-cyan-500 flex-shrink-0" />
-                        <span>{resp.title}</span>
-                      </div>
-                      <p className="text-xs text-slate-600 dark:text-slate-400 pl-5 leading-relaxed">
-                        {resp.description}
-                      </p>
-                    </div>
+                {/* Specific tools tags for the role */}
+                <div className="pt-2 flex flex-wrap gap-1.5">
+                  {(exp.id === 'senckenberg'
+                    ? [
+                        'Snakemake',
+                        'SLURM',
+                        'WGS',
+                        'RNA-Seq',
+                        'GATK4',
+                        'BWA-MEM',
+                        'DESeq2',
+                        'R / tidyverse',
+                        'Python',
+                        'Docker',
+                      ]
+                    : [
+                        'DFG Grant Writing',
+                        'Local LLMs',
+                        'RAG Architecture',
+                        'Scientific Coordination',
+                        'Python CLI',
+                        'Genomic Data Analysis',
+                      ]
+                  ).map((tag) => (
+                    <span
+                      key={tag}
+                      className="font-mono text-[11px] px-2 py-0.5 rounded bg-white dark:bg-stone-900 text-stone-600 dark:text-stone-400 border border-stone-200/80 dark:border-stone-800/80"
+                    >
+                      {tag}
+                    </span>
                   ))}
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>

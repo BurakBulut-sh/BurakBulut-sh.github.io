@@ -3,240 +3,185 @@
 import React, { useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { publicationsData } from '@/data/translations';
-import {
-  BookOpen,
-  Search,
-  ExternalLink,
-  Award,
-  FileText,
-  Copy,
-  Check,
-} from 'lucide-react';
+import { ArrowUpRight, Search, FileText } from 'lucide-react';
 
 export default function Publications() {
   const { language } = useLanguage();
   const [filter, setFilter] = useState<'all' | 'journal' | 'preprint' | 'firstAuthor'>('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [copiedId, setCopiedId] = useState<string | null>(null);
 
-  const filteredPublications = publicationsData.filter((pub) => {
-    // Filter match
+  const filteredPubs = publicationsData.filter((pub) => {
     if (filter === 'journal' && pub.type !== 'journal') return false;
     if (filter === 'preprint' && pub.type !== 'preprint') return false;
     if (filter === 'firstAuthor' && !pub.isFirstAuthor) return false;
 
-    // Search query match
-    if (searchQuery.trim() !== '') {
+    if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
-      const inTitle = pub.title.toLowerCase().includes(q);
-      const inJournal = pub.journal.toLowerCase().includes(q);
-      const inAuthors = pub.authors.join(' ').toLowerCase().includes(q);
-      const inAbstract = pub.abstractSummary
-        ? pub.abstractSummary[language].toLowerCase().includes(q)
-        : false;
-      return inTitle || inJournal || inAuthors || inAbstract;
+      const matchTitle = pub.title.toLowerCase().includes(q);
+      const matchJournal = pub.journal.toLowerCase().includes(q);
+      const matchAuthors = pub.authors.some((a) => a.toLowerCase().includes(q));
+      if (!matchTitle && !matchJournal && !matchAuthors) return false;
     }
 
     return true;
   });
 
-  const copyCitation = (pub: (typeof publicationsData)[0]) => {
-    const citation = `${pub.authors.join(', ')} (${pub.year}). ${pub.title}. ${pub.journal}${
-      pub.details ? `, ${pub.details}` : ''
-    }. DOI: ${pub.doi}`;
-    navigator.clipboard.writeText(citation);
-    setCopiedId(pub.id);
-    setTimeout(() => setCopiedId(null), 2000);
+  // Group by year descending
+  const years = Array.from(new Set(filteredPubs.map((p) => p.year))).sort((a, b) => b - a);
+
+  const renderAuthorList = (authors: string[]) => {
+    return authors.map((author, index) => {
+      const isMe = author.toLowerCase().includes('bulut');
+      return (
+        <React.Fragment key={index}>
+          {isMe ? (
+            <span className="font-semibold text-stone-950 dark:text-stone-100 underline decoration-emerald-600/60 dark:decoration-emerald-400/60 underline-offset-4">
+              {author}
+            </span>
+          ) : (
+            <span className="text-stone-600 dark:text-stone-400">{author}</span>
+          )}
+          {index < authors.length - 1 && <span className="text-stone-400">, </span>}
+        </React.Fragment>
+      );
+    });
   };
 
   return (
-    <section id="publications" className="py-20 md:py-28 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="publications" className="py-16 sm:py-20 border-t border-stone-200/80 dark:border-stone-800/80">
+      <div className="max-w-5xl mx-auto px-6 sm:px-10">
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center space-y-3 mb-12">
-          <div className="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-cyan-400">
-            <BookOpen className="w-4 h-4" />
-            <span>
-              {language === 'en' ? 'Scientific Impact' : 'Bilimsel Etki'}
-            </span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            {language === 'en'
-              ? 'Publications & Preprints'
-              : 'Yayınlar & Ön Baskılar'}
+        <div className="space-y-1 mb-8">
+          <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-emerald-800 dark:text-emerald-400">
+            04 / {language === 'en' ? 'PUBLICATIONS' : 'YAYINLAR'}
+          </span>
+          <h2 className="font-serif text-2xl sm:text-3xl font-normal tracking-tight text-stone-950 dark:text-stone-100">
+            {language === 'en' ? 'Peer-Reviewed Articles & Preprints' : 'Hakemli Makaleler & Ön Baskılar'}
           </h2>
-          <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400">
-            {language === 'en'
-              ? '7 scientific publications across evolutionary genetics, stress transcriptomics, and computational biology (4 first-author).'
-              : 'Evrimsel genetik, stres transkriptomiği ve hesaplamalı biyoloji alanlarında 7 bilimsel yayın (4 birinci isim).'}
-          </p>
         </div>
 
-        {/* Filter Controls & Search Bar */}
-        <div className="max-w-4xl mx-auto space-y-4 mb-10">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
-            {/* Filter Tabs */}
-            <div className="flex flex-wrap items-center gap-1.5 w-full sm:w-auto">
+        {/* Filters and Search Bar */}
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-10 pb-4 border-b border-stone-200/60 dark:border-stone-800/60">
+          {/* Filter Pills */}
+          <div className="flex flex-wrap items-center gap-1.5">
+            {[
+              { id: 'all', label: { en: 'All (7)', tr: 'Tümü (7)' } },
+              { id: 'journal', label: { en: 'Peer-Reviewed (6)', tr: 'Hakemli (6)' } },
+              { id: 'preprint', label: { en: 'Preprints (1)', tr: 'Ön Baskı (1)' } },
+              { id: 'firstAuthor', label: { en: 'First-Author (4)', tr: 'Birinci İsim (4)' } },
+            ].map((tab) => (
               <button
-                onClick={() => setFilter('all')}
-                className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-                  filter === 'all'
-                    ? 'bg-blue-600 text-white shadow-sm'
-                    : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800'
+                key={tab.id}
+                onClick={() => setFilter(tab.id as typeof filter)}
+                className={`font-mono text-xs px-2.5 py-1 rounded transition-colors cursor-pointer ${
+                  filter === tab.id
+                    ? 'bg-stone-900 text-stone-50 dark:bg-stone-100 dark:text-stone-900 font-semibold'
+                    : 'text-stone-600 dark:text-stone-400 hover:text-stone-950 dark:hover:text-stone-200 bg-stone-100/70 dark:bg-stone-900/70 border border-stone-200/80 dark:border-stone-800/80'
                 }`}
               >
-                {language === 'en' ? 'All (7)' : 'Tümü (7)'}
+                {tab.label[language]}
               </button>
-              <button
-                onClick={() => setFilter('journal')}
-                className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-                  filter === 'journal'
-                    ? 'bg-blue-600 text-white shadow-sm'
-                    : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800'
-                }`}
-              >
-                {language === 'en' ? 'Peer-Reviewed (6)' : 'Hakemli Dergi (6)'}
-              </button>
-              <button
-                onClick={() => setFilter('firstAuthor')}
-                className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-                  filter === 'firstAuthor'
-                    ? 'bg-blue-600 text-white shadow-sm'
-                    : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800'
-                }`}
-              >
-                {language === 'en' ? 'First-Author (4)' : 'Birinci İsim (4)'}
-              </button>
-              <button
-                onClick={() => setFilter('preprint')}
-                className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-                  filter === 'preprint'
-                    ? 'bg-blue-600 text-white shadow-sm'
-                    : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800'
-                }`}
-              >
-                {language === 'en' ? 'Preprint (1)' : 'Ön Baskı (1)'}
-              </button>
-            </div>
+            ))}
+          </div>
 
-            {/* Search Input */}
-            <div className="relative w-full sm:w-64">
-              <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-              <input
-                type="text"
-                placeholder={language === 'en' ? 'Search publications...' : 'Yayınlarda ara...'}
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-9 pr-3 py-1.5 rounded-lg text-xs bg-white dark:bg-slate-900 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
-              />
-            </div>
+          {/* Quick Search */}
+          <div className="relative min-w-[220px]">
+            <Search
+              size={14}
+              strokeWidth={1.5}
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400 pointer-events-none"
+            />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder={language === 'en' ? 'Filter by title, journal...' : 'Başlık veya dergi filtrele...'}
+              className="w-full pl-8 pr-3 py-1.5 rounded-md border border-stone-200/90 dark:border-stone-800/90 bg-white dark:bg-stone-900/80 text-xs font-mono text-stone-900 dark:text-stone-100 placeholder:text-stone-400 focus:outline-none focus:border-stone-400 dark:focus:border-stone-600"
+            />
           </div>
         </div>
 
-        {/* Publications List */}
-        <div className="max-w-4xl mx-auto space-y-4">
-          {filteredPublications.map((pub) => (
-            <div
-              key={pub.id}
-              className="p-6 rounded-2xl bg-white dark:bg-slate-950/80 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-md hover:border-blue-400/50 dark:hover:border-cyan-500/40 transition-all space-y-3"
-            >
-              {/* Badges and Year */}
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <div className="flex items-center space-x-2">
-                  <span className="inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-md text-xs font-semibold bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800">
-                    <FileText className="w-3 h-3 text-blue-500" />
-                    <span>{pub.journal}</span>
-                  </span>
-
-                  {pub.isFirstAuthor && (
-                    <span className="inline-flex items-center space-x-1 px-2 py-0.5 rounded-md text-xs font-semibold bg-blue-50 dark:bg-cyan-950/60 text-blue-700 dark:text-cyan-300 border border-blue-200 dark:border-cyan-800/60">
-                      <Award className="w-3 h-3" />
-                      <span>{language === 'en' ? 'First Author' : 'Birinci İsim'}</span>
+        {/* Grouped Publication List by Year */}
+        <div className="space-y-12">
+          {years.length === 0 ? (
+            <p className="font-mono text-xs text-stone-500 py-8 text-center">
+              {language === 'en' ? 'No publications match your criteria.' : 'Kriterlere uygun yayın bulunamadı.'}
+            </p>
+          ) : (
+            years.map((year) => {
+              const pubsInYear = filteredPubs.filter((p) => p.year === year);
+              return (
+                <div
+                  key={year}
+                  className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start"
+                >
+                  {/* Left Column: Year Indicator */}
+                  <div className="md:col-span-2">
+                    <span className="font-mono text-xl font-semibold text-stone-400 dark:text-stone-600 block sticky top-24">
+                      {year}
                     </span>
-                  )}
+                  </div>
+
+                  {/* Right Column: Papers in that Year */}
+                  <div className="md:col-span-10 divide-y divide-stone-200/60 dark:divide-stone-800/60">
+                    {pubsInYear.map((pub) => (
+                      <article key={pub.id} className="py-5 first:pt-0 last:pb-0 space-y-2.5">
+                        {/* Title */}
+                        <h3 className="font-serif text-lg font-medium text-stone-950 dark:text-stone-100 leading-snug">
+                          {pub.title}
+                        </h3>
+
+                        {/* Authors & Journal line */}
+                        <div className="text-xs leading-relaxed space-y-1">
+                          <p>{renderAuthorList(pub.authors)}</p>
+                          <div className="flex flex-wrap items-center gap-2 pt-0.5">
+                            <span className="font-serif italic text-stone-800 dark:text-stone-200">
+                              {pub.journal}
+                            </span>
+                            {pub.details && (
+                              <span className="font-mono text-stone-500">
+                                {pub.details}
+                              </span>
+                            )}
+                            {pub.isFirstAuthor && (
+                              <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/50">
+                                {language === 'en' ? 'First Author' : 'Birinci İsim'}
+                              </span>
+                            )}
+                            {pub.type === 'preprint' && (
+                              <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 border border-stone-200 dark:border-stone-700">
+                                Preprint
+                              </span>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Abstract summary */}
+                        {pub.abstractSummary && (
+                          <p className="text-[13px] leading-relaxed text-stone-600 dark:text-stone-400 font-sans">
+                            {pub.abstractSummary[language]}
+                          </p>
+                        )}
+
+                        {/* DOI Action */}
+                        <div className="pt-1">
+                          <a
+                            href={pub.doiUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 font-mono text-xs px-2.5 py-1 rounded border border-stone-200 dark:border-stone-800 hover:border-stone-900 dark:hover:border-stone-100 text-stone-700 dark:text-stone-300 hover:text-stone-950 dark:hover:text-stone-100 transition-colors"
+                            title={`Open DOI: ${pub.doi}`}
+                          >
+                            <span>DOI: {pub.doi}</span>
+                            <ArrowUpRight size={12} strokeWidth={1.5} />
+                          </a>
+                        </div>
+                      </article>
+                    ))}
+                  </div>
                 </div>
-
-                <span className="text-xs font-bold text-slate-500 dark:text-slate-400">
-                  {pub.year}
-                </span>
-              </div>
-
-              {/* Title */}
-              <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug">
-                {pub.title}
-              </h3>
-
-              {/* Authors List with Bulut, B. highlighted */}
-              <div className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                {pub.authors.map((author, aIdx) => {
-                  const isUser =
-                    author.includes('Bulut, B.') ||
-                    author.includes('Bulut B.') ||
-                    author.includes('Bulut');
-                  return (
-                    <React.Fragment key={aIdx}>
-                      {isUser ? (
-                        <strong className="text-blue-600 dark:text-cyan-400 font-extrabold underline decoration-blue-500/50 underline-offset-2">
-                          {author}
-                        </strong>
-                      ) : (
-                        <span>{author}</span>
-                      )}
-                      {aIdx < pub.authors.length - 1 && ', '}
-                    </React.Fragment>
-                  );
-                })}
-                {pub.details && <span className="text-slate-400"> • {pub.details}</span>}
-              </div>
-
-              {/* Abstract Context */}
-              {pub.abstractSummary && (
-                <p className="text-xs text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-900/60 p-3 rounded-xl border border-slate-200/60 dark:border-slate-800/60 leading-relaxed italic">
-                  &ldquo;{pub.abstractSummary[language]}&rdquo;
-                </p>
-              )}
-
-              {/* Action Buttons: Direct DOI link and Citation Copy */}
-              <div className="flex items-center justify-between pt-2 border-t border-slate-100 dark:border-slate-900">
-                <a
-                  href={pub.doiUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-blue-50 dark:bg-slate-900 text-blue-600 dark:text-cyan-400 hover:bg-blue-100 dark:hover:bg-slate-800 transition-colors"
-                >
-                  <span>DOI: {pub.doi}</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-
-                <button
-                  onClick={() => copyCitation(pub)}
-                  className="inline-flex items-center space-x-1 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors cursor-pointer"
-                  title="Copy Citation text"
-                >
-                  {copiedId === pub.id ? (
-                    <>
-                      <Check className="w-3.5 h-3.5 text-emerald-500" />
-                      <span className="text-emerald-500 font-semibold">
-                        {language === 'en' ? 'Copied' : 'Kopyalandı'}
-                      </span>
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="w-3.5 h-3.5" />
-                      <span>{language === 'en' ? 'Cite' : 'Alıntıla'}</span>
-                    </>
-                  )}
-                </button>
-              </div>
-            </div>
-          ))}
-
-          {filteredPublications.length === 0 && (
-            <div className="text-center py-12 text-sm text-slate-500">
-              {language === 'en'
-                ? 'No publications match your search filter.'
-                : 'Arama kriterlerinize uygun yayın bulunamadı.'}
-            </div>
+              );
+            })
           )}
         </div>
       </div>
