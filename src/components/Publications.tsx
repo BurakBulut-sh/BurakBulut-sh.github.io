@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { publicationsData } from '@/data/translations';
 import { ArrowUpRight, Search } from 'lucide-react';
+import ScientificText from '@/components/common/ScientificText';
 
 export default function Publications() {
   const { language } = useLanguage();
@@ -48,10 +49,10 @@ export default function Publications() {
   };
 
   return (
-    <section id="publications" className="py-16 sm:py-20 border-t border-stone-200/80">
-      <div className="max-w-5xl mx-auto px-6 sm:px-10">
+    <section id="publications" className="py-14 sm:py-18 border-t border-stone-200/80">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-14">
         {/* Section Header */}
-        <div className="space-y-1 mb-8">
+        <div className="space-y-1 mb-7">
           <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-emerald-800 font-semibold block">
             04 / {language === 'en' ? 'PUBLICATIONS' : 'YAYINLAR'}
           </span>
@@ -61,7 +62,7 @@ export default function Publications() {
         </div>
 
         {/* Filters and Search Bar */}
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-10 pb-4 border-b border-stone-200/60">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-8 pb-4 border-b border-stone-200/60">
           {/* Filter Pills */}
           <div className="flex flex-wrap items-center gap-1.5">
             {[
@@ -73,7 +74,7 @@ export default function Publications() {
               <button
                 key={tab.id}
                 onClick={() => setFilter(tab.id as typeof filter)}
-                className={`font-mono text-xs px-2.5 py-1 rounded transition-colors cursor-pointer ${
+                className={`font-mono text-xs px-2.5 py-1 rounded transition-colors cursor-pointer whitespace-nowrap ${
                   filter === tab.id
                     ? 'bg-stone-900 text-stone-50 font-semibold'
                     : 'text-stone-600 hover:text-stone-950 bg-stone-100/70 border border-stone-200/80'
@@ -85,7 +86,7 @@ export default function Publications() {
           </div>
 
           {/* Quick Search */}
-          <div className="relative min-w-[220px]">
+          <div className="relative min-w-[240px]">
             <Search
               size={14}
               strokeWidth={1.5}
@@ -102,9 +103,9 @@ export default function Publications() {
         </div>
 
         {/* Grouped Publication List by Year */}
-        <div className="space-y-12">
+        <div className="space-y-10">
           {years.length === 0 ? (
-            <p className="font-mono text-xs text-stone-500 py-8 text-center">
+            <p className="font-mono text-xs text-stone-500 py-6 text-center">
               {language === 'en' ? 'No publications match your criteria.' : 'Kriterlere uygun yayın bulunamadı.'}
             </p>
           ) : (
@@ -113,22 +114,22 @@ export default function Publications() {
               return (
                 <div
                   key={year}
-                  className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start"
+                  className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 items-start"
                 >
                   {/* Left Column: Year Indicator */}
-                  <div className="md:col-span-2">
+                  <div className="md:col-span-2 lg:col-span-1">
                     <span className="font-mono text-xl font-semibold text-stone-400 block sticky top-24">
                       {year}
                     </span>
                   </div>
 
-                  {/* Right Column: Papers in that Year */}
-                  <div className="md:col-span-10 divide-y divide-stone-200/60">
+                  {/* Right Column: Papers in that Year (Spanning wider to take fewer lines) */}
+                  <div className="md:col-span-10 lg:col-span-11 divide-y divide-stone-200/60">
                     {pubsInYear.map((pub) => (
-                      <article key={pub.id} className="py-5 first:pt-0 last:pb-0 space-y-2.5">
-                        {/* Title */}
+                      <article key={pub.id} className="py-5 first:pt-0 last:pb-0 space-y-2">
+                        {/* Title with Species in Italics */}
                         <h3 className="font-serif text-lg font-medium text-stone-950 leading-snug">
-                          {pub.title}
+                          <ScientificText>{pub.title}</ScientificText>
                         </h3>
 
                         {/* Authors & Journal line */}
@@ -144,7 +145,7 @@ export default function Publications() {
                               </span>
                             )}
                             {pub.isFirstAuthor && (
-                              <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 border border-emerald-200">
+                              <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 border border-emerald-200 font-medium">
                                 {language === 'en' ? 'First Author' : 'Birinci İsim'}
                               </span>
                             )}
@@ -156,20 +157,20 @@ export default function Publications() {
                           </div>
                         </div>
 
-                        {/* Abstract summary */}
+                        {/* Abstract summary with Scientific Italics */}
                         {pub.abstractSummary && (
                           <p className="text-[13px] leading-relaxed text-stone-600 font-sans">
-                            {pub.abstractSummary[language]}
+                            <ScientificText>{pub.abstractSummary[language]}</ScientificText>
                           </p>
                         )}
 
                         {/* DOI Action */}
-                        <div className="pt-1">
+                        <div className="pt-0.5">
                           <a
                             href={pub.doiUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 font-mono text-xs px-2.5 py-1 rounded border border-stone-200 hover:border-stone-900 text-stone-700 hover:text-stone-950 bg-white transition-colors shadow-2xs"
+                            className="inline-flex items-center gap-1.5 font-mono text-xs px-2.5 py-1 rounded border border-stone-200 hover:border-stone-900 text-stone-700 hover:text-stone-950 bg-white transition-colors shadow-2xs whitespace-nowrap"
                             title={`Open DOI: ${pub.doi}`}
                           >
                             <span>DOI: {pub.doi}</span>

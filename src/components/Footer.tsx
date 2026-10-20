@@ -6,7 +6,7 @@ import { siteMetadata } from '@/data/translations';
 export default function Footer() {
   return (
     <footer className="border-t border-stone-200/80 py-8 transition-colors bg-[#FAF9F5]">
-      <div className="max-w-5xl mx-auto px-6 sm:px-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-stone-500">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-14 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-stone-500">
         <div>
           © 2026 {siteMetadata.name} · {siteMetadata.location}
         </div>

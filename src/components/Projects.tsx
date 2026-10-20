@@ -10,7 +10,6 @@ import {
   Workflow,
   FileCode2,
   Sparkles,
-  Cpu,
 } from 'lucide-react';
 import {
   PythonIcon,
@@ -18,6 +17,7 @@ import {
   DockerIcon,
   PipelineIcon,
 } from '@/components/icons/BrandIcons';
+import ScientificText from '@/components/common/ScientificText';
 
 export default function Projects() {
   const { language } = useLanguage();
@@ -89,10 +89,10 @@ export default function Projects() {
   ];
 
   return (
-    <section id="projects" className="py-16 sm:py-20 border-t border-stone-200/80">
-      <div className="max-w-5xl mx-auto px-6 sm:px-10">
+    <section id="projects" className="py-14 sm:py-18 border-t border-stone-200/80">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-14">
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-7">
           <div className="space-y-1">
             <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-emerald-800 font-semibold block">
               02 / {language === 'en' ? 'SOFTWARE & NGS PIPELINES' : 'YAZILIM & NGS BORU HATLARI'}
@@ -105,7 +105,7 @@ export default function Projects() {
           {/* Filter Tabs */}
           <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-md border border-stone-200/80 bg-stone-100/50">
             {[
-              { id: 'all', label: { en: 'All', tr: 'Tümü' } },
+              { id: 'all', label: { en: 'All Tools', tr: 'Tüm Araçlar' } },
               { id: 'cli', label: { en: 'CLI Tools & Apps', tr: 'CLI Araçları' } },
               { id: 'ai', label: { en: 'AI & Agents', tr: 'Yapay Zeka' } },
               { id: 'pipeline', label: { en: 'Genomics Pipelines', tr: 'Boru Hatları' } },
@@ -113,7 +113,7 @@ export default function Projects() {
               <button
                 key={tab.id}
                 onClick={() => setFilter(tab.id as typeof filter)}
-                className={`font-mono text-xs px-2.5 py-1 rounded transition-colors cursor-pointer ${
+                className={`font-mono text-xs px-2.5 py-1 rounded transition-colors cursor-pointer whitespace-nowrap ${
                   filter === tab.id
                     ? 'bg-white text-stone-950 shadow-xs font-semibold'
                     : 'text-stone-600 hover:text-stone-950'
@@ -127,8 +127,8 @@ export default function Projects() {
 
         {/* FEATURED LEAD ARCHITECTURE: HERMES AI BIO-AGENT */}
         {(filter === 'all' || filter === 'ai') && (
-          <div className="mb-8 p-6 sm:p-7 rounded-lg bg-white border border-stone-200/90 shadow-2xs space-y-5">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-stone-150 pb-3">
+          <div className="mb-7 p-6 sm:p-7 rounded-lg bg-white border border-stone-200/90 shadow-2xs space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-stone-150 pb-2.5">
               <div className="inline-flex items-center gap-1.5 font-mono text-[10px] tracking-wider uppercase text-emerald-800 font-semibold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200/70">
                 <Sparkles size={11} className="text-emerald-700" />
                 <span>
@@ -142,25 +142,29 @@ export default function Projects() {
               </span>
             </div>
 
-            <div className="space-y-2">
+            <div className="space-y-1.5">
               <h3 className="font-serif text-xl sm:text-2xl font-medium text-stone-950 tracking-tight">
                 Hermes: Autonomous Bioinformatics AI Agent Framework
               </h3>
               <p className="font-serif italic text-[15px] sm:text-base text-stone-600 leading-relaxed">
-                {language === 'en'
-                  ? 'An autonomous computational research agent engineered for private, multi-stage NGS pipelines, verifiable telemetry, and programmatic scientific note synthesis using local LLMs.'
-                  : 'Yerel LLM’ler kullanarak gizli, çok aşamalı NGS boru hatları, doğrulanabilir telemetri ve programatik bilimsel sentez için geliştirilmiş otonom hesaplamalı araştırma ajanı.'}
+                <ScientificText>
+                  {language === 'en'
+                    ? 'An autonomous computational research agent engineered for private, multi-stage NGS pipelines, verifiable telemetry, and programmatic scientific note synthesis using local LLMs.'
+                    : 'Yerel LLM’ler kullanarak gizli, çok aşamalı NGS boru hatları, doğrulanabilir telemetri ve programatik bilimsel sentez için geliştirilmiş otonom hesaplamalı araştırma ajanı.'}
+                </ScientificText>
               </p>
             </div>
 
             <p className="text-[14px] leading-relaxed text-stone-700 font-sans">
-              {language === 'en'
-                ? 'Sensitive research cohort genomes cannot be uploaded to commercial cloud AI APIs due to strict confidentiality standards. Hermes eliminates this barrier by running quantized local open-weight models (Qwen 32B/35B via Ollama/vLLM) directly on on-premise hardware, orchestrating long-horizon GATK4 variant calling and RNA-Seq analysis with verified data integrity.'
-                : 'Hassas kohort dizileme verileri kurumsal gizlilik nedeniyle ticari bulut yapay zeka API’lerine aktarılamaz. Hermes, kurum içi donanım üzerinde açık kaynaklı yerel modelleri (Qwen 32B/35B via Ollama/vLLM) çalıştırarak ve doğrulanmış veri bütünlüğü ile uzun soluklu GATK4 varyant analizi ve RNA-Seq iş akışlarını otonom yöneterek bu engeli ortadan kaldırır.'}
+              <ScientificText>
+                {language === 'en'
+                  ? 'Sensitive research cohort genomes cannot be uploaded to commercial cloud AI APIs due to strict confidentiality standards. Hermes eliminates this barrier by running quantized local open-weight models (Qwen 32B/35B via Ollama/vLLM) directly on on-premise hardware, orchestrating long-horizon GATK4 variant calling and RNA-Seq analysis with verified data integrity.'
+                  : 'Hassas kohort dizileme verileri kurumsal gizlilik nedeniyle ticari bulut yapay zeka API’lerine aktarılamaz. Hermes, kurum içi donanım üzerinde açık kaynaklı yerel modelleri (Qwen 32B/35B via Ollama/vLLM) çalıştırarak ve doğrulanmış veri bütünlüğü ile uzun soluklu GATK4 varyant analizi ve RNA-Seq iş akışlarını otonom yöneterek bu engeli ortadan kaldırır.'}
+              </ScientificText>
             </p>
 
-            {/* 4 Pillars Grid inside Featured Card */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
+            {/* 4 Pillars Grid inside Featured Card - Compact 4-column layout */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 pt-1">
               {hermesPillars.map((pillar, idx) => (
                 <div
                   key={idx}
@@ -211,16 +215,16 @@ export default function Projects() {
           </div>
         )}
 
-        {/* Regular Tools Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        {/* Regular Tools Bento Grid - 3 Columns on large screens to make site shorter */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {otherProjects.map((project) => (
             <article
               key={project.id}
-              className="bg-white border border-stone-200/90 rounded-lg p-6 flex flex-col justify-between transition-colors hover:border-stone-400 shadow-2xs"
+              className="bg-white border border-stone-200/90 rounded-lg p-5 sm:p-6 flex flex-col justify-between transition-colors hover:border-stone-400 shadow-2xs"
             >
               {/* Card Top: Monospace label & link */}
               <div>
-                <div className="flex items-center justify-between gap-2 mb-3">
+                <div className="flex items-center justify-between gap-2 mb-2.5">
                   <span className="font-mono text-[10px] uppercase tracking-wider text-stone-500 font-medium">
                     {getCategoryBadge(project.category)}
                   </span>
@@ -229,7 +233,7 @@ export default function Projects() {
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-stone-400 hover:text-stone-900 transition-colors inline-flex items-center gap-1 font-mono text-[11px]"
+                      className="text-stone-400 hover:text-stone-950 transition-colors inline-flex items-center gap-1 font-mono text-[11px]"
                       title="View GitHub Repository"
                     >
                       <span>GitHub</span>
@@ -239,29 +243,29 @@ export default function Projects() {
                 </div>
 
                 {/* Card Title */}
-                <h3 className="font-serif text-xl font-medium text-stone-950 tracking-tight">
-                  {project.title}
+                <h3 className="font-serif text-lg font-medium text-stone-950 tracking-tight">
+                  <ScientificText>{project.title}</ScientificText>
                 </h3>
 
                 {/* Description */}
-                <p className="text-[14px] leading-relaxed text-stone-600 mt-2 font-sans">
-                  {project.description[language]}
+                <p className="text-[13.5px] leading-relaxed text-stone-600 mt-2 font-sans">
+                  <ScientificText>{project.description[language]}</ScientificText>
                 </p>
 
                 {/* Engineering Metric */}
                 {project.metrics && (
-                  <div className="mt-3.5 inline-block font-mono text-xs text-emerald-800 bg-emerald-50/60 px-2 py-0.5 rounded border border-emerald-200/60 font-medium">
-                    {project.metrics[language]}
+                  <div className="mt-3 inline-block font-mono text-xs text-emerald-800 bg-emerald-50/60 px-2 py-0.5 rounded border border-emerald-200/60 font-medium">
+                    <ScientificText>{project.metrics[language]}</ScientificText>
                   </div>
                 )}
               </div>
 
               {/* Card Bottom: Tech Stack */}
-              <div className="border-t border-stone-100 pt-4 mt-5 flex flex-wrap items-center gap-1.5">
+              <div className="border-t border-stone-100 pt-3.5 mt-4 flex flex-wrap items-center gap-1.5">
                 {project.techStack.map((tech) => (
                   <span
                     key={tech}
-                    className="inline-flex items-center gap-1 font-mono text-[11px] px-2 py-0.5 rounded bg-stone-100/70 text-stone-700 border border-stone-200/80"
+                    className="inline-flex items-center gap-1 font-mono text-[10.5px] px-2 py-0.5 rounded bg-stone-100/70 text-stone-700 border border-stone-200/80"
                   >
                     {getTechIcon(tech)}
                     <span>{tech}</span>
