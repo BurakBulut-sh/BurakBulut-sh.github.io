@@ -2,6 +2,7 @@
 
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+import HermesSpotlight from '@/components/HermesSpotlight';
 import Experience from '@/components/Experience';
 import Projects from '@/components/Projects';
 import Competencies from '@/components/Competencies';
@@ -12,10 +13,11 @@ import Footer from '@/components/Footer';
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-[#FAF9F5] dark:bg-[#0C0C0B] text-[#141413] dark:text-[#F5F4F0] transition-colors">
+    <div className="flex flex-col min-h-screen bg-[#FAF9F5] text-[#141413]">
       <Navbar />
       <main className="flex-grow">
         <Hero />
+        <HermesSpotlight />
         <Experience />
         <Projects />
         <Competencies />

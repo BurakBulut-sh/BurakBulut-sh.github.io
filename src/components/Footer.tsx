@@ -1,50 +1,47 @@
 'use client';
 
 import React from 'react';
-import { useLanguage } from '@/context/LanguageContext';
 import { siteMetadata } from '@/data/translations';
 
 export default function Footer() {
-  const { language } = useLanguage();
-
   return (
-    <footer className="border-t border-stone-200/80 dark:border-stone-800/80 py-8 transition-colors bg-[#FAF9F5] dark:bg-[#0C0C0B]">
-      <div className="max-w-5xl mx-auto px-6 sm:px-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-stone-500">
+    <footer className="border-t border-stone-200/90 py-10 transition-colors bg-[#FAF9F5]">
+      <div className="max-w-6xl mx-auto px-6 sm:px-12 flex flex-col sm:flex-row items-center justify-between gap-5 text-xs sm:text-sm font-mono text-stone-600">
         <div>
           © 2026 {siteMetadata.name} · {siteMetadata.location}
         </div>
 
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-5">
           <a
             href={siteMetadata.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-stone-950 dark:hover:text-stone-100 transition-colors"
+            className="hover:text-stone-950 transition-colors"
           >
             GitHub
           </a>
-          <span className="text-stone-300 dark:text-stone-700">·</span>
+          <span className="text-stone-300">·</span>
           <a
             href={siteMetadata.scholar}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-stone-950 dark:hover:text-stone-100 transition-colors"
+            className="hover:text-stone-950 transition-colors"
           >
             Google Scholar
           </a>
-          <span className="text-stone-300 dark:text-stone-700">·</span>
+          <span className="text-stone-300">·</span>
           <a
             href={siteMetadata.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-stone-950 dark:hover:text-stone-100 transition-colors"
+            className="hover:text-stone-950 transition-colors"
           >
             LinkedIn
           </a>
-          <span className="text-stone-300 dark:text-stone-700">·</span>
+          <span className="text-stone-300">·</span>
           <a
             href={`mailto:${siteMetadata.email}`}
-            className="hover:text-stone-950 dark:hover:text-stone-100 transition-colors"
+            className="hover:text-stone-950 transition-colors"
           >
             Email
           </a>
