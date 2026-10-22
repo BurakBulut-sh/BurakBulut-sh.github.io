@@ -19,12 +19,6 @@ import {
   Layers,
   GitBranch,
 } from 'lucide-react';
-import {
-  PythonIcon,
-  RIcon,
-  DockerIcon,
-  PipelineIcon,
-} from '@/components/icons/BrandIcons';
 import ScientificText from '@/components/common/ScientificText';
 import { ProjectItem } from '@/types';
 
@@ -32,17 +26,6 @@ export default function Projects() {
   const { language } = useLanguage();
   const [filter, setFilter] = useState<'all' | 'cli' | 'ai' | 'pipeline'>('all');
   const [activeBlueprintNode, setActiveBlueprintNode] = useState<string>('node-2'); // Node 02 default selected!
-
-  const getTechIcon = (tag: string) => {
-    const lower = tag.toLowerCase();
-    if (lower.includes('python')) return <PythonIcon size={12} className="text-stone-500" />;
-    if (lower === 'r' || lower.includes('deseq2') || lower.includes('limma')) return <RIcon size={12} className="text-stone-500" />;
-    if (lower.includes('docker')) return <DockerIcon size={12} className="text-stone-500" />;
-    if (lower.includes('snakemake') || lower.includes('pipeline') || lower.includes('gatk') || lower.includes('slurm')) {
-      return <PipelineIcon size={12} className="text-stone-500" />;
-    }
-    return null;
-  };
 
   const selectedNodeData =
     agentBlueprintNodes.find((n) => n.id === activeBlueprintNode) || agentBlueprintNodes[1];
@@ -106,26 +89,14 @@ export default function Projects() {
         )}
       </div>
 
-      {/* Footer: Metrics & Tech Stack */}
-      <div className="pt-4 mt-3 border-t border-stone-150 space-y-2.5">
-        {project.metrics && (
+      {/* Footer: Metrics */}
+      {project.metrics && (
+        <div className="pt-3 mt-3 border-t border-stone-150">
           <div className="font-mono text-[11px] text-emerald-900 font-medium">
             {project.metrics[language]}
           </div>
-        )}
-
-        <div className="flex flex-wrap items-center gap-1.5">
-          {project.techStack.map((tech) => (
-            <span
-              key={tech}
-              className="inline-flex items-center gap-1 font-mono text-[10.5px] px-2 py-0.5 rounded bg-stone-100 text-stone-600 border border-stone-200/70"
-            >
-              {getTechIcon(tech)}
-              <span>{tech}</span>
-            </span>
-          ))}
         </div>
-      </div>
+      )}
     </article>
   );
 
@@ -271,7 +242,7 @@ export default function Projects() {
               </div>
             </div>
 
-            {/* Proof-of-Concept Benchmark & Tech Chips */}
+            {/* Proof-of-Concept Benchmark */}
             <div className="border-t border-stone-200/80 pt-3 flex flex-wrap items-center justify-between gap-2.5">
               <div className="flex items-center gap-2 text-xs font-mono text-stone-700">
                 <span className="font-semibold text-stone-900">
@@ -282,23 +253,6 @@ export default function Projects() {
                     ? 'Raw FASTQ -> Multi-Stage SNP Discovery & GATK4 Benchmark'
                     : 'Ham FASTQ -> Çok Aşamalı SNP Keşfi ve GATK4 Doğrulaması'}
                 </span>
-              </div>
-
-              <div className="flex flex-wrap items-center gap-1.5">
-                {[
-                  'Local Qwen 3.6 35B A3B',
-                  '16GB VRAM',
-                  'Skill Files',
-                  'Self-Healing CLI',
-                  'Zero Data Leakage',
-                ].map((chip) => (
-                  <span
-                    key={chip}
-                    className="font-mono text-[10.5px] px-2 py-0.5 rounded bg-stone-100 text-stone-600 border border-stone-200"
-                  >
-                    {chip}
-                  </span>
-                ))}
               </div>
             </div>
           </div>

@@ -672,12 +672,12 @@ export const competencyCategories: CompetencyCategory[] = [
         highlight: true,
       },
       {
-        name: 'Local LLMs & Fine-Tuning',
+        name: 'Local LLMs',
         description: {
           en: 'Running private on-premise models (such as Qwen 3.6 35B A3B) for life sciences data without external leakage.',
           tr: 'Dışa sızıntı olmadan yaşam bilimleri verileri için yerel kurum içi modeller (Qwen 3.6 35B A3B vb.) çalıştırma.',
         },
-        tags: ['Qwen 3.6 35B A3B', 'Ollama', 'vLLM', 'Model Quantization'],
+        tags: ['Qwen 3.6 35B A3B', 'llama.cpp', 'HuggingFace', 'Hermes Agent'],
       },
       {
         name: 'RAG Systems & Vector Databases',

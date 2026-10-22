@@ -82,39 +82,6 @@ export default function Experience() {
                     </div>
                   ))}
                 </div>
-
-                {/* Specific tools tags for the role */}
-                <div className="pt-2 flex flex-wrap gap-1.5">
-                  {(exp.id === 'senckenberg'
-                    ? [
-                        'Snakemake',
-                        'SLURM HPC',
-                        'WGS Pipeline',
-                        'RNA-Seq',
-                        'GATK4',
-                        'BWA-MEM',
-                        'DESeq2',
-                        'R / tidyverse',
-                        'Python',
-                        'Docker',
-                      ]
-                    : [
-                        'Local AI Agents',
-                        'Constraint & Skill Design',
-                        'DFG Grant Strategy',
-                        'Electron / SQLite',
-                        'Python CLI Architecture',
-                        'Genomic Data Analysis',
-                      ]
-                  ).map((tag) => (
-                    <span
-                      key={tag}
-                      className="font-mono text-[11px] px-2 py-0.5 rounded bg-stone-100 text-stone-600 border border-stone-200/80"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
               </div>
             </article>
           ))}
