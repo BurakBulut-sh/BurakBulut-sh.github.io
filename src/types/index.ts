@@ -39,6 +39,10 @@ export interface ExperienceItem {
     en: string;
     tr: string;
   };
+  coreImpact?: {
+    en: string;
+    tr: string;
+  };
   responsibilities: {
     en: {
       title: string;
@@ -60,6 +64,10 @@ export interface ProjectItem {
     tr: string;
   };
   description: {
+    en: string;
+    tr: string;
+  };
+  originNote?: {
     en: string;
     tr: string;
   };
@@ -111,5 +119,62 @@ export interface EducationItem {
   link?: {
     label: string;
     url: string;
+  };
+}
+
+export interface MentalModelPillar {
+  id: string;
+  number: string;
+  title: {
+    en: string;
+    tr: string;
+  };
+  description: {
+    en: string;
+    tr: string;
+  };
+}
+
+export interface MentalModelContent {
+  sectionNumber: string;
+  title: {
+    en: string;
+    tr: string;
+  };
+  subtitle: {
+    en: string;
+    tr: string;
+  };
+  pillars: MentalModelPillar[];
+  offScreenRhythm: {
+    label: {
+      en: string;
+      tr: string;
+    };
+    text: {
+      en: string;
+      tr: string;
+    };
+  };
+}
+
+export interface AgentBlueprintNode {
+  id: string;
+  nodeNumber: string;
+  title: {
+    en: string;
+    tr: string;
+  };
+  subtitle: {
+    en: string;
+    tr: string;
+  };
+  badge: {
+    en: string;
+    tr: string;
+  };
+  takeaway: {
+    en: string;
+    tr: string;
   };
 }

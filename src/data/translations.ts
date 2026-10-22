@@ -4,15 +4,17 @@ import {
   ProjectItem,
   PublicationItem,
   EducationItem,
+  MentalModelContent,
+  AgentBlueprintNode,
 } from '@/types';
 
 export const siteMetadata = {
   name: 'Burak Bulut, Ph.D.',
   title: {
-    en: 'Bioinformatics Scientist & Computational Biologist',
-    tr: 'Biyoenformatik Bilimcisi & Hesaplamalı Biyolog',
+    en: 'Computational Scientist · Systems & Applied AI Builder',
+    tr: 'Hesaplamalı Bilim İnsanı · Sistem & Uygulamalı Yapay Zeka Geliştirici',
   },
-  location: 'Wiesbaden, Germany',
+  location: 'Wiesbaden, Germany · Istanbul, Türkiye',
   email: 'burak.buluut@outlook.com',
   linkedin: 'https://www.linkedin.com/in/burak-bulut-2765a934a',
   github: 'https://github.com/BurakBulut-sh',
@@ -22,6 +24,7 @@ export const siteMetadata = {
 
 export const navItems = [
   { id: 'about', label: { en: 'About', tr: 'Hakkımda' } },
+  { id: 'mindset', label: { en: 'Mindset', tr: 'Yaklaşım' } },
   { id: 'experience', label: { en: 'Experience', tr: 'Deneyim' } },
   { id: 'projects', label: { en: 'Projects & AI', tr: 'Projeler & AI' } },
   { id: 'competencies', label: { en: 'Skills', tr: 'Yetkinlikler' } },
@@ -32,19 +35,35 @@ export const navItems = [
 
 export const heroContent = {
   badge: {
-    en: 'Bioinformatics Scientist & Computational Biologist',
-    tr: 'Biyoenformatik Bilimcisi & Hesaplamalı Biyolog',
+    en: 'Computational Scientist · Systems & Applied AI Builder',
+    tr: 'Hesaplamalı Bilim İnsanı · Sistem & Uygulamalı Yapay Zeka Geliştirici',
   },
   title: 'Burak Bulut, Ph.D.',
+  tagline: {
+    en: 'Turning complex biological and high-dimensional data into reliable workflows, lean software, and domain-aware AI systems.',
+    tr: 'Karmaşık biyolojik ve çok boyutlu verileri güvenilir iş akışlarına, yalın yazılımlara ve alan bilgisine sahip yapay zeka sistemlerine dönüştürüyorum.',
+  },
   summary: {
-    en: 'Bioinformatics Scientist and Computational Biologist (Ph.D.) with 6+ years of experience in genomics, transcriptomics, NGS data analysis, and workflow automation across research environments. Proven track record in designing multi-year studies, engineering reproducible bioinformatics pipelines (Snakemake, Docker, SLURM) on Linux/HPC clusters, and leading scientific coordination including DFG grant proposal development. Author of 7 scientific publications (6 peer-reviewed articles, 1 preprint; 4 first-author), combining strong wet-lab experimental grounding with computational prototyping in Python/R, local LLM fine-tuning, and RAG-enabled analysis workflows.',
-    tr: 'Genomik, transkriptomik, NGS veri analizi ve iş akışı otomasyonu alanlarında araştırma ortamlarında 6 yılı aşkın deneyime sahip Biyoenformatik Bilimcisi ve Hesaplamalı Biyolog (Doktora). Çok yıllı çalışmalar tasarlama, Linux/HPC kümelerinde tekrarlanabilir biyoenformatik boru hatları (Snakemake, Docker, SLURM) geliştirme ve DFG hibe projesi teklif hazırlığı dahil olmak üzere bilimsel koordinasyona liderlik etme konusunda kanıtlanmış başarı geçmişi. Güçlü ıslak laboratuvar deneysel temellerini Python/R hesaplamalı prototipleme, yerel LLM ince ayarı ve RAG destekli analiz iş akışlarıyla birleştiren 7 bilimsel yayının (6 hakemli makale, 1 ön baskı; 4 birinci isim) yazarı.',
+    en: 'I work at the intersection of life sciences, data engineering, and applied AI. While my Ph.D. rooted me in evolutionary genomics, the most valuable capability it gave me is knowing how to learn rapidly, frame ambiguous problems, and engineer solutions from the ground up. Over the past 6+ years, I have bridged experimental design with large-scale computation—automating end-to-end data pipelines, building desktop and CLI tools born from real workflow bottlenecks, and shaping local language models into practical, privacy-preserving research agents. I thrive on stepping into unfamiliar challenges and translating complex technical concepts across disciplines.',
+    tr: 'Yaşam bilimleri, veri mühendisliği ve uygulamalı yapay zekanın kesişiminde çalışıyorum. Doktoram bana genomik ve evrimsel biyoloji alanında derin bir uzmanlık kazandırsa da, bu süreçte edindiğim en değerli yetkinlik \'nasıl öğrenileceğini\' bilmek, belirsiz problemleri yapılandırmak ve hayal ettiğim çözümleri bir mühendis gibi sıfırdan inşa edebilmek oldu. Son 6 yılı aşkın sürede deneysel araştırmalar ile büyük ölçekli hesaplamalı sistemler arasında köprü kurdum; uçtan uca veri iş akışlarını otomatize ettim, günlük araştırma darboğazlarını çözen pratik yazılımlar geliştirdim ve yerel yapay zeka modellerini kurum içi çalışan otonom ajanlara dönüştürdüm. Yeni meydan okumalarla karşılaşmayı ve karmaşık sistemleri farklı disiplinlerden insanların anlayabileceği yalın bir dile çevirmeyi seviyorum.',
   },
   stats: [
-    { value: '6+', label: { en: 'Years Experience', tr: 'Yıl Deneyim' } },
-    { value: '7', label: { en: 'Scientific Publications', tr: 'Bilimsel Yayın' } },
-    { value: '4', label: { en: 'First-Author Papers', tr: 'Birinci İsim Makale' } },
-    { value: 'HPC', label: { en: 'SLURM & Snakemake', tr: 'SLURM & Snakemake' } },
+    {
+      value: { en: '6+ Years', tr: '6+ Yıl' },
+      label: { en: 'End-to-End R&D & Data Engineering', tr: 'Uçtan Uca Ar-Ge & Veri Mühendisliği' },
+    },
+    {
+      value: { en: '7 Papers', tr: '7 Yayın' },
+      label: { en: '6 Peer-Reviewed · 4 First-Author', tr: '6 Hakemli Makale · 4 Birinci İsim' },
+    },
+    {
+      value: { en: 'Systems & CLI', tr: 'Sistem & CLI' },
+      label: { en: 'Custom Open-Source Tools & Pipelines', tr: 'Özgün Açık Kaynak Araçlar & İş Akışları' },
+    },
+    {
+      value: { en: 'Applied AI', tr: 'Uygulamalı AI' },
+      label: { en: 'On-Premise LLM Agents & Tool Design', tr: 'Yerel LLM Ajanları & Mimari Tasarım' },
+    },
   ],
   buttons: {
     downloadCvEn: { en: 'Download CV (EN)', tr: 'CV İndir (İngilizce)' },
@@ -53,6 +72,409 @@ export const heroContent = {
     contactMe: { en: 'Get in Touch', tr: 'İletişime Geç' },
   },
 };
+
+export const mentalModelContent: MentalModelContent = {
+  sectionNumber: '01',
+  title: {
+    en: 'MINDSET & APPROACH',
+    tr: 'YAKLAŞIM & FELSEFE',
+  },
+  subtitle: {
+    en: 'How I Learn, Engineer & Collaborate',
+    tr: 'Nasıl Öğrenir, Geliştirir ve Çalışırım?',
+  },
+  pillars: [
+    {
+      id: 'visual-first',
+      number: '01',
+      title: {
+        en: 'Visual Decomposition & Fast Prototyping',
+        tr: 'Görsel Sadeleştirme & Hızlı Prototipleme',
+      },
+      description: {
+        en: 'I have a strong visual-spatial memory. When entering an unfamiliar domain, I first strip the problem down to its core visual structure and mental map, then immediately get my hands dirty with a working prototype before scaling into edge cases.',
+        tr: 'Güçlü bir görsel hafızam var. Bilmediğim yeni bir alana girdiğimde, problemi önce zihnimde görselleştirip en temel kavramlarına sadeleştirir; ardından küçük bir prototiple ellerimi kirleterek pratik detaylara inerim.',
+      },
+    },
+    {
+      id: 'shaping-ai',
+      number: '02',
+      title: {
+        en: 'Shaping AI with Domain Boundaries',
+        tr: 'Yapay Zekayı Alan Bilgisiyle Şekillendirmek',
+      },
+      description: {
+        en: 'AI will reshape every corner of research within the next few years. We don\'t need massive compute to build foundation models from scratch—what matters is how we guide, constrain, and orchestrate existing models so they truly understand our data\'s limits.',
+        tr: 'Yapay zeka önümüzdeki birkaç yıl içinde araştırmanın her noktasına adapte olacak. Sıfırdan devasa modeller üretecek kaynağımız olmayabilir; ancak üretilen modelleri elimizdeki kaynaklarla nasıl şekillendirdiğimiz ve verimizin sınırlarını onlara nasıl öğrettiğimiz yarının teknolojisini belirleyecek.',
+      },
+    },
+    {
+      id: 'adaptive-execution',
+      number: '03',
+      title: {
+        en: 'Adaptive Execution & Plain-Language Bridge',
+        tr: 'Çevik Karar Alma & Disiplinlerarası İletişim',
+      },
+      description: {
+        en: 'When urgency calls, I trust my instincts and experience to act decisively; when time allows, I step back to examine the root cause from the outside. Across disciplines, I never hide behind code—I explain what we are trying to achieve using clear, relatable analogies.',
+        tr: 'Hızlı aksiyon gerektiğinde deneyimime güvenip karar alır, zamanımız olduğunda ise olaya dışarıdan bakıp kök nedeni analiz ederim. Kod bilmeyen uzmanlarla çalışırken satırların arkasına saklanmam; ne yapmaya çalıştığımızı onların dünyasından yalın örneklerle anlatırım.',
+      },
+    },
+  ],
+  offScreenRhythm: {
+    label: {
+      en: 'BEYOND THE TERMINAL',
+      tr: 'EKRAN DIŞINDA RİTMİM',
+    },
+    text: {
+      en: 'An early riser who loves starting before everyone else in the quiet morning hours and resting with a clear mind once the work is done. Off-screen, I am a dedicated music listener and a cinephile who enjoys watching, discussing, and writing personal essays on cinema.',
+      tr: 'Sabah herkesten önce uyanıp sessizlikte çalışmaya başlamayı ve işini bitirdiğinde zihni rahat dinlenmeyi seven biriyim. Ekran dışında ise iyi bir müzik dinleyicisi ve filmler üzerine düşünüp kendi kendine yazılar yazmaktan keyif alan sıkı bir sinefilim.',
+    },
+  },
+};
+
+export const experienceData: ExperienceItem[] = [
+  {
+    id: 'independent',
+    role: {
+      en: 'Applied AI & Bioinformatics Engineer (Independent R&D)',
+      tr: 'Uygulamalı Yapay Zeka & Biyoenformatik Mühendisi (Bağımsız Ar-Ge)',
+    },
+    institution: {
+      en: 'Self-Directed R&D & Grant Coordination',
+      tr: 'Bağımsız Ar-Ge & Hibe Koordinasyonu',
+    },
+    location: {
+      en: 'Wiesbaden, Germany · Istanbul, Türkiye',
+      tr: 'Wiesbaden, Almanya · İstanbul, Türkiye',
+    },
+    period: {
+      en: 'Jul 2025 – Present',
+      tr: 'Tem 2025 – Günümüz',
+    },
+    badge: {
+      en: 'Current Role',
+      tr: 'Mevcut Pozisyon',
+    },
+    coreImpact: {
+      en: 'Bridging the transition from doctoral research to industry-ready software engineering by building local AI agents, open-source developer tools, and leading national grant proposals.',
+      tr: 'Doktora araştırmalarımı tamamlarken zamanımı yeni nesil teknolojilere yatırım yaparak değerlendirdiğim; uçtan uca yerel yapay zeka ajanları, açık kaynak yazılımlar ve ulusal Ar-Ge hibe projeleri geliştirdiğim aktif mühendislik dönemi.',
+    },
+    responsibilities: {
+      en: [
+        {
+          title: 'End-to-End Local AI Agent Engineering',
+          description:
+            'Self-taught and engineered an on-premise bioinformatics AI agent running on consumer hardware (16 GB VRAM). Solved the core challenge of teaching LLMs how to interpret biological data by designing modular, per-tool constraint and skill definitions rather than relying on fragile generic prompts.',
+        },
+        {
+          title: 'R&D Project Leadership & DFG Grant Strategy',
+          description:
+            'Took primary responsibility for planning, technical framing, and cross-institutional coordination of a comprehensive research grant proposal for the German Research Foundation (DFG).',
+        },
+        {
+          title: 'Custom Software & Doctoral Completion',
+          description:
+            'Defended doctoral dissertation and published first-author studies in top-tier journals (Evolution Letters, Molecular Ecology), while building practical desktop (BioReader) and CLI (PipeWatch, SampleSheriff) tools to solve everyday research bottlenecks.',
+        },
+      ],
+      tr: [
+        {
+          title: 'Uçtan Uca Yerel Yapay Zeka Ajanı Geliştirme',
+          description:
+            'Kendi kendime öğrenerek 16 GB VRAM donanım sınırında tamamen yerel çalışan otonom bir biyoenformatik AI ajanı geliştirdim. Modele sadece araçları çalıştırmayı değil, her aracın ürettiği veriyi nasıl doğru yorumlayacağını öğretmek için her araca özel sınır (constraint) ve yetenek dosyaları içeren modüler bir mimari kurguladım.',
+        },
+        {
+          title: 'Ar-Ge Proje Liderliği & DFG Hibe Koordinasyonu',
+          description:
+            'Alman Araştırma Vakfı (DFG) için hazırlanan kapsamlı bir araştırma projesi başvurusunun deneysel planlamasını, teknik çerçevesini ve bilimsel koordinasyonunu uçtan uca yönettim.',
+        },
+        {
+          title: 'Özgün Yazılım Geliştirme & Doktora Yayın Süreci',
+          description:
+            'Doktora tezimi tamamlayıp birinci isim makalelerimi (Evolution Letters, Molecular Ecology) yayınlarken, günlük araştırma ve veri analizi darboğazlarını ortadan kaldıran masaüstü (BioReader) ve komut satırı (PipeWatch, SampleSheriff) araçları geliştirdim.',
+        },
+      ],
+    },
+  },
+  {
+    id: 'senckenberg',
+    role: {
+      en: 'Computational Biologist | NGS Data Scientist',
+      tr: 'Hesaplamalı Biyolog | NGS Veri Bilimcisi',
+    },
+    institution: {
+      en: 'Senckenberg Biodiversity and Climate Research Centre (SBiK-F)',
+      tr: 'Senckenberg Biyoçeşitlilik ve İklim Araştırma Merkezi (SBiK-F)',
+    },
+    location: {
+      en: 'Frankfurt am Main, Germany',
+      tr: 'Frankfurt am Main, Almanya',
+    },
+    period: {
+      en: 'Jul 2022 – Jul 2025',
+      tr: 'Tem 2022 – Tem 2025',
+    },
+    badge: {
+      en: '3 Years',
+      tr: '3 Yıl',
+    },
+    coreImpact: {
+      en: 'Owned the complete lifecycle of high-throughput biological data—from designing multi-year wet-lab experiments to architecting automated HPC pipelines and statistical models.',
+      tr: 'Çok yıllı ıslak laboratuvar deneylerinin tasarımından, HPC kümelerinde otomatik veri iş akışlarının kurulmasına ve ileri istatistiksel modellemeye kadar veri yaşam döngüsünün tamamını yönettim.',
+    },
+    responsibilities: {
+      en: [
+        {
+          title: 'Scalable Data Pipelines & HPC Automation',
+          description:
+            'Designed, automated, and maintained reproducible Whole-Genome (WGS) and RNA-Seq workflows using Snakemake, Python, and Bash across Linux/SLURM clusters, turning terabytes of raw sequencing reads into clean variant and expression matrices.',
+        },
+        {
+          title: 'Statistical Modeling & Multi-Omics Integration',
+          description:
+            'Analyzed 200+ whole genomes and multi-condition transcriptomes using R (tidyverse, DESeq2, limma, Bayesian modeling) and Python to uncover how organisms respond and adapt to chemical, thermal, and environmental stress.',
+        },
+        {
+          title: 'Bridging Wet-Lab & Computation',
+          description:
+            'Combined hands-on experimental execution (in vivo fluorescence imaging, ROS assays, DNA/RNA workflows) with computational analysis, ensuring that statistical models reflected real biological constraints.',
+        },
+        {
+          title: 'Mentorship & Cross-Disciplinary Communication',
+          description:
+            'Taught molecular ecology courses over 3 academic years, trained wet-lab biologists in Unix/HPC workflows using plain-language examples, and supervised a B.Sc. thesis to completion.',
+        },
+      ],
+      tr: [
+        {
+          title: 'Ölçeklenebilir Veri İş Akışları & HPC Otomasyonu',
+          description:
+            'Linux/SLURM yüksek başarımlı hesaplama kümelerinde Snakemake, Python ve Bash kullanarak ölçeklenebilir WGS ve RNA-Seq iş akışları (pipelines) kurdum; terabaytlarca ham dizileme verisini tekrarlanabilir şekilde temiz varyant ve gen anlatım matrislerine dönüştürdüm.',
+        },
+        {
+          title: 'İstatistiksel Modelleme & Çoklu-Omik Entegrasyonu',
+          description:
+            'Organizma ve genomların kimyasal ve çevresel stres faktörlerine nasıl yanıt verdiğini ortaya çıkarmak için 200\'den fazla tüm genomu ve çok koşullu transkriptom verisini R (tidyverse, DESeq2, limma, Bayesci modeller) ve Python ile analiz ettim.',
+        },
+        {
+          title: 'Islak Laboratuvar ve Hesaplamalı Sistem Köprüsü',
+          description:
+            'Laboratuvar tezgahındaki deneysel çalışmaları (in vivo floresans görüntüleme, ROS ölçümleri, DNA/RNA izolasyonu) doğrudan hesaplamalı analizlerle birleştirerek, kurulan istatistiksel modellerin biyolojik gerçeklikle tam uyumlu olmasını sağladım.',
+        },
+        {
+          title: 'Mentorluk & Disiplinlerarası Eğitim',
+          description:
+            '3 akademik yıl boyunca moleküler ekoloji dersleri verdim, kodlama geçmişi olmayan araştırmacılara Unix/HPC iş akışlarını yalın örneklerle öğrettim ve bir lisans tez projesine danışmanlık yaptım.',
+        },
+      ],
+    },
+  },
+];
+
+export const agentBlueprintNodes: AgentBlueprintNode[] = [
+  {
+    id: 'node-1',
+    nodeNumber: '01',
+    title: { en: 'Raw Data & Telemetry', tr: 'Ham Veri & Telemetri' },
+    subtitle: { en: 'FASTQ / Metadata Ingestion', tr: 'FASTQ / Üstveri Girişi' },
+    badge: { en: 'Input Stage', tr: 'Giriş Aşaması' },
+    takeaway: {
+      en: 'Ingests paired-end FASTQ reads, reference genome assemblies, and batch sample sheets. Automatically assesses sequencing depth, phred scores, and initial telemetry before firing tools.',
+      tr: 'Çift uçlu FASTQ okumalarını, referans genom dizilimlerini ve örnek tablolarını alır. Araçları tetiklemeden önce dizileme derinliğini, phred kalite skorlarını ve telemetriyi otonom analiz eder.',
+    },
+  },
+  {
+    id: 'node-2',
+    nodeNumber: '02',
+    title: { en: 'Constraint & Skill Files', tr: 'Kısıt & Yetenek Dosyaları' },
+    subtitle: { en: 'The Crucial Innovation: Boundary Definitions', tr: 'Temel İnovasyon: Sınır & Yetenek Tanımları' },
+    badge: { en: 'Core Innovation', tr: 'Temel İnovasyon' },
+    takeaway: {
+      en: 'The most challenging problem was not teaching the model how to execute tools, but teaching it how to truly interpret the biological data produced by those tools. Instead of compressing the entire field into a fragile prompt, I authored dedicated per-tool skill and boundary files to eliminate hallucinations.',
+      tr: 'En zorlayıcı kısım modele araçları nasıl çalıştıracağını öğretmek değil, o araçlarla işlediği veriyi nasıl anlayacağını öğretmekti. LLM\'e bu özü tek seferde aktarmak yerine her araç için ayrı bir "skill" ve sınır (limit) dosyası tanımlayarak halüsinasyonları sıfırladım.',
+    },
+  },
+  {
+    id: 'node-3',
+    nodeNumber: '03',
+    title: { en: 'Local 35B Reasoning', tr: 'Yerel 35B Akıl Yürütme' },
+    subtitle: { en: 'On-Premise Qwen-35B on 16GB VRAM', tr: '16GB VRAM Üzerinde Qwen-35B' },
+    badge: { en: 'Private Inference', tr: 'Yerel Çıkarım' },
+    takeaway: {
+      en: 'Leverages modern quantized open-weights models locally. Operates without exposing patient genomes or institutional IP to external cloud APIs, maintaining full privacy and zero egress costs.',
+      tr: 'Yüksek parametreli açık kaynaklı modelleri 16 GB VRAM donanım bütçesinde çalıştırır. Hasta genomlarını ve kurumsal gizliliği buluta sızdırmadan, sıfır veri transferi maliyetiyle tam güvenlik sağlar.',
+    },
+  },
+  {
+    id: 'node-4',
+    nodeNumber: '04',
+    title: { en: 'Verified Biological Deliverables', tr: 'Doğrulanmış Biyolojik Çıktılar' },
+    subtitle: { en: 'Self-Healing Execution & Reports', tr: 'Kendi Kendini Onaran Yürütme & Raporlama' },
+    badge: { en: 'Delivery & Recovery', tr: 'Teslim & Kurtarma' },
+    takeaway: {
+      en: 'Executes verified bio-CLIs (GATK, BWA, SAMtools), catches silent run-time aborts, dynamically self-heals corrupted intermediate states, and synthesizes structured, reproducible biological reports.',
+      tr: 'Doğrulanmış biyoenformatik araçlarını (GATK, BWA, SAMtools) çalıştırır, sessiz çalışma anı çökmelerini yakalar, bozuk ara durumları kendi kendine onarır ve tekrarlanabilir biyolojik raporlar üretir.',
+    },
+  },
+];
+
+export const agentHeroStory = {
+  spot: {
+    en: 'An on-premise AI agent running a 35B parameter model within a 16 GB VRAM budget—built by teaching the model not just how to call CLI tools, but how to understand the structure and limits of biological data.',
+    tr: '16 GB VRAM donanım sınırında 35B parametreli yerel bir modelle çalışan; modele sadece komut çalıştırmayı değil, biyolojik verinin doğasını ve sınırlarını öğretmek üzere tasarlanmış otonom yapay zeka ajanı.',
+  },
+  narrative: {
+    en: 'Sensitive genomic and clinical datasets cannot be sent to external cloud APIs. When I set out to build a fully local bioinformatics agent on a 16 GB VRAM workstation (using a quantized Qwen-3.6-35B model), I quickly realized that the hardest problem wasn’t getting the LLM to execute terminal commands—it was teaching the model how to truly understand the data those tools produce. Because you cannot compress the entire intuition of bioinformatics into a single system prompt, I engineered a modular architecture where every tool has its own dedicated skill file, reference schema, and strict operational boundaries.',
+    tr: 'Hassas genomik ve klinik veriler gizlilik kuralları gereği ticari bulut yapay zeka servislerine yüklenemez. Standart bir 16 GB VRAM iş istasyonunda (kuantize edilmiş Qwen-3.6-35B modeliyle) tamamen yerel bir ajan kurmaya başladığımda, beni en çok zorlayan kısım modele araçları (tools) nasıl kullanacağını öğretmek değil, bu araçlarla işlediği veriyi en iyi nasıl anlayabileceğini göstermek oldu. Biyoenformatiğin özünü tek bir genel komutla modele aktarmak mümkün olmadığı için; kullandığım her bir araç için ayrı bir referans, ayrı bir yetenek (skill) tanımı ve katı sınırlar içeren modüler bir dosya mimarisi geliştirdim.',
+  },
+};
+
+export const projectsData: ProjectItem[] = [
+  {
+    id: 'bioreader',
+    title: 'BioReader',
+    category: 'cli',
+    categoryLabel: {
+      en: 'Desktop Apps & Tools',
+      tr: 'Masaüstü Uygulamaları & Araçlar',
+    },
+    description: {
+      en: 'A lightweight desktop scientific literature workspace built with Electron, React, and SQLite. Features visual structure highlighting, inline KaTeX math, Cytoscape concept mapping, and fast local indexing.',
+      tr: 'Electron, React ve yerel SQLite ile geliştirilmiş yalın bir masaüstü bilimsel makale okuma ve not alma uygulaması. Görsel yapı vurgulama, satır içi KaTeX formülleri ve kavram haritalama özellikleri sunar.',
+    },
+    originNote: {
+      en: 'Why I built it: Existing note-taking apps felt bloated with steep learning curves. Because I recall papers through visual and spatial memory—remembering where paragraphs and figures sit on the page—I built a lean reader tailored to how my brain actually processes literature.',
+      tr: 'Neden geliştirdim: Piyasadaki okuma ve not alma araçları fazla karmaşık ve genel amaçlıydı. Okuduğum bilgileri, paragrafların ve şekillerin sırasını görsel hafızamda canlandırarak hatırladığım için, tam kendi düşünce sistemime uyan yalın bir çalışma alanı inşa ettim.',
+    },
+    techStack: ['Electron', 'React', 'Vite', 'Better-SQLite3', 'KaTeX', 'Cytoscape'],
+    featured: true,
+    metrics: {
+      en: 'Tailored to Visual-Spatial Memory',
+      tr: 'Görsel-Mekânsal Hafızaya Özel',
+    },
+  },
+  {
+    id: 'samplesheriff',
+    title: 'SampleSheriff',
+    category: 'cli',
+    categoryLabel: {
+      en: 'CLI Tools & Quality Control',
+      tr: 'CLI Araçları & Kalite Kontrol',
+    },
+    description: {
+      en: 'A fast, strict, nf-core–style sample sheet and metadata validator for bioinformatics pipelines. Features streaming parsing, FASTQ pairing checks, BAM/VCF header validation, and rich terminal/JSON diagnostics.',
+      tr: 'Biyoenformatik iş akışları için hızlı ve katı bir örnek tablosu (sample sheet) ve üstveri doğrulama aracı. Akış tabanlı ayrıştırma, FASTQ eşleşme kontrolü ve BAM/VCF başlık doğrulaması sunar.',
+    },
+    originNote: {
+      en: 'Why I built it: A single typo in a sample sheet shouldn’t silently ruin a multi-day cluster run. I built this to catch metadata and file-header mismatches in seconds before a pipeline even starts.',
+      tr: 'Neden geliştirdim: Örnek tablosundaki küçük bir yazım hatasının günler süren bir analizi yarı yolda çökertmesini önlemek, veri hatalarını henüz analiz başlamadan saniyeler içinde yakalamak için yazdım.',
+    },
+    techStack: ['Python', 'Typer', 'Pydantic', 'PySAM', 'Rich', 'CI/CD'],
+    githubUrl: 'https://github.com/BurakBulut-sh/samplesheriff',
+    featured: true,
+    metrics: {
+      en: '112 Unit Tests • 100% Pass Rate',
+      tr: '112 Birim Test • %100 Başarı Oranı',
+    },
+  },
+  {
+    id: 'pipewatch',
+    title: 'PipeWatch',
+    category: 'cli',
+    categoryLabel: {
+      en: 'CLI Tools & Telemetry',
+      tr: 'CLI Araçları & Telemetri',
+    },
+    description: {
+      en: 'Pipeline observability and resource telemetry for SLURM and HPC bioinformatics workflows. Wraps arbitrary Bash commands with zero dependencies, captures peak memory via /usr/bin/time -v, and outputs interactive HTML reports.',
+      tr: 'SLURM ve HPC iş akışları için sıfır bağımlılıklı kaynak ve bellek izleme aracı. Bash komutlarını sarmalayarak tepe bellek tüketimini kaydeder ve anlaşılır HTML raporları üretir.',
+    },
+    originNote: {
+      en: 'Why I built it: Digging through raw SLURM logs to find out why a step ran out of RAM was wasting hours. I wanted a zero-dependency wrapper that turns cluster telemetry into a clean visual report.',
+      tr: 'Neden geliştirdim: Kümede çalışan bir adımın neden bellek sınırına takıldığını anlamak için ham log dosyalarında saatler kaybetmek yerine, kaynak tüketimini tek bakışta görselleştiren pratik bir araç ihtiyacından doğdu.',
+    },
+    techStack: ['Python', 'Bash', 'SLURM', 'HPC', 'Jinja2', 'Click'],
+    githubUrl: 'https://github.com/BurakBulut-sh/pipewatch',
+    featured: true,
+    metrics: {
+      en: 'SLURM Telemetry • HTML Dashboards',
+      tr: 'SLURM Telemetrisi • HTML Paneller',
+    },
+  },
+  {
+    id: 'snp-analysis',
+    title: 'SNP-analysis / WGS Mutation Pipeline',
+    category: 'pipeline',
+    categoryLabel: {
+      en: 'NGS Pipelines',
+      tr: 'NGS Boru Hatları',
+    },
+    description: {
+      en: 'High-throughput Whole-Genome Sequencing variant discovery pipeline. Integrates Trimmomatic, PEAR merging, BWA-MEM mapping, Picard deduplication, GATK4 HaplotypeCaller gVCF array, and Bayesian Poisson rate ratio tests in R.',
+      tr: 'Yüksek verimli Tüm Genom Dizileme (WGS) varyant ve mutasyon keşif iş akışı. Trimmomatic, PEAR, BWA-MEM, Picard, GATK4 HaplotypeCaller ve R tabanlı Bayesci istatistiksel modelleri entegre eder.',
+    },
+    originNote: {
+      en: 'Core genomic workflow engineered during my Ph.D. to process 200+ genomes and detect rare de novo mutations with high statistical confidence.',
+      tr: 'Doktoram süresince 200\'den fazla tüm genomu işlemek ve nadir mutasyonları yüksek istatistiksel güvenle tespit etmek için kurduğum temel analiz hattı.',
+    },
+    techStack: ['GATK4', 'BWA-MEM', 'SLURM Array', 'SAMtools', 'R BayesianFirstAid'],
+    githubUrl: 'https://github.com/BurakBulut-sh/SNP-analysis',
+    featured: true,
+    metrics: {
+      en: 'Evolution Letters & Molecular Ecology (2026)',
+      tr: 'Evolution Letters & Molecular Ecology (2026)',
+    },
+  },
+  {
+    id: 'transcriptome-study',
+    title: 'Transcriptome-Study Pipeline',
+    category: 'pipeline',
+    categoryLabel: {
+      en: 'NGS Pipelines',
+      tr: 'NGS Boru Hatları',
+    },
+    description: {
+      en: 'RNA-Seq processing and statistical modeling of oxidative stress across temperature gradients in Chironomus riparius. Includes HISAT2 spliced alignment, featureCounts, DESeq2 prefiltering, and Limma contrast modeling.',
+      tr: 'Sıcaklık ve çevresel stres gradyanları boyunca gen anlatımındaki kırılma noktalarını modelleyen RNA-Seq iş akışı (HISAT2, featureCounts, DESeq2 ve Limma).',
+    },
+    originNote: {
+      en: 'Connects wet-lab physiological stress measurements directly with non-linear gene expression modeling.',
+      tr: 'Laboratuvardaki fizyolojik stres ölçümlerini doğrusal olmayan gen anlatımı modelleriyle birleştiren transkriptomik iş akışı.',
+    },
+    techStack: ['RNA-Seq', 'HISAT2', 'DESeq2', 'Limma', 'SLURM', 'R'],
+    githubUrl: 'https://github.com/BurakBulut-sh/Transcriptome-Study',
+    featured: false,
+    metrics: {
+      en: 'Ecology & Evolution and Env. Pollution (2025)',
+      tr: 'Ecology & Evolution ve Env. Pollution (2025)',
+    },
+  },
+  {
+    id: 'meta-transcriptome',
+    title: 'Meta-Transcriptome-Analysis',
+    category: 'pipeline',
+    categoryLabel: {
+      en: 'NGS Pipelines',
+      tr: 'NGS Boru Hatları',
+    },
+    description: {
+      en: 'End-to-end RNA-Seq meta-analysis and KEGG pathway mapping in Beta vulgaris. Implements multi-factor GLM DESeq2, Fisher combined probability tests, biomaRt functional annotations, and Pathview pathway overlays.',
+      tr: 'Farklı çalışmalardan elde edilen ham RNA-Seq veri setlerini ortak bir istatistiksel çerçevede birleştiren ve KEGG yolak haritalaması yapan meta-analiz iş akışı.',
+    },
+    originNote: {
+      en: 'My first end-to-end pipeline built during my M.Sc., designed to extract conserved biological signals across heterogeneous public datasets.',
+      tr: 'Yüksek lisans döneminde geliştirdiğim, birbirinden bağımsız veri setlerindeki gürültüyü filtreleyip ortak biyolojik sinyalleri yakalayan ilk uçtan uca iş akışım.',
+    },
+    techStack: ['R', 'metaRNASeq', 'DESeq2', 'biomaRt', 'Pathview', 'HISAT2'],
+    githubUrl: 'https://github.com/BurakBulut-sh/Meta-Transcriptome-Analysis',
+    featured: false,
+    metrics: {
+      en: 'Published in Tropical Plant Biology (2023)',
+      tr: 'Tropical Plant Biology (2023) Yayını',
+    },
+  },
+];
 
 export const competencyCategories: CompetencyCategory[] = [
   {
@@ -253,295 +675,6 @@ export const competencyCategories: CompetencyCategory[] = [
   },
 ];
 
-export const experienceData: ExperienceItem[] = [
-  {
-    id: 'independent',
-    role: {
-      en: 'Independent Researcher & AI/Bioinformatics Developer',
-      tr: 'Bağımsız Araştırmacı & Yapay Zeka / Biyoenformatik Geliştirici',
-    },
-    institution: {
-      en: 'Independent Research Initiative',
-      tr: 'Bağımsız Araştırma İnisiyatifi',
-    },
-    location: {
-      en: 'Wiesbaden / Frankfurt Rhine-Main, Germany',
-      tr: 'Wiesbaden / Frankfurt Ren-Main, Almanya',
-    },
-    period: {
-      en: 'Jul 2025 – Present',
-      tr: 'Tem 2025 – Günümüz',
-    },
-    badge: {
-      en: 'Current Role',
-      tr: 'Mevcut Pozisyon',
-    },
-    responsibilities: {
-      en: [
-        {
-          title: 'Grant & Scientific Coordination',
-          description:
-            'Led the end-to-end development of a Deutsche Forschungsgemeinschaft (DFG) research grant proposal, taking primary responsibility for experimental planning, scientific coordination, and technical framing.',
-        },
-        {
-          title: 'AI-Enabled Bioinformatics Prototyping',
-          description:
-            'Architected prototype agentic and RAG-enabled bioinformatics workflows utilizing local LLM fine-tuning and structured prompt engineering for automated QC reasoning, tool orchestration, and biological interpretation.',
-        },
-        {
-          title: 'Doctoral Completion & Publishing',
-          description:
-            'Finalized doctoral dissertation and spearheaded multiple first-author and collaborative peer-reviewed publications across evolutionary genomics and stress transcriptomics.',
-        },
-      ],
-      tr: [
-        {
-          title: 'Hibe & Bilimsel Koordinasyon',
-          description:
-            'Deneysel planlama, bilimsel koordinasyon ve teknik çerçevenin oluşturulmasında birincil sorumluluğu üstlenerek bir Alman Araştırma Vakfı (DFG) araştırma hibe teklifinin uçtan uca geliştirilmesine liderlik ettim.',
-        },
-        {
-          title: 'Yapay Zeka Destekli Biyoenformatik Prototipleme',
-          description:
-            'Otomatik kalite kontrol değerlendirmesi, araç orkestrasyonu ve biyolojik veri yorumlaması amacıyla yerel LLM ince ayarı ve yapılandırılmış istem mühendisliği kullanarak prototip ajan ve RAG tabanlı biyoenformatik iş akışları tasarladım.',
-        },
-        {
-          title: 'Doktora Tamamlama & Yayın Faaliyetleri',
-          description:
-            'Doktora tezimi sonuçlandırdım ve evrimsel genomik ile stres transkriptomiği alanlarında çok sayıda birinci isim ve ortak yazarlı hakemli yayına imza attım.',
-        },
-      ],
-    },
-  },
-  {
-    id: 'senckenberg',
-    role: {
-      en: 'Computational Biologist | NGS Data Scientist',
-      tr: 'Hesaplamalı Biyolog | NGS Veri Bilimcisi',
-    },
-    institution: {
-      en: 'Senckenberg Biodiversity and Climate Research Centre (SBiK-F)',
-      tr: 'Senckenberg Biyoçeşitlilik ve İklim Araştırma Merkezi (SBiK-F)',
-    },
-    location: {
-      en: 'Frankfurt am Main, Germany',
-      tr: 'Frankfurt am Main, Almanya',
-    },
-    period: {
-      en: 'Jul 2022 – Jul 2025',
-      tr: 'Tem 2022 – Tem 2025',
-    },
-    badge: {
-      en: '3 Years',
-      tr: '3 Yıl',
-    },
-    responsibilities: {
-      en: [
-        {
-          title: 'Pipeline Engineering & Automation',
-          description:
-            'Engineered, automated, and maintained scalable end-to-end WGS and RNA-Seq pipelines using Snakemake, Python, and Bash (integrating BWA-MEM, Picard, SAMtools, GATK, and DESeq2) on Linux/SLURM HPC clusters.',
-        },
-        {
-          title: 'Large-Scale Multi-Omics Analysis',
-          description:
-            'Processed and analyzed high-throughput genomic and transcriptomic datasets to quantify germline mutation frequencies, characterize cryptic genetic variation, and evaluate transcriptomic responses to environmental stressors.',
-        },
-        {
-          title: 'Experimental & Study Design',
-          description:
-            'Designed and executed complex, multi-year multigenerational mutation accumulation and ecotoxicological exposure experiments, integrating wet-lab assays (in vivo ROS measurement, fluorescence microscopy) with computational evaluations.',
-        },
-        {
-          title: 'Statistical Modeling & Reporting',
-          description:
-            'Performed rigorous statistical evaluations and generated publication-grade visualizations and actionable technical reports using R (tidyverse, ggplot2) and Python for interdisciplinary teams.',
-        },
-        {
-          title: 'Teaching & Mentorship',
-          description:
-            'Taught molecular ecology coursework over 3 academic years, trained researchers in Unix/HPC bioinformatics workflows, and supervised a B.Sc. thesis project to successful completion.',
-        },
-      ],
-      tr: [
-        {
-          title: 'Boru Hattı Mühendisliği & Otomasyon',
-          description:
-            'Linux/SLURM HPC kümelerinde Snakemake, Python ve Bash (BWA-MEM, Picard, SAMtools, GATK ve DESeq2 entegrasyonuyla) kullanarak ölçeklenebilir, uçtan uca WGS ve RNA-Seq boru hatları geliştirdim ve otomatiğe bağladım.',
-        },
-        {
-          title: 'Büyük Ölçekli Çoklu-Omik Analizi',
-          description:
-            'Germline mutasyon sıklıklarını belirlemek, kriptik genetik varyasyonu karakterize etmek ve çevresel stresörlere karşı transkriptomik yanıtları değerlendirmek amacıyla yüksek verimli genomik ve transkriptomik veri setlerini işledim ve analiz ettim.',
-        },
-        {
-          title: 'Deneysel & Çalışma Tasarımı',
-          description:
-            'Islak laboratuvar tahlillerini (in vivo ROS ölçümü, floresan mikroskobi) hesaplamalı değerlendirmelerle entegre ederek karmaşık, çok yıllı nesiller arası mutasyon birikimi ve ekotoksikolojik maruziyet deneyleri tasarladım ve yürüttüm.',
-        },
-        {
-          title: 'İstatistiksel Modelleme & Raporlama',
-          description:
-            'Disiplinler arası ekipler için R (tidyverse, ggplot2) ve Python kullanarak titiz istatistiksel değerlendirmeler gerçekleştirdim, yayın kalitesinde görselleştirmeler ve eyleme dönüştürülebilir teknik raporlar ürettim.',
-        },
-        {
-          title: 'Eğitim & Mentorluk',
-          description:
-            '3 akademik yıl boyunca moleküler ekoloji dersleri verdim, araştırmacılara Unix/HPC biyoenformatik iş akışları konusunda eğitim sağladım ve bir lisans tez projesinin başarıyla tamamlanmasını denetledim.',
-        },
-      ],
-    },
-  },
-];
-
-export const projectsData: ProjectItem[] = [
-  {
-    id: 'samplesheriff',
-    title: 'SampleSheriff',
-    category: 'cli',
-    categoryLabel: {
-      en: 'CLI Tools & Apps',
-      tr: 'CLI Araçları & Uygulamalar',
-    },
-    description: {
-      en: 'A fast, strict, nf-core–style sample sheet and metadata validator for bioinformatics pipelines. Features streaming parsing, FASTQ pairing checks, BAM/VCF header validation, and rich terminal/JSON diagnostics.',
-      tr: 'Biyoenformatik boru hatları için hızlı, katı, nf-core tarzı örnek tablosu ve üstveri doğrulama aracı. Akış tabanlı ayrıştırma, FASTQ eşleşme kontrolleri, BAM/VCF başlık doğrulaması ve zengin terminal/JSON tanıları sunar.',
-    },
-    techStack: ['Python', 'Typer', 'Pydantic', 'PySAM', 'Rich', 'CI/CD'],
-    githubUrl: 'https://github.com/BurakBulut-sh/samplesheriff',
-    featured: true,
-    metrics: {
-      en: '112 Unit Tests • 100% Pass Rate',
-      tr: '112 Birim Test • %100 Başarı Oranı',
-    },
-  },
-  {
-    id: 'pipewatch',
-    title: 'PipeWatch',
-    category: 'cli',
-    categoryLabel: {
-      en: 'CLI Tools & Apps',
-      tr: 'CLI Araçları & Uygulamalar',
-    },
-    description: {
-      en: 'Pipeline observability and resource telemetry for SLURM and HPC bioinformatics workflows. Wraps arbitrary Bash commands with zero dependencies, captures peak memory via /usr/bin/time -v, and outputs interactive HTML reports.',
-      tr: 'SLURM ve HPC biyoenformatik iş akışları için boru hattı gözlemlenebilirliği ve kaynak telemetrisi. Sıfır bağımlılıkla Bash komutlarını sarmalar, /usr/bin/time -v ile tepe bellek kullanımını kaydeder ve interaktif HTML raporları üretir.',
-    },
-    techStack: ['Python', 'Bash', 'SLURM', 'HPC', 'Jinja2', 'Click'],
-    githubUrl: 'https://github.com/BurakBulut-sh/pipewatch',
-    featured: true,
-    metrics: {
-      en: 'SLURM Telemetry • HTML Dashboards',
-      tr: 'SLURM Telemetrisi • HTML Paneller',
-    },
-  },
-  {
-    id: 'bio-agent',
-    title: 'Autonomous LLM-Based Bioinformatics Agent',
-    category: 'ai',
-    categoryLabel: {
-      en: 'AI & Agents',
-      tr: 'Yapay Zeka & Ajanlar',
-    },
-    description: {
-      en: 'An on-premise autonomous bioinformatics agent running a local 35B parameter LLM on 16 GB VRAM. Ingests raw genomic data (FASTQ), autonomously navigates a modular skill-based workflow engine, invokes CLI tools, and delivers verified biological outputs with zero cloud data leakage.',
-      tr: '16 GB VRAM üzerinde yerel 35B parametreli açık LLM çalıştıran kurum içi otonom biyoenformatik ajanı. Ham genomik verileri (FASTQ) alır, modüler yetenek tabanlı iş akışı motoru üzerinden hesaplamalı araçları çalıştırır ve sıfır bulut veri sızıntısıyla doğrulanmış biyolojik çıktılar üretir.',
-    },
-    techStack: [
-      'Local LLM (Qwen 35B)',
-      '16GB VRAM GPU',
-      'Skill-Based Workflows',
-      'Raw Genomic Ingestion',
-      'Autonomous Bio-Tools',
-      'Python',
-    ],
-    featured: true,
-    metrics: {
-      en: '16 GB VRAM Local Model • Skill-Based Workflow Engine',
-      tr: '16 GB VRAM Yerel Model • Yetenek Tabanlı İş Akışı',
-    },
-  },
-  {
-    id: 'bioreader',
-    title: 'BioReader',
-    category: 'cli',
-    categoryLabel: {
-      en: 'CLI Tools & Apps',
-      tr: 'CLI Araçları & Uygulamalar',
-    },
-    description: {
-      en: 'Intelligent desktop scientific literature reader application designed specifically for computational biologists and life scientists. Features inline KaTeX rendering, TipTap rich text, Cytoscape network views, and local SQLite dictionary search.',
-      tr: 'Hesaplamalı biyologlar ve yaşam bilimcileri için özel olarak tasarlanmış masaüstü bilimsel makale okuma uygulaması. Satır içi KaTeX formülleri, TipTap zengin metin düzenleme, Cytoscape ağ görünümleri ve yerel SQLite sözlük araması sunar.',
-    },
-    techStack: ['Electron', 'React', 'Vite', 'Better-SQLite3', 'KaTeX', 'Cytoscape'],
-    featured: false,
-    metrics: {
-      en: 'Cross-platform Electron & React Desktop App',
-      tr: 'Çok platformlu Electron & React Masaüstü Uygulaması',
-    },
-  },
-  {
-    id: 'snp-analysis',
-    title: 'SNP-analysis / WGS Mutation Pipeline',
-    category: 'pipeline',
-    categoryLabel: {
-      en: 'NGS Pipelines',
-      tr: 'NGS Boru Hatları',
-    },
-    description: {
-      en: 'High-throughput Whole-Genome Sequencing variant discovery pipeline. Integrates Trimmomatic, PEAR merging, BWA-MEM mapping, Picard deduplication, GATK4 HaplotypeCaller gVCF array, and Bayesian Poisson rate ratio tests in R.',
-      tr: 'Yüksek verimli Tüm Genom Dizileme (WGS) varyant keşif boru hattı. Trimmomatic, PEAR birleştirme, BWA-MEM haritalama, Picard deduplikasyonu, GATK4 HaplotypeCaller gVCF dizisi ve R dilinde Bayesci Poisson oran testlerini entegre eder.',
-    },
-    techStack: ['GATK4', 'BWA-MEM', 'SLURM Array', 'SAMtools', 'R BayesianFirstAid'],
-    githubUrl: 'https://github.com/BurakBulut-sh/SNP-analysis',
-    featured: true,
-    metrics: {
-      en: 'Published in Evolution Letters & Molecular Ecology (2026)',
-      tr: 'Evolution Letters & Molecular Ecology (2026) Yayınları',
-    },
-  },
-  {
-    id: 'transcriptome-study',
-    title: 'Transcriptome-Study Pipeline',
-    category: 'pipeline',
-    categoryLabel: {
-      en: 'NGS Pipelines',
-      tr: 'NGS Boru Hatları',
-    },
-    description: {
-      en: 'RNA-Seq processing and statistical modeling of oxidative stress across temperature gradients in Chironomus riparius. Includes HISAT2 spliced alignment, featureCounts, DESeq2 prefiltering, and Limma contrast modeling.',
-      tr: 'Chironomus riparius modelinde sıcaklık gradyanları boyunca oksidatif stresin RNA-Seq işleme ve istatistiksel modellemesi. HISAT2 hizalaması, featureCounts, DESeq2 ön filtrelemesi ve Limma kontrast modellemesini içerir.',
-    },
-    techStack: ['RNA-Seq', 'HISAT2', 'DESeq2', 'Limma', 'SLURM', 'R'],
-    githubUrl: 'https://github.com/BurakBulut-sh/Transcriptome-Study',
-    featured: false,
-    metrics: {
-      en: 'Published in Ecology & Evolution and Env. Pollution (2025)',
-      tr: 'Ecology & Evolution ve Env. Pollution (2025) Yayınları',
-    },
-  },
-  {
-    id: 'meta-transcriptome',
-    title: 'Meta-Transcriptome-Analysis',
-    category: 'pipeline',
-    categoryLabel: {
-      en: 'NGS Pipelines',
-      tr: 'NGS Boru Hatları',
-    },
-    description: {
-      en: 'End-to-end RNA-Seq meta-analysis and KEGG pathway mapping in Beta vulgaris. Implements multi-factor GLM DESeq2, Fisher combined probability tests, biomaRt functional annotations, and Pathview pathway overlays.',
-      tr: 'Beta vulgaris türünde uçtan uca RNA-Seq meta-analizi ve KEGG yolak haritalaması. Çok faktörlü GLM DESeq2, Fisher birleşik olasılık testleri, biomaRt fonksiyonel açıklamaları ve Pathview yolak bindirmelerini uygular.',
-    },
-    techStack: ['R', 'metaRNASeq', 'DESeq2', 'biomaRt', 'Pathview', 'HISAT2'],
-    githubUrl: 'https://github.com/BurakBulut-sh/Meta-Transcriptome-Analysis',
-    featured: false,
-    metrics: {
-      en: 'Published in Tropical Plant Biology (2023)',
-      tr: 'Tropical Plant Biology (2023) Yayını',
-    },
-  },
-];
-
 export const publicationsData: PublicationItem[] = [
   {
     id: 'pub-1',
@@ -557,7 +690,7 @@ export const publicationsData: PublicationItem[] = [
     doiUrl: 'https://doi.org/10.1093/evlett/qrag010',
     abstractSummary: {
       en: 'Demonstrated via multi-generational WGS mutation accumulation lines that developmental acceleration increases spontaneous mutation rates per unit of chronological time while reducing generational mutation burden.',
-      tr: 'Çok nesilli WGS mutasyon birikim hatları aracılığıyla gelişimsel hızlanmanın kronolojik zaman birimi başına kendiliğinden oluşan mutasyon oranlarını artırdığını, nesil başına mutasyon yükünü ise azalttığını kanıtladı.',
+      tr: 'Çok nesilli tüm genom dizileme (WGS) deneyleriyle, gelişim hızındaki artışın birim zamandaki mutasyon hızını artırırken nesil başına düşen toplam mutasyon yükünü azalttığını ortaya koydu.',
     },
   },
   {
@@ -574,7 +707,7 @@ export const publicationsData: PublicationItem[] = [
     doiUrl: 'https://doi.org/10.1111/mec.70503',
     abstractSummary: {
       en: 'Uncovered population-specific divergence in thermal reaction norms of spontaneous mutations, showing evolutionary plasticity of germline fidelity across geographic temperature clines.',
-      tr: 'Spontan mutasyonların termal reaksiyon normlarında popülasyona özgü farklılaşmayı ortaya çıkararak coğrafi sıcaklık gradyanları boyunca germline sadakatinin evrimsel plastisitesini gösterdi.',
+      tr: 'Farklı iklim bölgelerinden gelen popülasyonların sıcaklığa bağlı mutasyon hızlarında belirgin farklılıklar olduğunu göstererek, genom koruma mekanizmalarının yerel koşullara evrimsel olarak uyum sağlayabildiğini kanıtladı.',
     },
   },
   {
@@ -598,7 +731,7 @@ export const publicationsData: PublicationItem[] = [
     doiUrl: 'https://doi.org/10.1002/ece3.72625',
     abstractSummary: {
       en: 'Combined in vivo ROS fluorometry with high-throughput RNA-Seq to uncover transcriptional non-linearities and antioxidant regulatory tipping points under heat stress.',
-      tr: 'Sıcaklık stresi altında transkriptomik doğrusal olmama durumlarını ve antioksidan düzenleyici kırılma noktalarını ortaya çıkarmak için in vivo ROS florometrisini yüksek verimli RNA-Seq ile birleştirdi.',
+      tr: 'Canlı dokuda reaktif oksijen türleri (ROS) ölçümleri ile yüksek verimli RNA-Seq analizlerini birleştirerek, sıcaklık stresi altındaki antioksidan savunma sisteminin kırılma noktalarını modelledi.',
     },
   },
   {
@@ -621,7 +754,7 @@ export const publicationsData: PublicationItem[] = [
     doiUrl: 'https://doi.org/10.1016/j.envpol.2025.125827',
     abstractSummary: {
       en: 'Discovered significant fitness impairments and pervasive circadian gene expression shifts induced by artificial nocturnal illumination using whole-organism RNA-Seq.',
-      tr: 'Tüm organizma RNA-Seq yöntemi kullanılarak yapay gece aydınlatmasının neden olduğu belirgin uyum kayıplarını ve yaygın sirkadiyen gen ekspresyonu kaymalarını tespit etti.',
+      tr: 'Yapay gece aydınlatmasının (ışık kirliliğinin) organizmaların biyolojik saat (sirkadiyen) genlerini ve yaşamsal uyum başarısını nasıl bozduğunu tüm organizma transkriptomiği ile ortaya çıkardı.',
     },
   },
   {
@@ -644,7 +777,7 @@ export const publicationsData: PublicationItem[] = [
     doiUrl: 'https://doi.org/10.1016/j.chemosphere.2024.142242',
     abstractSummary: {
       en: 'Tracked microevolutionary adaptations and genomic selection signatures across chronic multi-generational benzo[a]pyrene (BaP) exposures in aquatic insect populations.',
-      tr: 'Sucul böcek popülasyonlarında kronik çok nesilli benzo[a]piren (BaP) maruziyetleri boyunca mikroevrimsel adaptasyonları ve genomik seçilim izlerini izledi.',
+      tr: 'Toksik kimyasal (BaP) maruziyeti altındaki popülasyonları nesiller boyunca takip ederek, çevresel kirleticilere karşı gelişen hızlı evrimsel adaptasyon izlerini genom düzeyinde tespit etti.',
     },
   },
   {
@@ -669,7 +802,7 @@ export const publicationsData: PublicationItem[] = [
     doiUrl: 'https://doi.org/10.1007/s12042-023-09344-y',
     abstractSummary: {
       en: 'Synthesized independent RNA-Seq datasets to identify a robust core regulatory network of defense genes commonly activated across fungal infection, salt, and drought stress in sugar beet.',
-      tr: 'Şeker pancarında mantar enfeksiyonu, tuz ve kuraklık stresi boyunca ortak olarak aktive olan savunma genlerinin çekirdek düzenleyici ağını belirlemek için bağımsız RNA-Seq veri setlerini birleştirdi.',
+      tr: 'Bağımsız RNA-Seq çalışmalarını tek bir meta-analiz iş akışında birleştirerek; kuraklık, tuz ve hastalık stresine karşı bitkilerde ortak çalışan çekirdek savunma gen ağını tanımladı.',
     },
   },
   {
@@ -694,7 +827,7 @@ export const publicationsData: PublicationItem[] = [
     doiUrl: 'https://doi.org/10.1101/2025.07.01.661462',
     abstractSummary: {
       en: 'Quantified dynamic buffering and sudden unmasking of cryptic genetic variation under rapid climate fluctuations using high-depth cohort sequencing.',
-      tr: 'Yüksek derinlikli kohort dizileme ile hızlı iklim dalgalanmaları altında kriptik genetik varyasyonun dinamik tamponlanmasını ve ani salınımını nicelendirdi.',
+      tr: 'Ani çevresel dalgalanmalar altında normalde sessiz kalan (kriptik) genetik çeşitliliğin nasıl açığa çıktığını ve hızlı adaptasyona nasıl zemin hazırladığını yüksek derinlikli kohort dizileme ile gösterdi.',
     },
   },
 ];
@@ -762,3 +895,23 @@ export const educationData: EducationItem[] = [
     },
   },
 ];
+
+export const contactContent = {
+  sectionNumber: '07',
+  title: {
+    en: 'CONTACT & COLLABORATION',
+    tr: 'İLETİŞİM & İŞ BİRLİĞİ',
+  },
+  subtitle: {
+    en: 'Let’s Connect',
+    tr: 'İletişime Geçin',
+  },
+  collaboration: {
+    en: 'I am actively exploring industry R&D roles (Bioinformatics, Data Engineering, Applied AI in Life Sciences) as well as ambitious postdoctoral fellowships where computation and AI meet real-world data challenges. Whether you have an open role, a tough dataset, or want to discuss local AI agents, I would love to connect.',
+    tr: 'Yaşam bilimleri, veri mühendisliği ve uygulamalı yapay zekanın kesiştiği endüstriyel Ar-Ge pozisyonları ile yenilikçi doktora sonrası (post-doc) araştırma projelerine açığım. Ekibinizdeki bir pozisyon, çözülmesi gereken zorlu bir veri problemi veya yerel yapay zeka ajanları üzerine konuşmak için bana her zaman ulaşabilirsiniz.',
+  },
+  locationNote: {
+    en: 'Based between Wiesbaden (Frankfurt Rhine-Main), Germany and Istanbul, Türkiye. Open to on-site, hybrid, and remote opportunities across Europe and beyond.',
+    tr: 'Wiesbaden (Frankfurt Rhein-Main, Almanya) ve İstanbul arasında yerleşik. Avrupa genelinde ve uluslararası düzeyde yerinde, hibrit veya uzaktan çalışma modellerine uygun.',
+  },
+};

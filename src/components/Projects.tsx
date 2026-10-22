@@ -2,14 +2,20 @@
 
 import React, { useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
-import { projectsData } from '@/data/translations';
+import {
+  projectsData,
+  agentBlueprintNodes,
+  agentHeroStory,
+} from '@/data/translations';
 import {
   ArrowUpRight,
-  ShieldCheck,
-  Workflow,
   Sparkles,
-  Layers,
-  TrendingUp,
+  ArrowRight,
+  CheckCircle2,
+  Cpu,
+  FileCode2,
+  Activity,
+  Terminal,
 } from 'lucide-react';
 import {
   PythonIcon,
@@ -22,9 +28,9 @@ import ScientificText from '@/components/common/ScientificText';
 export default function Projects() {
   const { language } = useLanguage();
   const [filter, setFilter] = useState<'all' | 'cli' | 'ai' | 'pipeline'>('all');
+  const [activeBlueprintNode, setActiveBlueprintNode] = useState<string>('node-2'); // Node 02 default selected!
 
-  const otherProjects = projectsData.filter((p) => {
-    if (p.id === 'bio-agent' || p.id === 'hermes') return false; // Showcased prominently as the lead architecture
+  const filteredProjects = projectsData.filter((p) => {
     if (filter === 'all') return true;
     return p.category === filter;
   });
@@ -43,7 +49,7 @@ export default function Projects() {
   const getCategoryBadge = (category: string) => {
     switch (category) {
       case 'cli':
-        return 'CLI TOOL · HPC/SLURM';
+        return 'CLI TOOL · HPC/DESKTOP';
       case 'ai':
         return 'AI AGENT · LOCAL RAG';
       case 'pipeline':
@@ -53,62 +59,53 @@ export default function Projects() {
     }
   };
 
-  const agentPillars = [
-    {
-      icon: <ShieldCheck size={16} strokeWidth={1.5} className="text-emerald-800" />,
-      title: { en: '16 GB VRAM Local Inference', tr: '16 GB VRAM Kurum İçi Çalıştırma' },
-      desc: {
-        en: 'Runs a high-parameter open-weights model (Qwen-3.6-35B) locally within a 16 GB GPU budget, ensuring zero cloud data leakage for sensitive cohort genomes.',
-        tr: 'Hassas kohort verilerinin buluta sızmasını engellemek için 16 GB GPU bütçesinde yerel açık kaynaklı bir model (Qwen-3.6-35B) çalıştırır.',
-      },
-    },
-    {
-      icon: <Layers size={16} strokeWidth={1.5} className="text-emerald-800" />,
-      title: { en: 'Modular Skill-Based Workflow', tr: 'Modüler Yetenek Tabanlı Mimari' },
-      desc: {
-        en: 'A decoupled tool engine where the agent autonomously chains specialized bioinformatics skills (read QC, alignment, variant discovery, expression quantification) based on incoming data.',
-        tr: 'Ajanın uzmanlaşmış biyoenformatik yeteneklerini (kalite kontrol, hizalama, varyant keşfi, ekspresyon analizi) dinamik araç çağrılarıyla otonom zincirlediği modüler yapı.',
-      },
-    },
-    {
-      icon: <Workflow size={16} strokeWidth={1.5} className="text-emerald-800" />,
-      title: { en: 'Raw Genomic Ingestion to Output', tr: 'Ham Veriden Doğrulanmış Çıktıya' },
-      desc: {
-        en: 'Ingests raw FASTQ files, autonomously plans multi-stage pipelines, validates intermediate data integrity, executes bio-CLIs, and delivers verified biological deliverables.',
-        tr: 'Ham FASTQ dosyalarını alır, çok aşamalı iş akışlarını otonom planlar, ara aşama veri bütünlüğünü doğrular ve doğrulanmış biyolojik çıktılar üretir.',
-      },
-    },
-    {
-      icon: <TrendingUp size={16} strokeWidth={1.5} className="text-emerald-800" />,
-      title: { en: 'Extensibility & Future Scaling', tr: 'Genişletilebilirlik & Gelecek Vizyonu' },
-      desc: {
-        en: 'While initial benchmarks proved successful on complex SNP calling, the architecture is designed as a generalized foundation ready to scale into multi-agent collaboration and single-cell omics.',
-        tr: 'İlk denemeler karmaşık SNP analizinde başarıyla test edilmiş olsa da, mimari gelecekte çoklu-ajan sistemleri ve tek-hücre omiks analizlerine kolayca uyarlanabilecek şekilde tasarlanmıştır.',
-      },
-    },
-  ];
+  const selectedNodeData =
+    agentBlueprintNodes.find((n) => n.id === activeBlueprintNode) || agentBlueprintNodes[1];
+
+  const getNodeIcon = (id: string) => {
+    switch (id) {
+      case 'node-1':
+        return <Activity size={14} className="text-stone-700" />;
+      case 'node-2':
+        return <FileCode2 size={14} className="text-emerald-800" />;
+      case 'node-3':
+        return <Cpu size={14} className="text-stone-700" />;
+      case 'node-4':
+        return <Terminal size={14} className="text-stone-700" />;
+      default:
+        return <CheckCircle2 size={14} className="text-stone-700" />;
+    }
+  };
 
   return (
-    <section id="projects" className="py-14 sm:py-18 border-t border-stone-200/80">
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-14">
+    <section id="projects" className="relative border-t border-stone-200/80">
+      <div className="max-w-5xl mx-auto px-6 sm:px-10 border-x border-stone-200/80 relative py-12 sm:py-16">
+        {/* Blueprint Grid Crosshairs */}
+        <span className="absolute -top-[7px] -left-[5px] text-stone-400 font-mono text-xs select-none leading-none">
+          +
+        </span>
+        <span className="absolute -top-[7px] -right-[5px] text-stone-400 font-mono text-xs select-none leading-none">
+          +
+        </span>
+
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-7">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-8">
           <div className="space-y-1">
             <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-emerald-800 font-semibold block">
-              02 / {language === 'en' ? 'SOFTWARE & NGS PIPELINES' : 'YAZILIM & NGS BORU HATLARI'}
+              03 / {language === 'en' ? 'SOFTWARE, AI & PIPELINES' : 'YAZILIM, YAPAY ZEKA & BORU HATLARI'}
             </span>
             <h2 className="font-serif text-2xl sm:text-3xl font-normal tracking-tight text-stone-950">
-              {language === 'en' ? 'Open-Source Tools & Workflows' : 'Açık Kaynak Araçlar & İş Akışları'}
+              {language === 'en' ? 'Custom Tools, Workflows & Local AI' : 'Özgün Araçlar, İş Akışları & Yerel AI'}
             </h2>
           </div>
 
           {/* Filter Tabs */}
-          <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-md border border-stone-200/80 bg-stone-100/50">
+          <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-md border border-stone-200/80 bg-stone-100/60">
             {[
-              { id: 'all', label: { en: 'All Tools', tr: 'Tüm Araçlar' } },
-              { id: 'cli', label: { en: 'CLI Tools & Apps', tr: 'CLI Araçları' } },
-              { id: 'ai', label: { en: 'AI & Agents', tr: 'Yapay Zeka' } },
-              { id: 'pipeline', label: { en: 'Genomics Pipelines', tr: 'Boru Hatları' } },
+              { id: 'all', label: { en: 'All Systems', tr: 'Tüm Sistemler' } },
+              { id: 'cli', label: { en: 'Desktop & CLI', tr: 'Masaüstü & CLI' } },
+              { id: 'ai', label: { en: 'Applied AI', tr: 'Uygulamalı AI' } },
+              { id: 'pipeline', label: { en: 'Pipelines', tr: 'Boru Hatları' } },
             ].map((tab) => (
               <button
                 key={tab.id}
@@ -127,14 +124,15 @@ export default function Projects() {
 
         {/* FEATURED LEAD ARCHITECTURE: AUTONOMOUS LLM-BASED BIOINFORMATICS AGENT */}
         {(filter === 'all' || filter === 'ai') && (
-          <div className="mb-7 p-6 sm:p-7 rounded-lg bg-white border border-stone-200/90 shadow-2xs space-y-4">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-stone-150 pb-2.5">
+          <div className="mb-10 p-6 sm:p-7 rounded-lg bg-stone-50/70 border border-stone-200/90 shadow-2xs space-y-5">
+            {/* Lead Header */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-stone-200/70 pb-3">
               <div className="inline-flex items-center gap-1.5 font-mono text-[10px] tracking-wider uppercase text-emerald-800 font-semibold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200/70">
                 <Sparkles size={11} className="text-emerald-700" />
                 <span>
                   {language === 'en'
-                    ? 'FEATURED ARCHITECTURE · AUTONOMOUS LLM BIO-AGENT'
-                    : 'ÖNE ÇIKAN MİMARİ · OTONOM LLM BİYO-AJANI'}
+                    ? 'FEATURED ARCHITECTURE · AUTONOMOUS BIO-AGENT'
+                    : 'ÖNE ÇIKAN MİMARİ · OTONOM BİYO-AJAN'}
                 </span>
               </div>
               <span className="font-mono text-xs text-stone-500">
@@ -142,143 +140,183 @@ export default function Projects() {
               </span>
             </div>
 
+            {/* Title & Spot */}
             <div className="space-y-1.5">
               <h3 className="font-serif text-xl sm:text-2xl font-medium text-stone-950 tracking-tight">
                 {language === 'en'
                   ? 'Autonomous LLM-Based Bioinformatics Agent'
                   : 'Otonom LLM Tabanlı Biyoenformatik Ajanı'}
               </h3>
-              <p className="font-serif italic text-[15px] sm:text-base text-stone-600 leading-relaxed">
-                <ScientificText>
-                  {language === 'en'
-                    ? 'An on-premise autonomous agent powered by a local 35B open-weights model on 16 GB VRAM, transforming raw genomic sequencing reads into verified biological outputs through a modular skill-based workflow architecture.'
-                    : '16 GB VRAM üzerinde yerel 35B açık modelle çalışan, ham genomik dizileme verilerini modüler bir yetenek tabanlı iş akışı mimarisiyle doğrulanmış biyolojik çıktılara dönüştüren otonom yapay zeka ajanı.'}
-                </ScientificText>
+              <p className="font-serif italic text-[14.5px] sm:text-[15px] text-stone-700 leading-relaxed">
+                <ScientificText>{agentHeroStory.spot[language]}</ScientificText>
               </p>
             </div>
 
-            <p className="text-[14px] leading-relaxed text-stone-700 font-sans">
-              <ScientificText>
-                {language === 'en'
-                  ? 'Modern genomics requires orchestrating complex, multi-stage pipelines while handling sensitive cohort datasets that cannot be uploaded to commercial cloud AI APIs due to strict institutional confidentiality. To solve this, I engineered an autonomous agent running completely on-premise on standard workstation hardware (16 GB VRAM using a quantized Qwen-3.6-35B model). Rather than relying on rigid, pre-scripted pipelines, the agent operates through an extensible skill-based workflow engine: it ingests raw genomic reads (FASTQ), autonomously inspects quality telemetry, dynamically selects and invokes domain-specific bioinformatics tools, performs runtime error recovery, and synthesizes reproducible biological deliverables.'
-                  : 'Modern genomik araştırmaları, kurumsal gizlilik nedeniyle ticari bulut yapay zeka API’lerine aktarılamayan hassas kohort verilerini işlerken karmaşık, çok adımlı iş akışlarının orkestrasyonunu gerektirir. Bu sorunu çözmek için standart iş istasyonu donanımında (16 GB VRAM) kuantize edilmiş yüksek parametreli bir model (Qwen-3.6-35B) kullanarak tamamen kurum içi çalışan otonom bir biyoenformatik ajanı geliştirdim. Statik betiklere bağımlı kalmak yerine ajan, yetenek tabanlı bir iş akışı sistemi kullanır: ham dizileme verilerini (FASTQ) alır, kalite kontrol telemetrisini inceler, alana özgü biyoenformatik araçları dinamik olarak seçip çalıştırır, çalışma anı hatalarını giderir ve doğrulanmış biyolojik sonuçlar üretir.'}
-              </ScientificText>
+            {/* Narrative Paragraph */}
+            <p className="text-[13.5px] sm:text-[14px] leading-relaxed text-stone-600 font-sans">
+              <ScientificText>{agentHeroStory.narrative[language]}</ScientificText>
             </p>
 
-            {/* 4 Pillars Grid inside Featured Card - Compact 4-column layout */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 pt-1">
-              {agentPillars.map((pillar, idx) => (
-                <div
-                  key={idx}
-                  className="p-3.5 rounded bg-stone-50/80 border border-stone-200/80 space-y-1"
-                >
-                  <div className="flex items-center gap-1.5 font-sans text-xs font-semibold text-stone-900">
-                    {pillar.icon}
-                    <span>{pillar.title[language]}</span>
-                  </div>
-                  <p className="text-xs text-stone-600 leading-relaxed">
-                    {pillar.desc[language]}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            {/* Proof-of-Concept Benchmark & Scalability Note */}
-            <div className="p-3 rounded border border-stone-200/70 bg-stone-50/50 flex flex-wrap items-center justify-between gap-3 text-xs font-mono text-stone-700">
-              <span className="font-semibold text-stone-900">
-                {language === 'en' ? 'Proof of Concept & Generalization:' : 'Kavram Kanıtı & Genişletilebilirlik:'}
-              </span>
-              <span className="text-emerald-900 font-medium">
-                {language === 'en'
-                  ? 'Initial Benchmark on Raw FASTQ -> Multi-Stage SNP Discovery & GATK4'
-                  : 'Ham FASTQ -> Çok Aşamalı SNP Keşfi ve GATK4 Başlangıç Doğrulaması'}
-              </span>
-              <span className="text-stone-300">·</span>
-              <span className="text-stone-600">
-                {language === 'en'
-                  ? 'Adaptable to Single-Cell, Transcriptomics & Multi-Agent Collaboration'
-                  : 'Tek-Hücre, Transkriptomik ve Çoklu Ajan İş Birliklerine Uyarlanabilir'}
-              </span>
-            </div>
-
-            {/* Tech Stack Footer */}
-            <div className="border-t border-stone-150 pt-3 flex flex-wrap items-center gap-1.5">
-              {[
-                'Local Qwen-3.6-35B',
-                '16 GB VRAM Optimization',
-                'Skill-Based Workflow Architecture',
-                'Raw Genomic Ingestion (FASTQ/BAM)',
-                'Autonomous Tool Chaining',
-                'Runtime Error Recovery',
-                'Python AsyncIO',
-              ].map((tech) => (
-                <span
-                  key={tech}
-                  className="font-mono text-[11px] px-2 py-0.5 rounded bg-stone-100 text-stone-700 border border-stone-200"
-                >
-                  {tech}
+            {/* INTERACTIVE BLUEPRINT SYSTEM SCHEMA (4 NODES) */}
+            <div className="space-y-3 pt-2">
+              <div className="flex items-center justify-between">
+                <span className="font-mono text-[11px] uppercase tracking-wider text-stone-500 font-medium">
+                  {language === 'en' ? 'Interactive Blueprint Flow (Click a Node):' : 'İnteraktif Sistem Akışı (Aşamaya Tıklayın):'}
                 </span>
-              ))}
+                <span className="font-mono text-[11px] text-emerald-800 font-medium">
+                  {language === 'en' ? 'Selected: Node ' + selectedNodeData.nodeNumber : 'Seçili: Düğüm ' + selectedNodeData.nodeNumber}
+                </span>
+              </div>
+
+              {/* 4 Clickable Nodes Grid */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5">
+                {agentBlueprintNodes.map((node) => {
+                  const isSelected = node.id === activeBlueprintNode;
+                  return (
+                    <button
+                      key={node.id}
+                      onClick={() => setActiveBlueprintNode(node.id)}
+                      className={`text-left p-3 rounded border transition-all cursor-pointer relative ${
+                        isSelected
+                          ? 'bg-white border-emerald-700 shadow-sm ring-1 ring-emerald-700/30'
+                          : 'bg-stone-100/80 border-stone-200/80 hover:bg-white hover:border-stone-300'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between mb-1.5">
+                        <span
+                          className={`font-mono text-[10px] font-semibold ${
+                            isSelected ? 'text-emerald-800' : 'text-stone-500'
+                          }`}
+                        >
+                          Node {node.nodeNumber}
+                        </span>
+                        {getNodeIcon(node.id)}
+                      </div>
+                      <div className="font-sans text-xs font-semibold text-stone-900 leading-snug line-clamp-1">
+                        {node.title[language]}
+                      </div>
+                      <div className="font-mono text-[10px] text-stone-500 mt-0.5 line-clamp-1">
+                        {node.subtitle[language]}
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Takeaway Panel for Selected Node */}
+              <div className="p-4 rounded-md border border-stone-200 bg-white shadow-2xs space-y-1.5 animate-fadeIn">
+                <div className="flex items-center gap-2">
+                  <span className="font-mono text-[11px] font-semibold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200/70">
+                    {selectedNodeData.badge[language]}
+                  </span>
+                  <span className="font-serif font-medium text-sm text-stone-900">
+                    {selectedNodeData.title[language]} — {selectedNodeData.subtitle[language]}
+                  </span>
+                </div>
+                <p className="font-sans text-[13.5px] leading-relaxed text-stone-700">
+                  <ScientificText>{selectedNodeData.takeaway[language]}</ScientificText>
+                </p>
+              </div>
+            </div>
+
+            {/* Proof-of-Concept Benchmark & Tech Chips */}
+            <div className="border-t border-stone-200/80 pt-3 flex flex-wrap items-center justify-between gap-2.5">
+              <div className="flex items-center gap-2 text-xs font-mono text-stone-700">
+                <span className="font-semibold text-stone-900">
+                  {language === 'en' ? 'Proof of Concept:' : 'Kavram Kanıtı:'}
+                </span>
+                <span className="text-emerald-900 font-medium">
+                  {language === 'en'
+                    ? 'Raw FASTQ -> Multi-Stage SNP Discovery & GATK4 Benchmark'
+                    : 'Ham FASTQ -> Çok Aşamalı SNP Keşfi ve GATK4 Doğrulaması'}
+                </span>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-1.5">
+                {[
+                  'Local Qwen-35B',
+                  '16GB VRAM',
+                  'Skill Files',
+                  'Self-Healing CLI',
+                  'Zero Data Leakage',
+                ].map((chip) => (
+                  <span
+                    key={chip}
+                    className="font-mono text-[10.5px] px-2 py-0.5 rounded bg-stone-100 text-stone-600 border border-stone-200"
+                  >
+                    {chip}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         )}
 
-        {/* Regular Tools Bento Grid - 3 Columns on large screens to make site shorter */}
+        {/* BENTO GRID: OTHER TOOLS, DESKTOP APPS & PIPELINES */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {otherProjects.map((project) => (
+          {filteredProjects.map((project) => (
             <article
               key={project.id}
-              className="bg-white border border-stone-200/90 rounded-lg p-5 sm:p-6 flex flex-col justify-between transition-colors hover:border-stone-400 shadow-2xs"
+              className="p-5 rounded-lg border border-stone-200/90 bg-white hover:border-stone-400 transition-all flex flex-col justify-between shadow-2xs group"
             >
-              {/* Card Top: Monospace label & link */}
-              <div>
-                <div className="flex items-center justify-between gap-2 mb-2.5">
-                  <span className="font-mono text-[10px] uppercase tracking-wider text-stone-500 font-medium">
-                    {getCategoryBadge(project.category)}
+              <div className="space-y-3">
+                {/* Header: Category Badge & GitHub/External Link */}
+                <div className="flex items-center justify-between">
+                  <span className="font-mono text-[10px] tracking-wider text-stone-500 uppercase font-semibold">
+                    {project.categoryLabel ? project.categoryLabel[language] : getCategoryBadge(project.category)}
                   </span>
                   {project.githubUrl && (
                     <a
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-stone-400 hover:text-stone-950 transition-colors inline-flex items-center gap-1 font-mono text-[11px]"
-                      title="View GitHub Repository"
+                      className="text-stone-400 hover:text-stone-900 transition-colors p-1"
+                      aria-label={`${project.title} GitHub repository`}
                     >
-                      <span>GitHub</span>
-                      <ArrowUpRight size={13} strokeWidth={1.5} />
+                      <ArrowUpRight size={15} strokeWidth={1.5} />
                     </a>
                   )}
                 </div>
 
-                {/* Card Title */}
-                <h3 className="font-serif text-lg font-medium text-stone-950 tracking-tight">
+                {/* Title */}
+                <h3 className="font-serif text-lg font-medium text-stone-950 tracking-tight group-hover:text-emerald-900 transition-colors">
                   <ScientificText>{project.title}</ScientificText>
                 </h3>
 
                 {/* Description */}
-                <p className="text-[13.5px] leading-relaxed text-stone-600 mt-2 font-sans">
+                <p className="font-sans text-[13px] leading-relaxed text-stone-600">
                   <ScientificText>{project.description[language]}</ScientificText>
                 </p>
 
-                {/* Engineering Metric */}
-                {project.metrics && (
-                  <div className="mt-3 inline-block font-mono text-xs text-emerald-800 bg-emerald-50/60 px-2 py-0.5 rounded border border-emerald-200/60 font-medium">
-                    <ScientificText>{project.metrics[language]}</ScientificText>
+                {/* Origin Note: Why I Built This */}
+                {project.originNote && (
+                  <div className="border-l-2 border-stone-300 pl-3 py-1 bg-stone-50/50 rounded-r">
+                    <p className="font-serif italic text-stone-700 text-[12.5px] leading-relaxed">
+                      <ScientificText>{project.originNote[language]}</ScientificText>
+                    </p>
                   </div>
                 )}
               </div>
 
-              {/* Card Bottom: Tech Stack */}
-              <div className="border-t border-stone-100 pt-3.5 mt-4 flex flex-wrap items-center gap-1.5">
-                {project.techStack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="inline-flex items-center gap-1 font-mono text-[10.5px] px-2 py-0.5 rounded bg-stone-100/70 text-stone-700 border border-stone-200/80"
-                  >
-                    {getTechIcon(tech)}
-                    <span>{tech}</span>
-                  </span>
-                ))}
+              {/* Footer: Metrics & Tech Stack */}
+              <div className="pt-4 mt-3 border-t border-stone-150 space-y-2.5">
+                {project.metrics && (
+                  <div className="font-mono text-[11px] text-emerald-900 font-medium">
+                    {project.metrics[language]}
+                  </div>
+                )}
+
+                <div className="flex flex-wrap items-center gap-1.5">
+                  {project.techStack.map((tech) => (
+                    <span
+                      key={tech}
+                      className="inline-flex items-center gap-1 font-mono text-[10.5px] px-2 py-0.5 rounded bg-stone-100 text-stone-600 border border-stone-200/70"
+                    >
+                      {getTechIcon(tech)}
+                      <span>{tech}</span>
+                    </span>
+                  ))}
+                </div>
               </div>
             </article>
           ))}

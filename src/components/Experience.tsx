@@ -9,27 +9,35 @@ export default function Experience() {
   const { language } = useLanguage();
 
   return (
-    <section id="experience" className="py-14 sm:py-18 border-t border-stone-200/80">
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-14">
+    <section id="experience" className="relative border-t border-stone-200/80">
+      <div className="max-w-5xl mx-auto px-6 sm:px-10 border-x border-stone-200/80 relative py-12 sm:py-16">
+        {/* Blueprint Grid Crosshairs */}
+        <span className="absolute -top-[7px] -left-[5px] text-stone-400 font-mono text-xs select-none leading-none">
+          +
+        </span>
+        <span className="absolute -top-[7px] -right-[5px] text-stone-400 font-mono text-xs select-none leading-none">
+          +
+        </span>
+
         {/* Section Header */}
-        <div className="space-y-1 mb-8">
+        <div className="space-y-1 mb-10">
           <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-emerald-800 font-semibold block">
-            01 / {language === 'en' ? 'PROFESSIONAL EXPERIENCE' : 'MESLEKİ DENEYİM'}
+            02 / {language === 'en' ? 'PROFESSIONAL EXPERIENCE' : 'MESLEKİ DENEYİM'}
           </span>
           <h2 className="font-serif text-2xl sm:text-3xl font-normal tracking-tight text-stone-950">
-            {language === 'en' ? 'Career & Research Positions' : 'Kariyer ve Araştırma Pozisyonları'}
+            {language === 'en' ? 'Applied R&D & Research Appointments' : 'Uygulamalı Ar-Ge ve Araştırma Görevleri'}
           </h2>
         </div>
 
-        {/* Swiss 2-Column Experience Grid (Wider right column for shorter vertical height) */}
-        <div className="divide-y divide-stone-200/60">
+        {/* Swiss 2-Column Experience Layout */}
+        <div className="divide-y divide-stone-200/80">
           {experienceData.map((exp) => (
             <article
               key={exp.id}
-              className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 py-7 first:pt-0 last:pb-0"
+              className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 py-8 first:pt-0 last:pb-0"
             >
-              {/* Left Column: Dates, Institution & Location (col-span-3 on lg) */}
-              <div className="md:col-span-4 lg:col-span-3 space-y-1.5">
+              {/* Left Column: Dates, Institution & Location */}
+              <div className="md:col-span-3 space-y-2">
                 <div className="font-mono text-xs uppercase tracking-wider text-stone-500 font-medium">
                   {exp.period[language]}
                 </div>
@@ -40,7 +48,7 @@ export default function Experience() {
                   {exp.location[language]}
                 </div>
                 {exp.badge && (
-                  <div className="pt-1">
+                  <div className="pt-0.5">
                     <span className="inline-block font-mono text-[10px] tracking-wider px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 border border-emerald-200/80 font-medium">
                       {exp.badge[language]}
                     </span>
@@ -48,32 +56,40 @@ export default function Experience() {
                 )}
               </div>
 
-              {/* Right Column: Role Title, Bullets & Tools (col-span-9 on lg) */}
-              <div className="md:col-span-8 lg:col-span-9 space-y-3.5">
-                <h3 className="text-lg font-semibold text-stone-900 tracking-tight">
-                  <ScientificText>{exp.role[language]}</ScientificText>
-                </h3>
+              {/* Right Column: Role Title, Core Impact, Clean Left-Bordered Bullets */}
+              <div className="md:col-span-9 space-y-4">
+                <div className="space-y-1.5">
+                  <h3 className="font-serif text-xl sm:text-2xl font-normal text-stone-950 tracking-tight">
+                    <ScientificText>{exp.role[language]}</ScientificText>
+                  </h3>
+                  {exp.coreImpact && (
+                    <p className="font-serif italic text-[14.5px] sm:text-[15px] text-stone-700 leading-relaxed">
+                      <ScientificText>{exp.coreImpact[language]}</ScientificText>
+                    </p>
+                  )}
+                </div>
 
-                <ul className="space-y-2.5 text-[14px] leading-relaxed text-stone-600">
+                {/* Clean Typographic Bullet List with Left Hairline Rule */}
+                <div className="border-l-2 border-stone-300 pl-4 space-y-3.5 text-[14px] leading-relaxed text-stone-600">
                   {exp.responsibilities[language].map((resp, idx) => (
-                    <li key={idx} className="space-y-0.5">
-                      <span className="font-medium text-stone-900">
-                        <ScientificText>{resp.title}</ScientificText>:{' '}
+                    <div key={idx} className="space-y-0.5">
+                      <span className="font-medium text-stone-900 block font-sans">
+                        <ScientificText>{resp.title}</ScientificText>
                       </span>
-                      <span>
+                      <p className="font-sans">
                         <ScientificText>{resp.description}</ScientificText>
-                      </span>
-                    </li>
+                      </p>
+                    </div>
                   ))}
-                </ul>
+                </div>
 
                 {/* Specific tools tags for the role */}
-                <div className="pt-1.5 flex flex-wrap gap-1.5">
+                <div className="pt-2 flex flex-wrap gap-1.5">
                   {(exp.id === 'senckenberg'
                     ? [
                         'Snakemake',
-                        'SLURM',
-                        'WGS',
+                        'SLURM HPC',
+                        'WGS Pipeline',
                         'RNA-Seq',
                         'GATK4',
                         'BWA-MEM',
@@ -83,17 +99,17 @@ export default function Experience() {
                         'Docker',
                       ]
                     : [
-                        'DFG Grant Writing',
-                        'Local LLMs (Qwen 32B)',
-                        'Hermes Agent Architecture',
-                        'Scientific Coordination',
-                        'Python CLI',
+                        'Local AI Agents',
+                        'Constraint & Skill Design',
+                        'DFG Grant Strategy',
+                        'Electron / SQLite',
+                        'Python CLI Architecture',
                         'Genomic Data Analysis',
                       ]
                   ).map((tag) => (
                     <span
                       key={tag}
-                      className="font-mono text-[11px] px-2 py-0.5 rounded bg-white text-stone-600 border border-stone-200/80 shadow-2xs"
+                      className="font-mono text-[11px] px-2 py-0.5 rounded bg-stone-100 text-stone-600 border border-stone-200/80"
                     >
                       {tag}
                     </span>

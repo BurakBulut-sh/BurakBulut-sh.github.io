@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
-import { siteMetadata } from '@/data/translations';
+import { siteMetadata, contactContent } from '@/data/translations';
 import { Copy, Check, ArrowUpRight } from 'lucide-react';
 import {
   GithubIcon,
@@ -22,32 +22,34 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-14 sm:py-18 border-t border-stone-200/80">
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-14">
+    <section id="contact" className="relative border-t border-stone-200/80">
+      <div className="max-w-5xl mx-auto px-6 sm:px-10 border-x border-stone-200/80 relative py-12 sm:py-16">
+        {/* Blueprint Grid Crosshairs */}
+        <span className="absolute -top-[7px] -left-[5px] text-stone-400 font-mono text-xs select-none leading-none">
+          +
+        </span>
+        <span className="absolute -top-[7px] -right-[5px] text-stone-400 font-mono text-xs select-none leading-none">
+          +
+        </span>
+
         {/* Section Header */}
         <div className="space-y-1 mb-8">
           <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-emerald-800 font-semibold block">
-            06 / {language === 'en' ? 'CONTACT & COLLABORATION' : 'İLETİŞİM & İŞ BİRLİĞİ'}
+            {contactContent.sectionNumber} / {contactContent.title[language]}
           </span>
           <h2 className="font-serif text-2xl sm:text-3xl font-normal tracking-tight text-stone-950">
-            {language === 'en' ? 'Let’s Connect' : 'İletişime Geçin'}
+            {contactContent.subtitle[language]}
           </h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
           {/* Left Column: Context & Availability */}
-          <div className="md:col-span-6 space-y-3 font-sans text-[15px] leading-relaxed text-stone-600">
+          <div className="md:col-span-6 space-y-3.5 font-sans text-[14px] sm:text-[14.5px] leading-relaxed text-stone-600">
             <p>
-              <ScientificText>
-                {language === 'en'
-                  ? 'I am open to bioinformatics research collaborations, industry scientist positions, consulting projects, and discussions on computational genomics and autonomous AI bio-agent architectures.'
-                  : 'Biyoenformatik araştırma iş birlikleri, endüstri araştırmacı rolleri, danışmanlık projeleri ve hesaplamalı genomik ile otonom yapay zeka ajan mimarileri üzerine fikir alışverişine açığım.'}
-              </ScientificText>
+              <ScientificText>{contactContent.collaboration[language]}</ScientificText>
             </p>
-            <p className="font-mono text-xs text-stone-500">
-              {language === 'en'
-                ? 'Based in Wiesbaden / Frankfurt Rhine-Main area, Germany. Available for hybrid and remote international engagements.'
-                : 'Wiesbaden / Frankfurt Ren-Main bölgesinde yerleşik. Hibrit ve uzaktan uluslararası çalışmalara uygun.'}
+            <p className="font-mono text-xs text-stone-500 pt-1 border-t border-stone-200/60">
+              {contactContent.locationNote[language]}
             </p>
           </div>
 
@@ -135,8 +137,8 @@ export default function Contact() {
                 rel="noopener noreferrer"
                 className="p-3 rounded-lg border border-stone-200/90 bg-white hover:border-stone-400 transition-colors flex items-center justify-between shadow-2xs whitespace-nowrap"
               >
-                <div className="flex items-center gap-1.5 text-stone-900 text-xs font-medium">
-                  <span className="font-mono text-xs font-semibold">Ph.D.</span>
+                <div className="flex items-center gap-1 text-stone-900 text-xs font-medium">
+                  <span className="font-serif italic font-semibold">Ph.D.</span>
                   <span>Thesis</span>
                 </div>
                 <ArrowUpRight size={12} className="text-stone-400" />

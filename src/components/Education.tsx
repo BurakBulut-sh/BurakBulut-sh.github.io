@@ -10,27 +10,35 @@ export default function Education() {
   const { language } = useLanguage();
 
   return (
-    <section id="education" className="py-14 sm:py-18 border-t border-stone-200/80">
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-14">
+    <section id="education" className="relative border-t border-stone-200/80">
+      <div className="max-w-5xl mx-auto px-6 sm:px-10 border-x border-stone-200/80 relative py-12 sm:py-16">
+        {/* Blueprint Grid Crosshairs */}
+        <span className="absolute -top-[7px] -left-[5px] text-stone-400 font-mono text-xs select-none leading-none">
+          +
+        </span>
+        <span className="absolute -top-[7px] -right-[5px] text-stone-400 font-mono text-xs select-none leading-none">
+          +
+        </span>
+
         {/* Section Header */}
         <div className="space-y-1 mb-8">
           <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-emerald-800 font-semibold block">
-            05 / {language === 'en' ? 'EDUCATION' : 'EĞİTİM'}
+            06 / {language === 'en' ? 'EDUCATION' : 'AKADEMİK GEÇMİŞ'}
           </span>
           <h2 className="font-serif text-2xl sm:text-3xl font-normal tracking-tight text-stone-950">
-            {language === 'en' ? 'Academic Degrees & Research Theses' : 'Akademik Dereceler & Araştırma Tezleri'}
+            {language === 'en' ? 'Degrees & Formal Education' : 'Dereceler & Resmi Eğitim'}
           </h2>
         </div>
 
         {/* Swiss 2-Column Education Grid */}
-        <div className="divide-y divide-stone-200/60">
+        <div className="divide-y divide-stone-200/80">
           {educationData.map((edu, idx) => (
             <article
               key={idx}
-              className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 py-7 first:pt-0 last:pb-0"
+              className="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-8 py-6 first:pt-0 last:pb-0"
             >
-              {/* Left Column: Period & Institution (col-span-3 on lg) */}
-              <div className="md:col-span-4 lg:col-span-3 space-y-1.5">
+              {/* Left Column: Period & Institution */}
+              <div className="md:col-span-3 space-y-1.5">
                 <span className="font-mono text-xs uppercase tracking-wider text-stone-500 block">
                   {edu.period}
                 </span>
@@ -39,10 +47,10 @@ export default function Education() {
                 </div>
               </div>
 
-              {/* Right Column: Degree, Field, Thesis & Repository Link (col-span-9 on lg) */}
-              <div className="md:col-span-8 lg:col-span-9 space-y-2.5">
+              {/* Right Column: Degree, Field, Thesis & Repository Link */}
+              <div className="md:col-span-9 space-y-2.5">
                 <div className="space-y-0.5">
-                  <h3 className="text-lg font-semibold text-stone-900 tracking-tight">
+                  <h3 className="font-serif text-lg font-medium text-stone-950 tracking-tight">
                     <ScientificText>{edu.degree[language]}</ScientificText>
                   </h3>
                   <div className="font-mono text-xs text-emerald-800 font-medium">
@@ -51,7 +59,7 @@ export default function Education() {
                 </div>
 
                 {edu.details && (
-                  <p className="text-[14px] leading-relaxed text-stone-600 font-sans">
+                  <p className="text-[13.5px] leading-relaxed text-stone-600 font-sans">
                     <ScientificText>{edu.details[language]}</ScientificText>
                   </p>
                 )}

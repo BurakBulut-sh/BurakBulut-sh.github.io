@@ -1,50 +1,30 @@
 'use client';
 
 import React from 'react';
-import { siteMetadata } from '@/data/translations';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function Footer() {
-  return (
-    <footer className="border-t border-stone-200/80 py-8 transition-colors bg-[#FAF9F5]">
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-14 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-stone-500">
-        <div>
-          © 2026 {siteMetadata.name} · {siteMetadata.location}
-        </div>
+  const { language } = useLanguage();
 
-        <div className="flex items-center space-x-4">
-          <a
-            href={siteMetadata.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-stone-950 transition-colors"
-          >
-            GitHub
-          </a>
-          <span className="text-stone-300">·</span>
-          <a
-            href={siteMetadata.scholar}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-stone-950 transition-colors"
-          >
-            Google Scholar
-          </a>
-          <span className="text-stone-300">·</span>
-          <a
-            href={siteMetadata.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-stone-950 transition-colors"
-          >
-            LinkedIn
-          </a>
-          <span className="text-stone-300">·</span>
-          <a
-            href={`mailto:${siteMetadata.email}`}
-            className="hover:text-stone-950 transition-colors"
-          >
-            Email
-          </a>
+  return (
+    <footer className="relative border-t border-stone-200/80 bg-[#FAF9F5]">
+      <div className="max-w-5xl mx-auto px-6 sm:px-10 border-x border-stone-200/80 relative py-8">
+        {/* Blueprint Grid Crosshairs */}
+        <span className="absolute -top-[7px] -left-[5px] text-stone-400 font-mono text-xs select-none leading-none">
+          +
+        </span>
+        <span className="absolute -top-[7px] -right-[5px] text-stone-400 font-mono text-xs select-none leading-none">
+          +
+        </span>
+
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-stone-500">
+          <div>© 2026 Burak Bulut, Ph.D.</div>
+          <div className="text-stone-400">Wiesbaden, DE — Istanbul, TR</div>
+          <div className="text-stone-600 font-serif italic text-[13px]">
+            {language === 'en'
+              ? 'Built from scratch with clarity & purpose.'
+              : 'Netlik ve amaç odaklı olarak sıfırdan inşa edildi.'}
+          </div>
         </div>
       </div>
     </footer>

@@ -36,7 +36,7 @@ export default function Publications() {
       return (
         <React.Fragment key={index}>
           {isMe ? (
-            <span className="font-semibold text-stone-950 underline decoration-emerald-600/60 underline-offset-4">
+            <span className="font-semibold text-stone-950 underline decoration-emerald-700/60 underline-offset-4">
               {author}
             </span>
           ) : (
@@ -49,12 +49,20 @@ export default function Publications() {
   };
 
   return (
-    <section id="publications" className="py-14 sm:py-18 border-t border-stone-200/80">
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-14">
+    <section id="publications" className="relative border-t border-stone-200/80">
+      <div className="max-w-5xl mx-auto px-6 sm:px-10 border-x border-stone-200/80 relative py-12 sm:py-16">
+        {/* Blueprint Grid Crosshairs */}
+        <span className="absolute -top-[7px] -left-[5px] text-stone-400 font-mono text-xs select-none leading-none">
+          +
+        </span>
+        <span className="absolute -top-[7px] -right-[5px] text-stone-400 font-mono text-xs select-none leading-none">
+          +
+        </span>
+
         {/* Section Header */}
-        <div className="space-y-1 mb-7">
+        <div className="space-y-1 mb-8">
           <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-emerald-800 font-semibold block">
-            04 / {language === 'en' ? 'PUBLICATIONS' : 'YAYINLAR'}
+            05 / {language === 'en' ? 'PUBLICATIONS' : 'BİLİMSEL YAYINLAR'}
           </span>
           <h2 className="font-serif text-2xl sm:text-3xl font-normal tracking-tight text-stone-950">
             {language === 'en' ? 'Peer-Reviewed Articles & Preprints' : 'Hakemli Makaleler & Ön Baskılar'}
@@ -86,9 +94,9 @@ export default function Publications() {
           </div>
 
           {/* Quick Search */}
-          <div className="relative min-w-[240px]">
+          <div className="relative min-w-[220px]">
             <Search
-              size={14}
+              size={13}
               strokeWidth={1.5}
               className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400 pointer-events-none"
             />
@@ -103,7 +111,7 @@ export default function Publications() {
         </div>
 
         {/* Grouped Publication List by Year */}
-        <div className="space-y-10">
+        <div className="space-y-8">
           {years.length === 0 ? (
             <p className="font-mono text-xs text-stone-500 py-6 text-center">
               {language === 'en' ? 'No publications match your criteria.' : 'Kriterlere uygun yayın bulunamadı.'}
@@ -114,19 +122,19 @@ export default function Publications() {
               return (
                 <div
                   key={year}
-                  className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 items-start"
+                  className="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-8 items-start"
                 >
                   {/* Left Column: Year Indicator */}
-                  <div className="md:col-span-2 lg:col-span-1">
-                    <span className="font-mono text-xl font-semibold text-stone-400 block sticky top-24">
+                  <div className="md:col-span-2">
+                    <span className="font-mono text-lg font-semibold text-stone-400 block sticky top-24">
                       {year}
                     </span>
                   </div>
 
-                  {/* Right Column: Papers in that Year (Spanning wider to take fewer lines) */}
-                  <div className="md:col-span-10 lg:col-span-11 divide-y divide-stone-200/60">
+                  {/* Right Column: Papers in that Year */}
+                  <div className="md:col-span-10 divide-y divide-stone-200/60">
                     {pubsInYear.map((pub) => (
-                      <article key={pub.id} className="py-5 first:pt-0 last:pb-0 space-y-2">
+                      <article key={pub.id} className="py-4 first:pt-0 last:pb-0 space-y-2">
                         {/* Title with Species in Italics */}
                         <h3 className="font-serif text-lg font-medium text-stone-950 leading-snug">
                           <ScientificText>{pub.title}</ScientificText>

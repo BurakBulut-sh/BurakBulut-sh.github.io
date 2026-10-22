@@ -11,7 +11,7 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 h-16 w-full border-b border-stone-200/90 bg-[#FAF9F5]/95 backdrop-blur-md transition-colors">
-      <div className="max-w-7xl mx-auto h-full px-6 sm:px-10 lg:px-14 flex items-center justify-between flex-nowrap">
+      <div className="max-w-5xl mx-auto h-full px-6 sm:px-10 flex items-center justify-between flex-nowrap border-x border-stone-200/80">
         {/* Left: Academic Identity - STRICTLY SINGLE LINE */}
         <a
           href="#"
@@ -21,14 +21,14 @@ export default function Navbar() {
           <span className="font-serif text-lg sm:text-[19px] font-medium tracking-tight text-stone-950 group-hover:text-emerald-900 transition-colors whitespace-nowrap">
             {siteMetadata.name}
           </span>
-          <span className="hidden md:inline-block font-mono text-[11px] tracking-tight text-stone-600 bg-stone-100 px-2 py-0.5 rounded border border-stone-200/90 whitespace-nowrap">
-            {language === 'en' ? 'Computational Biology' : 'Hesaplamalı Biyoloji'}
+          <span className="hidden md:inline-block font-mono text-[10px] tracking-tight text-stone-600 bg-stone-100 px-2 py-0.5 rounded border border-stone-200/90 whitespace-nowrap">
+            {language === 'en' ? 'Systems & Applied AI' : 'Sistem & Uygulamalı AI'}
           </span>
         </a>
 
         {/* Right: Navigation Links & Action Controls - STRICTLY SINGLE LINE */}
-        <div className="hidden lg:flex items-center space-x-5 xl:space-x-7 shrink-0 flex-nowrap whitespace-nowrap">
-          <nav className="flex items-center space-x-4 xl:space-x-5 text-[13px] font-medium tracking-tight flex-nowrap whitespace-nowrap">
+        <div className="hidden lg:flex items-center space-x-4 xl:space-x-5 shrink-0 flex-nowrap whitespace-nowrap">
+          <nav className="flex items-center space-x-3.5 xl:space-x-4 text-[13px] font-medium tracking-tight flex-nowrap whitespace-nowrap">
             {navItems.map((item) => (
               <a
                 key={item.id}
@@ -100,18 +100,16 @@ export default function Navbar() {
             <a
               href="cv/Burak_Bulut_Master_CV_EN.pdf"
               download="Burak_Bulut_Master_CV_EN.pdf"
-              className="inline-flex items-center gap-1.5 text-xs font-mono px-3 py-1.5 rounded bg-stone-900 text-stone-50 whitespace-nowrap"
+              className="font-mono text-xs px-3 py-1.5 rounded bg-stone-900 text-white"
             >
-              <FileText size={13} strokeWidth={1.5} />
-              <span>CV (EN)</span>
+              CV (EN)
             </a>
             <a
               href="cv/Burak_Bulut_Master_CV_TR.pdf"
               download="Burak_Bulut_Master_CV_TR.pdf"
-              className="inline-flex items-center gap-1.5 text-xs font-mono px-3 py-1.5 rounded border border-stone-300 text-stone-800 bg-white whitespace-nowrap"
+              className="font-mono text-xs px-3 py-1.5 rounded border border-stone-300 text-stone-900 bg-white"
             >
-              <FileText size={13} strokeWidth={1.5} />
-              <span>CV (TR)</span>
+              CV (TR)
             </a>
           </div>
         </div>
