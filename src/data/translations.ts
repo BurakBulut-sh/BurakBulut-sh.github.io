@@ -347,7 +347,7 @@ export const toolsProjectsData: ProjectItem[] = [
       en: 'Why I built it: Existing note-taking apps felt bloated with steep learning curves. Because I recall papers through visual and spatial memory, remembering where paragraphs and figures sit on the page, I built a lean reader tailored to how my brain actually processes literature.',
       tr: 'Neden geliştirdim: Piyasadaki okuma ve not alma araçları fazla karmaşık ve genel amaçlıydı. Okuduğum bilgileri, paragrafların ve şekillerin sırasını görsel hafızamda canlandırarak hatırladığım için, tam kendi düşünce sistemime uyan yalın bir çalışma alanı inşa ettim.',
     },
-    techStack: ['Electron', 'React', 'Vite', 'Better-SQLite3', 'KaTeX', 'Cytoscape'],
+    techStack: ['Electron 35', 'React 18', 'Vite', 'Better-SQLite3', 'PDF.js'],
     githubUrl: 'https://github.com/BurakBulut-sh/BioReader',
     featured: true,
     metrics: {
