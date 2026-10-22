@@ -348,6 +348,7 @@ export const toolsProjectsData: ProjectItem[] = [
       tr: 'Neden geliştirdim: Piyasadaki okuma ve not alma araçları fazla karmaşık ve genel amaçlıydı. Okuduğum bilgileri, paragrafların ve şekillerin sırasını görsel hafızamda canlandırarak hatırladığım için, tam kendi düşünce sistemime uyan yalın bir çalışma alanı inşa ettim.',
     },
     techStack: ['Electron', 'React', 'Vite', 'Better-SQLite3', 'KaTeX', 'Cytoscape'],
+    githubUrl: 'https://github.com/BurakBulut-sh/BioReader',
     featured: true,
     metrics: {
       en: 'Tailored to Visual-Spatial Memory',
