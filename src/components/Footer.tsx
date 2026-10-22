@@ -19,7 +19,7 @@ export default function Footer() {
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-stone-500">
           <div>© 2026 Burak Bulut, Ph.D.</div>
-          <div className="text-stone-400">Wiesbaden, DE — Istanbul, TR</div>
+          <div className="text-stone-400">Wiesbaden, DE / Istanbul, TR</div>
           <div className="text-stone-600 font-serif italic text-[13px]">
             {language === 'en'
               ? 'Built from scratch with clarity & purpose.'

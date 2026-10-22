@@ -3,19 +3,21 @@
 import React, { useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import {
-  projectsData,
+  toolsProjectsData,
+  pipelineProjectsData,
   agentBlueprintNodes,
   agentHeroStory,
 } from '@/data/translations';
 import {
   ArrowUpRight,
   Sparkles,
-  ArrowRight,
   CheckCircle2,
   Cpu,
   FileCode2,
   Activity,
   Terminal,
+  Layers,
+  GitBranch,
 } from 'lucide-react';
 import {
   PythonIcon,
@@ -24,16 +26,12 @@ import {
   PipelineIcon,
 } from '@/components/icons/BrandIcons';
 import ScientificText from '@/components/common/ScientificText';
+import { ProjectItem } from '@/types';
 
 export default function Projects() {
   const { language } = useLanguage();
   const [filter, setFilter] = useState<'all' | 'cli' | 'ai' | 'pipeline'>('all');
   const [activeBlueprintNode, setActiveBlueprintNode] = useState<string>('node-2'); // Node 02 default selected!
-
-  const filteredProjects = projectsData.filter((p) => {
-    if (filter === 'all') return true;
-    return p.category === filter;
-  });
 
   const getTechIcon = (tag: string) => {
     const lower = tag.toLowerCase();
@@ -44,19 +42,6 @@ export default function Projects() {
       return <PipelineIcon size={12} className="text-stone-500" />;
     }
     return null;
-  };
-
-  const getCategoryBadge = (category: string) => {
-    switch (category) {
-      case 'cli':
-        return 'CLI TOOL · HPC/DESKTOP';
-      case 'ai':
-        return 'AI AGENT · LOCAL RAG';
-      case 'pipeline':
-        return 'NGS WORKFLOW · HPC';
-      default:
-        return 'SOFTWARE';
-    }
   };
 
   const selectedNodeData =
@@ -76,6 +61,73 @@ export default function Projects() {
         return <CheckCircle2 size={14} className="text-stone-700" />;
     }
   };
+
+  const renderProjectCard = (project: ProjectItem) => (
+    <article
+      key={project.id}
+      className="p-5 rounded-lg border border-stone-200/90 bg-white hover:border-stone-400 transition-all flex flex-col justify-between shadow-2xs group"
+    >
+      <div className="space-y-3">
+        {/* Header: Category Badge & GitHub/External Link */}
+        <div className="flex items-center justify-between">
+          <span className="font-mono text-[10px] tracking-wider text-stone-500 uppercase font-semibold">
+            {project.categoryLabel[language]}
+          </span>
+          {project.githubUrl && (
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-stone-400 hover:text-stone-900 transition-colors p-1"
+              aria-label={`${project.title} GitHub repository`}
+            >
+              <ArrowUpRight size={15} strokeWidth={1.5} />
+            </a>
+          )}
+        </div>
+
+        {/* Title */}
+        <h3 className="font-serif text-lg font-medium text-stone-950 tracking-tight group-hover:text-emerald-900 transition-colors">
+          <ScientificText>{project.title}</ScientificText>
+        </h3>
+
+        {/* Description */}
+        <p className="font-sans text-[13px] leading-relaxed text-stone-600">
+          <ScientificText>{project.description[language]}</ScientificText>
+        </p>
+
+        {/* Origin Note: Why I Built This */}
+        {project.originNote && (
+          <div className="border-l-2 border-stone-300 pl-3 py-1 bg-stone-50/50 rounded-r">
+            <p className="font-serif italic text-stone-700 text-[12.5px] leading-relaxed">
+              <ScientificText>{project.originNote[language]}</ScientificText>
+            </p>
+          </div>
+        )}
+      </div>
+
+      {/* Footer: Metrics & Tech Stack */}
+      <div className="pt-4 mt-3 border-t border-stone-150 space-y-2.5">
+        {project.metrics && (
+          <div className="font-mono text-[11px] text-emerald-900 font-medium">
+            {project.metrics[language]}
+          </div>
+        )}
+
+        <div className="flex flex-wrap items-center gap-1.5">
+          {project.techStack.map((tech) => (
+            <span
+              key={tech}
+              className="inline-flex items-center gap-1 font-mono text-[10.5px] px-2 py-0.5 rounded bg-stone-100 text-stone-600 border border-stone-200/70"
+            >
+              {getTechIcon(tech)}
+              <span>{tech}</span>
+            </span>
+          ))}
+        </div>
+      </div>
+    </article>
+  );
 
   return (
     <section id="projects" className="relative border-t border-stone-200/80">
@@ -103,9 +155,9 @@ export default function Projects() {
           <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-md border border-stone-200/80 bg-stone-100/60">
             {[
               { id: 'all', label: { en: 'All Systems', tr: 'Tüm Sistemler' } },
-              { id: 'cli', label: { en: 'Desktop & CLI', tr: 'Masaüstü & CLI' } },
+              { id: 'cli', label: { en: 'Tools & Apps', tr: 'Araçlar & Uygulamalar' } },
               { id: 'ai', label: { en: 'Applied AI', tr: 'Uygulamalı AI' } },
-              { id: 'pipeline', label: { en: 'Pipelines', tr: 'Boru Hatları' } },
+              { id: 'pipeline', label: { en: 'NGS Pipelines', tr: 'NGS Boru Hatları' } },
             ].map((tab) => (
               <button
                 key={tab.id}
@@ -124,7 +176,7 @@ export default function Projects() {
 
         {/* FEATURED LEAD ARCHITECTURE: AUTONOMOUS LLM-BASED BIOINFORMATICS AGENT */}
         {(filter === 'all' || filter === 'ai') && (
-          <div className="mb-10 p-6 sm:p-7 rounded-lg bg-stone-50/70 border border-stone-200/90 shadow-2xs space-y-5">
+          <div className="mb-12 p-6 sm:p-7 rounded-lg bg-stone-50/70 border border-stone-200/90 shadow-2xs space-y-5">
             {/* Lead Header */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-stone-200/70 pb-3">
               <div className="inline-flex items-center gap-1.5 font-mono text-[10px] tracking-wider uppercase text-emerald-800 font-semibold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200/70">
@@ -136,7 +188,7 @@ export default function Projects() {
                 </span>
               </div>
               <span className="font-mono text-xs text-stone-500">
-                {language === 'en' ? 'Local Model: Qwen-3.6-35B · 16 GB VRAM' : 'Yerel Model: Qwen-3.6-35B · 16 GB VRAM'}
+                {language === 'en' ? 'Local Model: Qwen 3.6 35B A3B · 16 GB VRAM' : 'Yerel Model: Qwen 3.6 35B A3B · 16 GB VRAM'}
               </span>
             </div>
 
@@ -210,7 +262,7 @@ export default function Projects() {
                     {selectedNodeData.badge[language]}
                   </span>
                   <span className="font-serif font-medium text-sm text-stone-900">
-                    {selectedNodeData.title[language]} — {selectedNodeData.subtitle[language]}
+                    {selectedNodeData.title[language]}: {selectedNodeData.subtitle[language]}
                   </span>
                 </div>
                 <p className="font-sans text-[13.5px] leading-relaxed text-stone-700">
@@ -234,7 +286,7 @@ export default function Projects() {
 
               <div className="flex flex-wrap items-center gap-1.5">
                 {[
-                  'Local Qwen-35B',
+                  'Local Qwen 3.6 35B A3B',
                   '16GB VRAM',
                   'Skill Files',
                   'Self-Healing CLI',
@@ -252,75 +304,39 @@ export default function Projects() {
           </div>
         )}
 
-        {/* BENTO GRID: OTHER TOOLS, DESKTOP APPS & PIPELINES */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {filteredProjects.map((project) => (
-            <article
-              key={project.id}
-              className="p-5 rounded-lg border border-stone-200/90 bg-white hover:border-stone-400 transition-all flex flex-col justify-between shadow-2xs group"
-            >
-              <div className="space-y-3">
-                {/* Header: Category Badge & GitHub/External Link */}
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-[10px] tracking-wider text-stone-500 uppercase font-semibold">
-                    {project.categoryLabel ? project.categoryLabel[language] : getCategoryBadge(project.category)}
-                  </span>
-                  {project.githubUrl && (
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-stone-400 hover:text-stone-900 transition-colors p-1"
-                      aria-label={`${project.title} GitHub repository`}
-                    >
-                      <ArrowUpRight size={15} strokeWidth={1.5} />
-                    </a>
-                  )}
-                </div>
+        {/* SECTION GROUP 1: OPEN-SOURCE TOOLS & DESKTOP APPS */}
+        {(filter === 'all' || filter === 'cli') && (
+          <div className="space-y-4 mb-10">
+            <div className="flex items-center gap-2 pb-2 border-b border-stone-200/70">
+              <Layers size={15} className="text-emerald-800" />
+              <h3 className="font-serif text-lg font-medium text-stone-950">
+                {language === 'en'
+                  ? 'Open-Source Developer Tools & Desktop Applications'
+                  : 'Açık Kaynak Geliştirici Araçları & Masaüstü Uygulamaları'}
+              </h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {toolsProjectsData.map(renderProjectCard)}
+            </div>
+          </div>
+        )}
 
-                {/* Title */}
-                <h3 className="font-serif text-lg font-medium text-stone-950 tracking-tight group-hover:text-emerald-900 transition-colors">
-                  <ScientificText>{project.title}</ScientificText>
-                </h3>
-
-                {/* Description */}
-                <p className="font-sans text-[13px] leading-relaxed text-stone-600">
-                  <ScientificText>{project.description[language]}</ScientificText>
-                </p>
-
-                {/* Origin Note: Why I Built This */}
-                {project.originNote && (
-                  <div className="border-l-2 border-stone-300 pl-3 py-1 bg-stone-50/50 rounded-r">
-                    <p className="font-serif italic text-stone-700 text-[12.5px] leading-relaxed">
-                      <ScientificText>{project.originNote[language]}</ScientificText>
-                    </p>
-                  </div>
-                )}
-              </div>
-
-              {/* Footer: Metrics & Tech Stack */}
-              <div className="pt-4 mt-3 border-t border-stone-150 space-y-2.5">
-                {project.metrics && (
-                  <div className="font-mono text-[11px] text-emerald-900 font-medium">
-                    {project.metrics[language]}
-                  </div>
-                )}
-
-                <div className="flex flex-wrap items-center gap-1.5">
-                  {project.techStack.map((tech) => (
-                    <span
-                      key={tech}
-                      className="inline-flex items-center gap-1 font-mono text-[10.5px] px-2 py-0.5 rounded bg-stone-100 text-stone-600 border border-stone-200/70"
-                    >
-                      {getTechIcon(tech)}
-                      <span>{tech}</span>
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
+        {/* SECTION GROUP 2: NGS GENOMIC & TRANSCRIPTOMIC PIPELINES */}
+        {(filter === 'all' || filter === 'pipeline') && (
+          <div className="space-y-4">
+            <div className="flex items-center gap-2 pb-2 border-b border-stone-200/70">
+              <GitBranch size={15} className="text-emerald-800" />
+              <h3 className="font-serif text-lg font-medium text-stone-950">
+                {language === 'en'
+                  ? 'End-to-End NGS Genomic & Transcriptomic Pipelines'
+                  : 'Uçtan Uca NGS Genomik & Transkriptomik Boru Hatları'}
+              </h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {pipelineProjectsData.map(renderProjectCard)}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

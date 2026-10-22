@@ -12,17 +12,14 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 h-16 w-full border-b border-stone-200/90 bg-[#FAF9F5]/95 backdrop-blur-md transition-colors">
       <div className="max-w-5xl mx-auto h-full px-6 sm:px-10 flex items-center justify-between flex-nowrap border-x border-stone-200/80">
-        {/* Left: Academic Identity - STRICTLY SINGLE LINE */}
+        {/* Left: Academic Identity - CLEAN NAME ONLY */}
         <a
           href="#"
-          className="flex items-center gap-2.5 shrink-0 flex-nowrap group whitespace-nowrap"
-          aria-label="Burak Bulut, Ph.D. — Home"
+          className="flex items-center shrink-0 flex-nowrap group whitespace-nowrap"
+          aria-label="Burak Bulut, Ph.D. Home"
         >
           <span className="font-serif text-lg sm:text-[19px] font-medium tracking-tight text-stone-950 group-hover:text-emerald-900 transition-colors whitespace-nowrap">
             {siteMetadata.name}
-          </span>
-          <span className="hidden md:inline-block font-mono text-[10px] tracking-tight text-stone-600 bg-stone-100 px-2 py-0.5 rounded border border-stone-200/90 whitespace-nowrap">
-            {language === 'en' ? 'Systems & Applied AI' : 'Sistem & Uygulamalı AI'}
           </span>
         </a>
 

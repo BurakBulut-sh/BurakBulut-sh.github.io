@@ -11,7 +11,7 @@ interface ScientificTextProps {
  * - Beta vulgaris L. / Beta vulgaris
  * - in vivo
  * - in silico
- * - de novo
+ * - de novo (with font-normal to avoid bolding)
  */
 export function formatScientificString(text: string): React.ReactNode {
   if (!text) return text;
@@ -25,7 +25,7 @@ export function formatScientificString(text: string): React.ReactNode {
     if (part === 'Beta vulgaris L.') {
       return (
         <span key={index}>
-          <em className="italic">Beta vulgaris</em> L.
+          <em className="italic font-normal">Beta vulgaris</em> L.
         </span>
       );
     }
@@ -38,7 +38,7 @@ export function formatScientificString(text: string): React.ReactNode {
       part === 'Chironomidae'
     ) {
       return (
-        <em key={index} className="italic">
+        <em key={index} className="italic font-normal">
           {part}
         </em>
       );
@@ -48,5 +48,9 @@ export function formatScientificString(text: string): React.ReactNode {
 }
 
 export default function ScientificText({ children, className = '' }: ScientificTextProps) {
+  if (typeof children !== 'string') {
+    return <span className={className}>{children}</span>;
+  }
+
   return <span className={className}>{formatScientificString(children)}</span>;
 }

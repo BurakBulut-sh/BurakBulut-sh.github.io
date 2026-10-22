@@ -4,15 +4,16 @@ import { LanguageProvider } from '@/context/LanguageContext';
 import { ThemeProvider } from '@/context/ThemeContext';
 
 export const metadata: Metadata = {
-  title: 'Burak Bulut, Ph.D. | Bioinformatics Scientist & Computational Biologist',
+  title: 'Burak Bulut, Ph.D. | Computational Scientist · Systems & Applied AI Builder',
   description:
-    'Official portfolio and academic CV of Burak Bulut, Ph.D. — Bioinformatics Scientist & Computational Biologist specializing in WGS, RNA-Seq, Snakemake/SLURM HPC pipelines, and autonomous AI bio-agents.',
+    'Official portfolio and academic CV of Burak Bulut, Ph.D., Computational Scientist and Systems Builder specializing in WGS, RNA-Seq, HPC pipelines, and autonomous AI bio-agents.',
   keywords: [
     'Burak Bulut',
     'Bioinformatics Scientist',
     'Computational Biologist',
     'Ph.D.',
-    'Hermes AI Agent',
+    'AI Agent',
+    'Qwen 3.6 35B A3B',
     'WGS',
     'RNA-Seq',
     'Snakemake',
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Burak Bulut, Ph.D.', url: 'https://burakbulut-sh.github.io' }],
   openGraph: {
-    title: 'Burak Bulut, Ph.D. | Bioinformatics Scientist & Computational Biologist',
+    title: 'Burak Bulut, Ph.D. | Computational Scientist · Systems & Applied AI Builder',
     description:
       'Genomics, transcriptomics, HPC pipeline engineering, and autonomous AI bioinformatics agent workflows.',
     url: 'https://burakbulut-sh.github.io',

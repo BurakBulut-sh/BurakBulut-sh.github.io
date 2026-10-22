@@ -44,7 +44,7 @@ export const heroContent = {
     tr: 'Karmaşık biyolojik ve çok boyutlu verileri güvenilir iş akışlarına, yalın yazılımlara ve alan bilgisine sahip yapay zeka sistemlerine dönüştürüyorum.',
   },
   summary: {
-    en: 'I work at the intersection of life sciences, data engineering, and applied AI. While my Ph.D. rooted me in evolutionary genomics, the most valuable capability it gave me is knowing how to learn rapidly, frame ambiguous problems, and engineer solutions from the ground up. Over the past 6+ years, I have bridged experimental design with large-scale computation—automating end-to-end data pipelines, building desktop and CLI tools born from real workflow bottlenecks, and shaping local language models into practical, privacy-preserving research agents. I thrive on stepping into unfamiliar challenges and translating complex technical concepts across disciplines.',
+    en: 'I work at the intersection of life sciences, data engineering, and applied AI. While my Ph.D. rooted me in evolutionary genomics, the most valuable capability it gave me is knowing how to learn rapidly, frame ambiguous problems, and engineer solutions from the ground up. Over the past 6+ years, I have bridged experimental design with large-scale computation by automating end-to-end data pipelines, building desktop and CLI tools born from real workflow bottlenecks, and shaping local language models into practical, privacy-preserving research agents. I thrive on stepping into unfamiliar challenges and translating complex technical concepts across disciplines.',
     tr: 'Yaşam bilimleri, veri mühendisliği ve uygulamalı yapay zekanın kesişiminde çalışıyorum. Doktoram bana genomik ve evrimsel biyoloji alanında derin bir uzmanlık kazandırsa da, bu süreçte edindiğim en değerli yetkinlik \'nasıl öğrenileceğini\' bilmek, belirsiz problemleri yapılandırmak ve hayal ettiğim çözümleri bir mühendis gibi sıfırdan inşa edebilmek oldu. Son 6 yılı aşkın sürede deneysel araştırmalar ile büyük ölçekli hesaplamalı sistemler arasında köprü kurdum; uçtan uca veri iş akışlarını otomatize ettim, günlük araştırma darboğazlarını çözen pratik yazılımlar geliştirdim ve yerel yapay zeka modellerini kurum içi çalışan otonom ajanlara dönüştürdüm. Yeni meydan okumalarla karşılaşmayı ve karmaşık sistemleri farklı disiplinlerden insanların anlayabileceği yalın bir dile çevirmeyi seviyorum.',
   },
   stats: [
@@ -104,7 +104,7 @@ export const mentalModelContent: MentalModelContent = {
         tr: 'Yapay Zekayı Alan Bilgisiyle Şekillendirmek',
       },
       description: {
-        en: 'AI will reshape every corner of research within the next few years. We don\'t need massive compute to build foundation models from scratch—what matters is how we guide, constrain, and orchestrate existing models so they truly understand our data\'s limits.',
+        en: 'AI will reshape every corner of research within the next few years. We don\'t need massive compute to build foundation models from scratch; what matters is how we guide, constrain, and orchestrate existing models so they truly understand our data\'s limits.',
         tr: 'Yapay zeka önümüzdeki birkaç yıl içinde araştırmanın her noktasına adapte olacak. Sıfırdan devasa modeller üretecek kaynağımız olmayabilir; ancak üretilen modelleri elimizdeki kaynaklarla nasıl şekillendirdiğimiz ve verimizin sınırlarını onlara nasıl öğrettiğimiz yarının teknolojisini belirleyecek.',
       },
     },
@@ -116,7 +116,7 @@ export const mentalModelContent: MentalModelContent = {
         tr: 'Çevik Karar Alma & Disiplinlerarası İletişim',
       },
       description: {
-        en: 'When urgency calls, I trust my instincts and experience to act decisively; when time allows, I step back to examine the root cause from the outside. Across disciplines, I never hide behind code—I explain what we are trying to achieve using clear, relatable analogies.',
+        en: 'When urgency calls, I trust my instincts and experience to act decisively; when time allows, I step back to examine the root cause from the outside. Across disciplines, I never hide behind code, and instead explain what we are trying to achieve using clear, relatable analogies.',
         tr: 'Hızlı aksiyon gerektiğinde deneyimime güvenip karar alır, zamanımız olduğunda ise olaya dışarıdan bakıp kök nedeni analiz ederim. Kod bilmeyen uzmanlarla çalışırken satırların arkasına saklanmam; ne yapmaya çalıştığımızı onların dünyasından yalın örneklerle anlatırım.',
       },
     },
@@ -165,7 +165,7 @@ export const experienceData: ExperienceItem[] = [
         {
           title: 'End-to-End Local AI Agent Engineering',
           description:
-            'Self-taught and engineered an on-premise bioinformatics AI agent running on consumer hardware (16 GB VRAM). Solved the core challenge of teaching LLMs how to interpret biological data by designing modular, per-tool constraint and skill definitions rather than relying on fragile generic prompts.',
+            'Self-taught and engineered an on-premise bioinformatics AI agent running on consumer hardware (16 GB VRAM with Qwen 3.6 35B A3B). Solved the core challenge of teaching LLMs how to interpret biological data by designing modular, per-tool constraint and skill definitions rather than relying on fragile generic prompts.',
         },
         {
           title: 'R&D Project Leadership & DFG Grant Strategy',
@@ -182,7 +182,7 @@ export const experienceData: ExperienceItem[] = [
         {
           title: 'Uçtan Uca Yerel Yapay Zeka Ajanı Geliştirme',
           description:
-            'Kendi kendime öğrenerek 16 GB VRAM donanım sınırında tamamen yerel çalışan otonom bir biyoenformatik AI ajanı geliştirdim. Modele sadece araçları çalıştırmayı değil, her aracın ürettiği veriyi nasıl doğru yorumlayacağını öğretmek için her araca özel sınır (constraint) ve yetenek dosyaları içeren modüler bir mimari kurguladım.',
+            'Kendi kendime öğrenerek 16 GB VRAM donanım sınırında tamamen yerel çalışan (Qwen 3.6 35B A3B modeliyle) otonom bir biyoenformatik AI ajanı geliştirdim. Modele sadece araçları çalıştırmayı değil, her aracın ürettiği veriyi nasıl doğru yorumlayacağını öğretmek için her araca özel sınır (constraint) ve yetenek dosyaları içeren modüler bir mimari kurguladım.',
         },
         {
           title: 'Ar-Ge Proje Liderliği & DFG Hibe Koordinasyonu',
@@ -220,7 +220,7 @@ export const experienceData: ExperienceItem[] = [
       tr: '3 Yıl',
     },
     coreImpact: {
-      en: 'Owned the complete lifecycle of high-throughput biological data—from designing multi-year wet-lab experiments to architecting automated HPC pipelines and statistical models.',
+      en: 'Owned the complete lifecycle of high-throughput biological data, from designing multi-year wet-lab experiments to architecting automated HPC pipelines and statistical models.',
       tr: 'Çok yıllı ıslak laboratuvar deneylerinin tasarımından, HPC kümelerinde otomatik veri iş akışlarının kurulmasına ve ileri istatistiksel modellemeye kadar veri yaşam döngüsünün tamamını yönettim.',
     },
     responsibilities: {
@@ -298,12 +298,12 @@ export const agentBlueprintNodes: AgentBlueprintNode[] = [
   {
     id: 'node-3',
     nodeNumber: '03',
-    title: { en: 'Local 35B Reasoning', tr: 'Yerel 35B Akıl Yürütme' },
-    subtitle: { en: 'On-Premise Qwen-35B on 16GB VRAM', tr: '16GB VRAM Üzerinde Qwen-35B' },
+    title: { en: 'Local Qwen 3.6 35B A3B Reasoning', tr: 'Yerel Qwen 3.6 35B A3B Akıl Yürütme' },
+    subtitle: { en: 'On-Premise 35B on 16GB VRAM', tr: '16GB VRAM Üzerinde Qwen 3.6 35B A3B' },
     badge: { en: 'Private Inference', tr: 'Yerel Çıkarım' },
     takeaway: {
-      en: 'Leverages modern quantized open-weights models locally. Operates without exposing patient genomes or institutional IP to external cloud APIs, maintaining full privacy and zero egress costs.',
-      tr: 'Yüksek parametreli açık kaynaklı modelleri 16 GB VRAM donanım bütçesinde çalıştırır. Hasta genomlarını ve kurumsal gizliliği buluta sızdırmadan, sıfır veri transferi maliyetiyle tam güvenlik sağlar.',
+      en: 'Leverages the quantized Qwen 3.6 35B A3B open-weights model locally within a strict 16 GB VRAM budget. Operates without exposing patient genomes or institutional IP to external cloud APIs, maintaining full privacy and zero egress costs.',
+      tr: '16 GB VRAM donanım bütçesinde kuantize edilmiş yerel Qwen 3.6 35B A3B açık modelini çalıştırır. Hasta genomlarını ve kurumsal gizliliği buluta sızdırmadan, sıfır veri transferi maliyetiyle tam güvenlik sağlar.',
     },
   },
   {
@@ -321,30 +321,30 @@ export const agentBlueprintNodes: AgentBlueprintNode[] = [
 
 export const agentHeroStory = {
   spot: {
-    en: 'An on-premise AI agent running a 35B parameter model within a 16 GB VRAM budget—built by teaching the model not just how to call CLI tools, but how to understand the structure and limits of biological data.',
-    tr: '16 GB VRAM donanım sınırında 35B parametreli yerel bir modelle çalışan; modele sadece komut çalıştırmayı değil, biyolojik verinin doğasını ve sınırlarını öğretmek üzere tasarlanmış otonom yapay zeka ajanı.',
+    en: 'An on-premise AI agent running a 35B parameter model (Qwen 3.6 35B A3B) within a 16 GB VRAM budget, built by teaching the model not just how to call CLI tools, but how to understand the structure and limits of biological data.',
+    tr: '16 GB VRAM donanım sınırında 35B parametreli yerel bir modelle (Qwen 3.6 35B A3B) çalışan; modele sadece komut çalıştırmayı değil, biyolojik verinin doğasını ve sınırlarını öğretmek üzere tasarlanmış otonom yapay zeka ajanı.',
   },
   narrative: {
-    en: 'Sensitive genomic and clinical datasets cannot be sent to external cloud APIs. When I set out to build a fully local bioinformatics agent on a 16 GB VRAM workstation (using a quantized Qwen-3.6-35B model), I quickly realized that the hardest problem wasn’t getting the LLM to execute terminal commands—it was teaching the model how to truly understand the data those tools produce. Because you cannot compress the entire intuition of bioinformatics into a single system prompt, I engineered a modular architecture where every tool has its own dedicated skill file, reference schema, and strict operational boundaries.',
-    tr: 'Hassas genomik ve klinik veriler gizlilik kuralları gereği ticari bulut yapay zeka servislerine yüklenemez. Standart bir 16 GB VRAM iş istasyonunda (kuantize edilmiş Qwen-3.6-35B modeliyle) tamamen yerel bir ajan kurmaya başladığımda, beni en çok zorlayan kısım modele araçları (tools) nasıl kullanacağını öğretmek değil, bu araçlarla işlediği veriyi en iyi nasıl anlayabileceğini göstermek oldu. Biyoenformatiğin özünü tek bir genel komutla modele aktarmak mümkün olmadığı için; kullandığım her bir araç için ayrı bir referans, ayrı bir yetenek (skill) tanımı ve katı sınırlar içeren modüler bir dosya mimarisi geliştirdim.',
+    en: 'Sensitive genomic and clinical datasets cannot be sent to external cloud APIs. When I set out to build a fully local bioinformatics agent on a 16 GB VRAM workstation using a quantized Qwen 3.6 35B A3B model, I quickly realized that the hardest problem was not getting the LLM to execute terminal commands, but rather teaching the model how to truly understand the data those tools produce. Because you cannot compress the entire intuition of bioinformatics into a single system prompt, I engineered a modular architecture where every tool has its own dedicated skill file, reference schema, and strict operational boundaries.',
+    tr: 'Hassas genomik ve klinik veriler gizlilik kuralları gereği ticari bulut yapay zeka servislerine yüklenemez. Standart bir 16 GB VRAM iş istasyonunda (kuantize edilmiş Qwen 3.6 35B A3B modeliyle) tamamen yerel bir ajan kurmaya başladığımda, beni en çok zorlayan kısım modele araçları (tools) nasıl kullanacağını öğretmek değil, bu araçlarla işlediği veriyi en iyi nasıl anlayabileceğini göstermek oldu. Biyoenformatiğin özünü tek bir genel komutla modele aktarmak mümkün olmadığı için; kullandığım her bir araç için ayrı bir referans, ayrı bir yetenek (skill) tanımı ve katı sınırlar içeren modüler bir dosya mimarisi geliştirdim.',
   },
 };
 
-export const projectsData: ProjectItem[] = [
+export const toolsProjectsData: ProjectItem[] = [
   {
     id: 'bioreader',
     title: 'BioReader',
     category: 'cli',
     categoryLabel: {
-      en: 'Desktop Apps & Tools',
-      tr: 'Masaüstü Uygulamaları & Araçlar',
+      en: 'Desktop App & Knowledge Workspace',
+      tr: 'Masaüstü Uygulaması & Not Alanı',
     },
     description: {
       en: 'A lightweight desktop scientific literature workspace built with Electron, React, and SQLite. Features visual structure highlighting, inline KaTeX math, Cytoscape concept mapping, and fast local indexing.',
       tr: 'Electron, React ve yerel SQLite ile geliştirilmiş yalın bir masaüstü bilimsel makale okuma ve not alma uygulaması. Görsel yapı vurgulama, satır içi KaTeX formülleri ve kavram haritalama özellikleri sunar.',
     },
     originNote: {
-      en: 'Why I built it: Existing note-taking apps felt bloated with steep learning curves. Because I recall papers through visual and spatial memory—remembering where paragraphs and figures sit on the page—I built a lean reader tailored to how my brain actually processes literature.',
+      en: 'Why I built it: Existing note-taking apps felt bloated with steep learning curves. Because I recall papers through visual and spatial memory, remembering where paragraphs and figures sit on the page, I built a lean reader tailored to how my brain actually processes literature.',
       tr: 'Neden geliştirdim: Piyasadaki okuma ve not alma araçları fazla karmaşık ve genel amaçlıydı. Okuduğum bilgileri, paragrafların ve şekillerin sırasını görsel hafızamda canlandırarak hatırladığım için, tam kendi düşünce sistemime uyan yalın bir çalışma alanı inşa ettim.',
     },
     techStack: ['Electron', 'React', 'Vite', 'Better-SQLite3', 'KaTeX', 'Cytoscape'],
@@ -359,15 +359,15 @@ export const projectsData: ProjectItem[] = [
     title: 'SampleSheriff',
     category: 'cli',
     categoryLabel: {
-      en: 'CLI Tools & Quality Control',
-      tr: 'CLI Araçları & Kalite Kontrol',
+      en: 'CLI Tool & Quality Control',
+      tr: 'CLI Aracı & Kalite Kontrol',
     },
     description: {
-      en: 'A fast, strict, nf-core–style sample sheet and metadata validator for bioinformatics pipelines. Features streaming parsing, FASTQ pairing checks, BAM/VCF header validation, and rich terminal/JSON diagnostics.',
+      en: 'A fast, strict, nf-core-style sample sheet and metadata validator for bioinformatics pipelines. Features streaming parsing, FASTQ pairing checks, BAM/VCF header validation, and rich terminal/JSON diagnostics.',
       tr: 'Biyoenformatik iş akışları için hızlı ve katı bir örnek tablosu (sample sheet) ve üstveri doğrulama aracı. Akış tabanlı ayrıştırma, FASTQ eşleşme kontrolü ve BAM/VCF başlık doğrulaması sunar.',
     },
     originNote: {
-      en: 'Why I built it: A single typo in a sample sheet shouldn’t silently ruin a multi-day cluster run. I built this to catch metadata and file-header mismatches in seconds before a pipeline even starts.',
+      en: 'Why I built it: A single typo in a sample sheet should not silently ruin a multi-day cluster run. I built this to catch metadata and file-header mismatches in seconds before a pipeline even starts.',
       tr: 'Neden geliştirdim: Örnek tablosundaki küçük bir yazım hatasının günler süren bir analizi yarı yolda çökertmesini önlemek, veri hatalarını henüz analiz başlamadan saniyeler içinde yakalamak için yazdım.',
     },
     techStack: ['Python', 'Typer', 'Pydantic', 'PySAM', 'Rich', 'CI/CD'],
@@ -383,8 +383,8 @@ export const projectsData: ProjectItem[] = [
     title: 'PipeWatch',
     category: 'cli',
     categoryLabel: {
-      en: 'CLI Tools & Telemetry',
-      tr: 'CLI Araçları & Telemetri',
+      en: 'CLI Tool & Telemetry',
+      tr: 'CLI Aracı & Telemetri',
     },
     description: {
       en: 'Pipeline observability and resource telemetry for SLURM and HPC bioinformatics workflows. Wraps arbitrary Bash commands with zero dependencies, captures peak memory via /usr/bin/time -v, and outputs interactive HTML reports.',
@@ -402,13 +402,16 @@ export const projectsData: ProjectItem[] = [
       tr: 'SLURM Telemetrisi • HTML Paneller',
     },
   },
+];
+
+export const pipelineProjectsData: ProjectItem[] = [
   {
     id: 'snp-analysis',
     title: 'SNP-analysis / WGS Mutation Pipeline',
     category: 'pipeline',
     categoryLabel: {
-      en: 'NGS Pipelines',
-      tr: 'NGS Boru Hatları',
+      en: 'WGS Variant Discovery & Bayesian Modeling',
+      tr: 'WGS Varyant Keşfi & Bayesci Modelleme',
     },
     description: {
       en: 'High-throughput Whole-Genome Sequencing variant discovery pipeline. Integrates Trimmomatic, PEAR merging, BWA-MEM mapping, Picard deduplication, GATK4 HaplotypeCaller gVCF array, and Bayesian Poisson rate ratio tests in R.',
@@ -431,8 +434,8 @@ export const projectsData: ProjectItem[] = [
     title: 'Transcriptome-Study Pipeline',
     category: 'pipeline',
     categoryLabel: {
-      en: 'NGS Pipelines',
-      tr: 'NGS Boru Hatları',
+      en: 'Differential Expression & Stress Modeling',
+      tr: 'Diferansiyel Anlatım & Stres Modellemesi',
     },
     description: {
       en: 'RNA-Seq processing and statistical modeling of oxidative stress across temperature gradients in Chironomus riparius. Includes HISAT2 spliced alignment, featureCounts, DESeq2 prefiltering, and Limma contrast modeling.',
@@ -455,8 +458,8 @@ export const projectsData: ProjectItem[] = [
     title: 'Meta-Transcriptome-Analysis',
     category: 'pipeline',
     categoryLabel: {
-      en: 'NGS Pipelines',
-      tr: 'NGS Boru Hatları',
+      en: 'Cross-Study RNA-Seq Meta-Analysis',
+      tr: 'Çok Çalışmalı RNA-Seq Meta-Analizi',
     },
     description: {
       en: 'End-to-end RNA-Seq meta-analysis and KEGG pathway mapping in Beta vulgaris. Implements multi-factor GLM DESeq2, Fisher combined probability tests, biomaRt functional annotations, and Pathview pathway overlays.',
@@ -476,10 +479,13 @@ export const projectsData: ProjectItem[] = [
   },
 ];
 
+// Combined for backwards compatibility if needed
+export const projectsData: ProjectItem[] = [...toolsProjectsData, ...pipelineProjectsData];
+
 export const competencyCategories: CompetencyCategory[] = [
   {
     id: 'genomics',
-    title: { en: 'NGS & Genomics', tr: 'NGS & Genomik' },
+    title: { en: 'NGS, Genomics & Databases', tr: 'NGS, Genomik & Veritabanları' },
     skills: [
       {
         name: 'Whole-Genome Sequencing (WGS)',
@@ -515,6 +521,16 @@ export const competencyCategories: CompetencyCategory[] = [
           tr: 'Çok nesilli mutasyon birikim hatları, accuMUlate çağırıcı ve Bayesci Poisson oran testleri.',
         },
         tags: ['accuMUlate', 'Bayesian Statistics', 'Evolutionary Genomics'],
+        highlight: true,
+      },
+      {
+        name: 'Bioinformatics Databases & Ontologies',
+        description: {
+          en: 'NCBI, Ensembl Plants, KEGG Pathways, UniProt, Gene Ontology (GO), and SRA curation.',
+          tr: 'NCBI, Ensembl Plants, KEGG Pathways, UniProt, Gene Ontology (GO) ve SRA kürasyonu.',
+        },
+        tags: ['NCBI', 'Ensembl', 'KEGG', 'UniProt', 'biomaRt', 'SRA'],
+        highlight: false,
       },
     ],
   },
@@ -523,12 +539,12 @@ export const competencyCategories: CompetencyCategory[] = [
     title: { en: 'Programming & Pipelines', tr: 'Programlama & Boru Hatları' },
     skills: [
       {
-        name: 'Python',
+        name: 'Bash / Linux Shell Scripting',
         description: {
-          en: 'Scientific computing, data manipulation, CLI tool architecture, and genomic parser engineering.',
-          tr: 'Bilimsel hesaplama, veri işleme, CLI araç mimarisi ve genomik ayrıştırıcı geliştirme.',
+          en: 'Robust shell automation, sed/awk parsing, and complex process monitoring wrappers.',
+          tr: 'Güçlü kabuk otomasyonu, sed/awk işleme ve karmaşık süreç izleme betikleri.',
         },
-        tags: ['NumPy', 'Pandas', 'Typer', 'Pydantic', 'PySAM'],
+        tags: ['Bash', 'Unix/Linux', 'AWK', 'POSIX Shell'],
         highlight: true,
       },
       {
@@ -541,6 +557,15 @@ export const competencyCategories: CompetencyCategory[] = [
         highlight: true,
       },
       {
+        name: 'Python',
+        description: {
+          en: 'Scientific computing, data manipulation, CLI tool architecture, and genomic parser engineering.',
+          tr: 'Bilimsel hesaplama, veri işleme, CLI araç mimarisi ve genomik ayrıştırıcı geliştirme.',
+        },
+        tags: ['NumPy', 'Pandas', 'Typer', 'Pydantic', 'PySAM'],
+        highlight: false,
+      },
+      {
         name: 'Workflow Orchestration',
         description: {
           en: 'Automated, reproducible, and containerized computational pipeline development.',
@@ -549,13 +574,56 @@ export const competencyCategories: CompetencyCategory[] = [
         tags: ['Snakemake', 'Nextflow', 'Docker', 'Git', 'CI/CD'],
         highlight: true,
       },
+    ],
+  },
+  {
+    id: 'wetlab',
+    title: { en: 'Wet-Lab & Molecular Biology', tr: 'Islak Laboratuvar & Moleküler Biyoloji' },
+    skills: [
       {
-        name: 'Bash / Linux Shell Scripting',
+        name: 'DNA & RNA Extraction & Quality Control',
         description: {
-          en: 'Robust shell automation, sed/awk parsing, and complex process monitoring wrappers.',
-          tr: 'Güçlü kabuk otomasyonu, sed/awk işleme ve karmaşık süreç izleme betikleri.',
+          en: 'Extraction from challenging non-model organisms, tissue homogenisation, Nanodrop/Qubit spectrophotometric quantification, and Bioanalyzer integrity analysis.',
+          tr: 'Model olmayan zorlu organizmalardan DNA/RNA izolasyonu, doku homojenizasyonu, Qubit spektrofotometrik ölçüm ve Bioanalyzer jel bütünlük analizleri.',
         },
-        tags: ['Bash', 'Unix/Linux', 'AWK', 'POSIX Shell'],
+        tags: ['DNA/RNA Extraction', 'Qubit', 'Bioanalyzer', 'Quality Control'],
+        highlight: false,
+      },
+      {
+        name: 'in vivo ROS Fluorometry & Physiological Assays',
+        description: {
+          en: 'Real-time in vivo reactive oxygen species quantification, oxidative stress tipping-point fluorometry, and stress physiology assays across environmental gradients.',
+          tr: 'Canlı dokuda gerçek zamanlı reaktif oksijen türleri (ROS) ölçümleri, oksidatif stres kırılma noktası florometrisi ve çevresel gradyanlarda fizyolojik tahliller.',
+        },
+        tags: ['in vivo ROS', 'Fluorometry', 'Oxidative Stress', 'Physiology'],
+        highlight: true,
+      },
+      {
+        name: 'Multigenerational Culturing & Ecotoxicological Exposure',
+        description: {
+          en: 'Long-term controlled temperature gradients, chemical stressor exposure (BaP, micro-pollutants), fitness tracking, and multi-generational mutation accumulation lines in aquatic models (Chironomus riparius).',
+          tr: 'Kontrollü sıcaklık gradyanlarında uzun vadeli kültür yönetimi, kimyasal stresör (BaP) maruziyetleri, fitness takibi ve sucul böcek modellerinde (Chironomus riparius) çok nesilli mutasyon birikim hatları.',
+        },
+        tags: ['Mutation Accumulation', 'Ecotoxicology', 'Organism Culturing', 'Chironomus riparius'],
+        highlight: true,
+      },
+      {
+        name: 'Fluorescence & Confocal Microscopy',
+        description: {
+          en: 'Microscopic specimen imaging, histological visualization, cellular stress marker tracking, and fluorescent dye localization.',
+          tr: 'Mikroskobik numune hazırlığı, histolojik görüntüleme, hücresel stres belirteçlerinin takibi ve floresan boya lokalizasyonu.',
+        },
+        tags: ['Fluorescence Microscopy', 'Confocal Imaging', 'Histology'],
+        highlight: false,
+      },
+      {
+        name: 'PCR, Gel Electrophoresis & Molecular Assays',
+        description: {
+          en: 'Target gene amplification, primer design, agarose gel electrophoresis, and downstream sequencing library prep validation.',
+          tr: 'Hedef gen amplifikasyonu, primer tasarımı, agaroz jel elektroforezi ve yeni nesil dizileme kütüphane hazırlık kontrolleri.',
+        },
+        tags: ['PCR', 'Primer Design', 'Gel Electrophoresis', 'Library Prep'],
+        highlight: false,
       },
     ],
   },
@@ -606,10 +674,10 @@ export const competencyCategories: CompetencyCategory[] = [
       {
         name: 'Local LLMs & Fine-Tuning',
         description: {
-          en: 'Running private on-premise models for life sciences data without external leakage.',
-          tr: 'Dışa sızıntı olmadan yaşam bilimleri verileri için yerel kurum içi modeller çalıştırma.',
+          en: 'Running private on-premise models (such as Qwen 3.6 35B A3B) for life sciences data without external leakage.',
+          tr: 'Dışa sızıntı olmadan yaşam bilimleri verileri için yerel kurum içi modeller (Qwen 3.6 35B A3B vb.) çalıştırma.',
         },
-        tags: ['Ollama', 'vLLM', 'HuggingFace', 'Model Quantization'],
+        tags: ['Qwen 3.6 35B A3B', 'Ollama', 'vLLM', 'Model Quantization'],
       },
       {
         name: 'RAG Systems & Vector Databases',
@@ -618,28 +686,6 @@ export const competencyCategories: CompetencyCategory[] = [
           tr: 'Alana özgü bilimsel literatür ve klinik çalışmalar üzerinde RAG mimarileri.',
         },
         tags: ['RAG', 'Vector Embeddings', 'Knowledge Retrieval', 'Prompt Engineering'],
-      },
-    ],
-  },
-  {
-    id: 'wetlab',
-    title: { en: 'Databases & Wet-Lab', tr: 'Veritabanları & Islak Lab' },
-    skills: [
-      {
-        name: 'Bioinformatics Databases & Ontologies',
-        description: {
-          en: 'NCBI, Ensembl Plants, KEGG Pathways, UniProt, Gene Ontology (GO), and SRA curation.',
-          tr: 'NCBI, Ensembl Plants, KEGG Pathways, UniProt, Gene Ontology (GO) ve SRA kürasyonu.',
-        },
-        tags: ['NCBI', 'Ensembl', 'KEGG', 'UniProt', 'biomaRt'],
-      },
-      {
-        name: 'Molecular Biology & Microscopy',
-        description: {
-          en: 'DNA/RNA Extraction, PCR, in vivo ROS quantification, and confocal/fluorescence microscopy.',
-          tr: 'DNA/RNA ekstraksiyonu, PCR, in vivo ROS ölçümü ve floresan mikroskobi.',
-        },
-        tags: ['DNA/RNA Extraction', 'in vivo ROS', 'Fluorescence Microscopy', 'PCR'],
       },
     ],
   },
@@ -666,8 +712,8 @@ export const competencyCategories: CompetencyCategory[] = [
       {
         name: 'German',
         description: {
-          en: 'A2 – Basic Working Proficiency.',
-          tr: 'A2 – Temel çalışma yetkinliği.',
+          en: 'A2 (Basic Working Proficiency).',
+          tr: 'A2 (Temel çalışma yetkinliği).',
         },
         tags: ['A2'],
       },
